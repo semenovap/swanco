@@ -57,7 +57,8 @@ describe('services', () => {
           response: {
             type: 'void',
             reference: undefined,
-            description: undefined
+            description: undefined,
+            isArray: false
           },
           security: {
             apiKeys: [],
@@ -105,7 +106,8 @@ describe('services', () => {
           response: {
             type: 'void',
             reference: undefined,
-            description: undefined
+            description: undefined,
+            isArray: false
           },
           security: {
             apiKeys: [],
@@ -161,7 +163,8 @@ describe('services', () => {
           response: {
             type: 'Pet',
             reference: undefined,
-            description: 'successful operation'
+            description: 'successful operation',
+            isArray: true
           },
           security: {
             apiKeys: [],
@@ -197,7 +200,8 @@ describe('services', () => {
           response: {
             type: 'Pet',
             reference: undefined,
-            description: 'successful operation'
+            description: 'successful operation',
+            isArray: true
           },
           security: {
             apiKeys: [],
@@ -233,7 +237,8 @@ describe('services', () => {
           response: {
             type: 'Pet',
             reference: undefined,
-            description: 'successful operation'
+            description: 'successful operation',
+            isArray: false
           },
           security: {
             apiKeys: [
@@ -272,7 +277,8 @@ describe('services', () => {
           response: {
             type: 'void',
             reference: undefined,
-            description: undefined
+            description: undefined,
+            isArray: false
           },
           security: {
             apiKeys: [],
@@ -333,6 +339,7 @@ describe('services', () => {
             type: 'void',
             reference: undefined,
             description: undefined,
+            isArray: false
           },
           security: {
             apiKeys: [],
@@ -392,7 +399,8 @@ describe('services', () => {
           response: {
             type: 'ApiResponse',
             reference: undefined,
-            description: 'successful operation'
+            description: 'successful operation',
+            isArray: false
           },
           security: {
             apiKeys: [],
@@ -470,6 +478,7 @@ describe('services', () => {
             type: 'void',
             reference: undefined,
             description: undefined,
+            isArray: false
           },
           security: {
             apiKeys: [],
@@ -491,7 +500,8 @@ describe('services', () => {
           response: {
             type: 'object',
             reference: undefined,
-            description: 'successful operation'
+            description: 'successful operation',
+            isArray: false
           },
           security: {
             apiKeys: [
@@ -530,7 +540,8 @@ describe('services', () => {
           response: {
             type: 'Order',
             reference: undefined,
-            description: 'successful operation'
+            description: 'successful operation',
+            isArray: false
           },
           security: {
             apiKeys: [],
@@ -565,7 +576,8 @@ describe('services', () => {
           response: {
             type: 'Order',
             reference: undefined,
-            description: 'successful operation'
+            description: 'successful operation',
+            isArray: false
           },
           security: {
             apiKeys: [],
@@ -621,7 +633,8 @@ describe('services', () => {
           response: {
             type: 'void',
             reference: undefined,
-            description: undefined
+            description: undefined,
+            isArray: false
           },
           security: {
             apiKeys: [],
@@ -655,7 +668,8 @@ describe('services', () => {
           response: {
             type: 'void',
             reference: undefined,
-            description: undefined
+            description: undefined,
+            isArray: false
           },
           security: {
             apiKeys: [],
@@ -689,7 +703,8 @@ describe('services', () => {
           response: {
             type: 'void',
             reference: undefined,
-            description: undefined
+            description: undefined,
+            isArray: false
           },
           security: {
             apiKeys: [],
@@ -723,7 +738,8 @@ describe('services', () => {
           response: {
             type: 'void',
             reference: undefined,
-            description: undefined
+            description: undefined,
+            isArray: false
           },
           security: {
             apiKeys: [],
@@ -757,7 +773,8 @@ describe('services', () => {
           response: {
             type: 'User',
             reference: undefined,
-            description: 'successful operation'
+            description: 'successful operation',
+            isArray: false
           },
           security: {
             apiKeys: [],
@@ -803,7 +820,8 @@ describe('services', () => {
           response: {
             type: 'string',
             reference: undefined,
-            description: 'successful operation'
+            description: 'successful operation',
+            isArray: false
           },
           security: {
             apiKeys: [],
@@ -824,7 +842,8 @@ describe('services', () => {
           response: {
             type: 'void',
             reference: undefined,
-            description: undefined
+            description: undefined,
+            isArray: false
           },
           security: {
             apiKeys: [],
@@ -869,7 +888,8 @@ describe('services', () => {
           hasFormData: false,
           response: {
             type: 'void',
-            description: undefined
+            description: undefined,
+            isArray: false
           },
           security: {
             apiKeys: [],

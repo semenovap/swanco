@@ -42,15 +42,15 @@ export class {{name}} {
    * @param {'response'} [observe] - Observable part of response
    {{#response}}
    *
-   * @return {Observable<{{~type~}}>}{{#description}} - {{.}}{{/description}}{{#reference}} {@link {{name~}} }{{/reference}}
-   * @return {Observable<HttpEvent<{{~type~}}>>}{{#description}} - {{.}}{{/description}}{{#reference}} {@link {{name~}} }{{/reference}}
-   * @return {Observable<HttpResponse<{{~type~}}>>}{{#description}} - {{.}}{{/description}}{{#reference}} {@link {{name~}} }{{/reference}}
+   * @return {Observable<{{type}}{{#if isArray}}[]{{/if}}>}{{#description}} - {{.}}{{/description}}{{#reference}} {@link {{name~}} }{{/reference}}
+   * @return {Observable<HttpEvent<{{type}}{{#if isArray}}[]{{/if}}>>}{{#description}} - {{.}}{{/description}}{{#reference}} {@link {{name~}} }{{/reference}}
+   * @return {Observable<HttpResponse<{{type}}{{#if isArray}}[]{{/if}}>>}{{#description}} - {{.}}{{/description}}{{#reference}} {@link {{name~}} }{{/reference}}
    {{/response}}
    */
-  public {{name}}({{#parameters}}{{name}}{{^required}}?{{/required}}: {{type}}, {{/parameters}}observe?: 'body'): {{#response}}Observable<{{type}}>{{/response}};
-  public {{name}}({{#parameters}}{{name}}{{^required}}?{{/required}}: {{type}}, {{/parameters}}observe?: 'events'): {{#response}}Observable<HttpEvent<{{type}}>>{{/response}};
-  public {{name}}({{#parameters}}{{name}}{{^required}}?{{/required}}: {{type}}, {{/parameters}}observe?: 'response'): {{#response}}Observable<HttpResponse<{{type}}>>{{/response}};
-  public {{name}}({{#parameters}}{{name}}{{^required}}?{{/required}}: {{type}}, {{/parameters}}observe: any = 'body'): {{#response}}Observable<any>{{/response}} {
+  public {{name}}({{#parameters}}{{name}}{{#if isArray}}[]{{/if}}{{^required}}?{{/required}}: {{type}}, {{/parameters}}observe?: 'body'): {{#response}}Observable<{{type}}{{#if isArray}}[]{{/if}}>{{/response}};
+  public {{name}}({{#parameters}}{{name}}{{#if isArray}}[]{{/if}}{{^required}}?{{/required}}: {{type}}, {{/parameters}}observe?: 'events'): {{#response}}Observable<HttpEvent<{{type}}{{#if isArray}}[]{{/if}}>>{{/response}};
+  public {{name}}({{#parameters}}{{name}}{{#if isArray}}[]{{/if}}{{^required}}?{{/required}}: {{type}}, {{/parameters}}observe?: 'response'): {{#response}}Observable<HttpResponse<{{type}}{{#if isArray}}[]{{/if}}>>{{/response}};
+  public {{name}}({{#parameters}}{{name}}{{#if isArray}}[]{{/if}}{{^required}}?{{/required}}: {{type}}, {{/parameters}}observe: any = 'body'): {{#response}}Observable<any>{{/response}} {
     const url = `${this.configService.baseUrl}{{{url}}}`;
     const httpOptions = {
       observe,

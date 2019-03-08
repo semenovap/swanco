@@ -75,6 +75,7 @@ interface Parameter {
 interface Response {
   type: string;
   description: string;
+  isArray: boolean;
   reference?: Model;
 }
 
@@ -297,6 +298,7 @@ function getResponse(response: SwaggerResponse | SwaggerReference): Response {
   let type = 'void';
   let description;
   let reference;
+  let isArray = false;
 
   if (response) {
     let refType;
@@ -312,11 +314,12 @@ function getResponse(response: SwaggerResponse | SwaggerReference): Response {
 
     if (refType) {
       type = refType.name;
+      isArray = refType.isArray;
       reference = findModel(type);
     }
   }
 
-  return {type, description, reference};
+  return {type, description, isArray, reference};
 }
 
 /**
