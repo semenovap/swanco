@@ -1,0 +1,23 @@
+/* tslint:disable */
+
+import { Injectable } from '@angular/core';
+
+/**
+ * Services configuration
+ */
+@Injectable({
+  providedIn: 'root'
+})
+export class {{name}} {
+
+  public readonly baseUrl = '{{{baseUrl}}}';
+  {{#apiKeys}}
+
+  public readonly apiKeys = new Map<string, string>();
+  {{/apiKeys}}
+  {{#accessTokens}}
+
+  public readonly accessTokens = new Map<string, string>();
+  {{/accessTokens}}
+
+}

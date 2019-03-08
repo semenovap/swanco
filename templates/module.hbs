@@ -1,0 +1,27 @@
+/* tslint:disable */
+
+import {
+  NgModule,
+  Optional,
+  SkipSelf
+} from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+
+{{#if references~}}
+  import { {{#join references ', '}}{{name}}{{/join}} } from './services';
+
+{{/if}}
+@NgModule({
+  providers: [{{#join references ', '}}{{name}}{{/join}}]
+})
+export class {{name}} {
+  constructor( @Optional() @SkipSelf() parentModule: {{name}}, @Optional() http: HttpClient) {
+    if (parentModule) {
+      throw new Error('{{name}} has already been loaded. Import {{name}} in the AppModule only.');
+    }
+
+    if (!http) {
+      throw new Error('You need to import the HttpClientModule in your AppModule.');
+    }
+  }
+}

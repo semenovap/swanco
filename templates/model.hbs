@@ -1,0 +1,16 @@
+/* tslint:disable */
+
+{{#if references.enum~}}
+  import { {{#join references.enum ', '}}{{name}}{{/join}} } from '../enums';
+
+{{/if}}
+{{#if references.model}}
+  {{~#references.model}}import { {{name}} } from './{{file}}';
+  {{/references.model}}
+
+{{/if}}
+export interface {{name}} {
+{{#properties}}
+  {{name}}{{^required}}?{{/required}}: {{type}}{{#if isArray}}[]{{/if}};{{#description}} // {{.}}{{/description}}
+{{/properties}}
+}

@@ -1,0 +1,68 @@
+{
+  "name": "swanco",
+  "version": "1.0.0",
+  "description": "Swagger code generation for Angular",
+  "author": "Alexander Semenov",
+  "license": "MIT",
+  "engines": {
+    "node": ">=10.12.0"
+  },
+  "scripts": {
+    "build": "tsc",
+    "start": "tsc -w",
+    "test": "tsc -p tsconfig.test.json && jest --rootDir=test",
+    "lint": "tslint -p tsconfig.test.json",
+    "doc": "jsdoc dist -d doc",
+    "prepare": "npm run build",
+    "prepublishOnly": "npm test && npm run lint",
+    "preversion": "npm run lint",
+    "version": "git add -A src",
+    "postversion": "git push && git push --tags"
+  },
+  "keywords": [
+    "swagger",
+    "angular",
+    "generator"
+  ],
+  "files": [
+    "dist"
+  ],
+  "bin": "dist/index.js",
+  "homepage": "https://github.com/semenovap/swanco#readme",
+  "bugs": {
+    "url": "https://github.com/semenovap/swanco/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/semenovap/swanco.git"
+  },
+  "dependencies": {
+    "handlebars": "^4.1.0",
+    "lodash.camelcase": "^4.3.0",
+    "lodash.groupby": "^4.6.0",
+    "lodash.isequal": "^4.5.0",
+    "lodash.kebabcase": "^4.1.1",
+    "lodash.orderby": "^4.6.0",
+    "lodash.uniqby": "^4.7.0",
+    "lodash.upperfirst": "^4.3.1",
+    "yargs": "^13.2.1"
+  },
+  "devDependencies": {
+    "@types/jest": "^24.0.9",
+    "@types/lodash.camelcase": "^4.3.5",
+    "@types/lodash.groupby": "^4.6.5",
+    "@types/lodash.isequal": "^4.5.4",
+    "@types/lodash.kebabcase": "^4.1.5",
+    "@types/lodash.orderby": "^4.6.5",
+    "@types/lodash.uniqby": "^4.7.5",
+    "@types/lodash.upperfirst": "^4.3.5",
+    "@types/node": "^10.12.27",
+    "@types/swagger-schema-official": "^2.0.15",
+    "@types/yargs": "^12.0.9",
+    "jest": "^24.1.0",
+    "jsdoc": "~3.5.5",
+    "standard-version": "^5.0.1",
+    "tslint": "^5.13.0",
+    "typescript": "^3.2.2"
+  }
+}

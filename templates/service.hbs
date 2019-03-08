@@ -1,0 +1,112 @@
+/* tslint:disable */
+
+import { Injectable } from '@angular/core';
+import { HttpClient, HttpEvent, HttpHeaders, HttpResponse{{#if importHttpParams}}, HttpParams{{/if}} } from '@angular/common/http';
+import { Observable } from 'rxjs';
+
+{{#config~}}
+  import { {{name}} } from '../{{file}}';
+{{/config}}
+
+{{#if references.enum~}}
+  import { {{#join references.enum ', '}}{{name}}{{/join}} } from '../enums';
+
+{{/if}}
+{{#if references.model~}}
+  import { {{#join references.model ', '}}{{name}}{{/join}} } from '../models';
+
+{{/if}}
+/**
+ * {{description}}{{#externalDocs}}
+ * {{description}} {{{url}}}{{/externalDocs}}
+ */
+@Injectable({
+  providedIn: 'root'
+})
+export class {{name}} {
+
+  constructor(private http: HttpClient, private configService: {{config.name}}) { }
+
+  {{#operations}}
+  /**{{#if summary}}
+   * {{summary}}{{/if}}{{#if description}}
+   * {{description}}{{/if}}
+   *{{#if deprecated}}
+   * @deprecated
+   *{{/if}}
+   {{#parameters}}
+   * @param { {{~type~}} } {{^required}}[{{/required}}{{name}}{{^required}}]{{/required}}{{#description}} - {{.}}{{/description}}{{#reference}} {@link {{name~}} }{{/reference}}
+   {{/parameters}}
+   * @param {'body'} [observe] - Observable part of response
+   * @param {'event'} [observe] - Observable part of response
+   * @param {'response'} [observe] - Observable part of response
+   {{#response}}
+   *
+   * @return {Observable<{{~type~}}>}{{#description}} - {{.}}{{/description}}{{#reference}} {@link {{name~}} }{{/reference}}
+   * @return {Observable<HttpEvent<{{~type~}}>>}{{#description}} - {{.}}{{/description}}{{#reference}} {@link {{name~}} }{{/reference}}
+   * @return {Observable<HttpResponse<{{~type~}}>>}{{#description}} - {{.}}{{/description}}{{#reference}} {@link {{name~}} }{{/reference}}
+   {{/response}}
+   */
+  public {{name}}({{#parameters}}{{name}}{{^required}}?{{/required}}: {{type}}, {{/parameters}}observe?: 'body'): {{#response}}Observable<{{type}}>{{/response}};
+  public {{name}}({{#parameters}}{{name}}{{^required}}?{{/required}}: {{type}}, {{/parameters}}observe?: 'events'): {{#response}}Observable<HttpEvent<{{type}}>>{{/response}};
+  public {{name}}({{#parameters}}{{name}}{{^required}}?{{/required}}: {{type}}, {{/parameters}}observe?: 'response'): {{#response}}Observable<HttpResponse<{{type}}>>{{/response}};
+  public {{name}}({{#parameters}}{{name}}{{^required}}?{{/required}}: {{type}}, {{/parameters}}observe: any = 'body'): {{#response}}Observable<any>{{/response}} {
+    const url = `${this.configService.baseUrl}{{{url}}}`;
+    const httpOptions = {
+      observe,
+      {{~#if hasQueryParams}}
+
+      params: new HttpParams(),{{/if}}
+      headers: new HttpHeaders({
+        'Content-Type': '{{{contentType}}}'
+      })
+    };
+    {{#security~}}
+      {{#apiKeys}}
+        {{#inHeader}}
+    httpOptions.headers = httpOptions.headers.set('{{name}}', `Bearer ${this.configService.apiKeys.get('{{name}}')}`);
+        {{/inHeader}}
+      {{/apiKeys}}
+      {{#tokens}}
+    httpOptions.headers = httpOptions.headers.set(
+      'Authorization',
+      `Bearer ${this.configService.accessTokens.get('{{.}}')}`
+    );
+      {{/tokens}}
+    {{/security}}
+    {{#if hasFormData}}
+    const formData = new FormData();
+    {{/if}}
+    {{#parameters~}}
+      {{#inHeader}}
+        {{#if isArray}}
+    if (Array.isArray({{name}}) && {{name}}.length) {
+      httpOptions.headers = httpOptions.headers.set('{{originalName}}', {{name}}.map(String));
+    }
+        {{^}}
+    if ({{name}} != null) {
+      httpOptions.headers = httpOptions.headers.set('{{originalName}}', {{name}}.toString());
+    }
+        {{/if}}
+      {{/inHeader~}}
+      {{#inQuery}}
+        {{#if isArray}}
+    if (Array.isArray({{name}}) && {{name}}.length) {
+      {{name}}.forEach(value => httpOptions.params = httpOptions.params.set('{{originalName}}[]', String(value)));
+    }
+        {{^}}
+    if ({{name}} != null) {
+      httpOptions.params = httpOptions.params.set('{{originalName}}', {{name}}.toString());
+    }
+        {{/if}}
+      {{/inQuery}}
+      {{#inFormData}}
+    formData.set('{{originalName}}', {{name}});
+      {{/inFormData}}
+    {{/parameters}}
+
+    return this.http.{{method}}{{#response}}<{{type}}>{{/response}}(url{{#if hasFormData}}, formData{{/if}}{{#parameters}}{{#inBody}}, {{name}}{{/inBody}}{{/parameters}}, httpOptions);
+  }
+
+  {{/operations}}
+}

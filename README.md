@@ -1,0 +1,99 @@
+# swanco
+This project is a small tool, which generates Angular module from a [Swagger 2.0 specification](https://swagger.io/specification).
+
+## Key features
+- Generate complete API module, which contains enums, models and services
+- Generate services only, as a part of another module
+- Generate models only (It can be useful, when you use WebSocket instant XHR requests) 
+
+## Requirements
+The generator requires NodeJS `10.12.0` or later and has a few dependencies:
+- [yargs](https://www.npmjs.com/package/yargs)
+- [handlebars](https://www.npmjs.com/package/handlebars)
+- [lodash.camelcase](https://www.npmjs.com/package/lodash.camelcase)
+- [lodash.groupby](https://www.npmjs.com/package/lodash.groupby)
+- [lodash.isequal](https://www.npmjs.com/package/lodash.isequal)
+- [lodash.kebabcase](https://www.npmjs.com/package/lodash.kebabcase)
+- [lodash.orderby](https://www.npmjs.com/package/lodash.orderby)
+- [lodash.uniqby](https://www.npmjs.com/package/lodash.uniqby)
+- [lodash.upperfirst](https://www.npmjs.com/package/lodash.upperfirst)
+
+## Installation
+```bash
+npm install --save-dev swanco
+```
+
+## Usage
+
+### Options
+
+`--input`, `-i`   URL or local path to the file with specification in JSON format
+
+`--output`, `-o`  Path to write generated content, default: `src/app/api`
+
+`--skip-services` Do not create services content`
+
+`--skip-module`   Do not create module file
+
+`--version`       Show version number
+
+`--help`          Show help
+
+### Run directly
+```bash
+node_modules/.bin/swanco -i <path_to_swagger_json> [-o <output_dir>]
+```
+
+### Run as npm script
+Add script bellow to `package.json` and execute `npm run swanco`
+```json
+{
+  "scripts": {
+    "swanco": "swanco -i <path_to_swagger_json> [-o <output_dir>]"
+  }
+}
+```
+
+## Example
+
+The commands bellow will generate an API module for [Swagger's PetStore example](http://petstore.swagger.io), assuming [Angular CLI](https://cli.angular.io) is installed globally:
+
+```bash
+ng new petstore
+cd petstore
+npm install --save-dev swanco
+node_modules/.bin/swanco -i http://petstore.swagger.io/v2/swagger.json
+```
+
+It generates api module bellow:
+
+```
+petstore
++-- src
+    +-- app
+        +-- api
+            +-- enums
+            |   +-- index.ts 
+            |   +-- order-status.enum.ts 
+            |   +-- pet-status.enum.ts 
+            +-- models
+            |   +-- api-response.model.ts
+            |   +-- category.model.ts
+            |   +-- index.ts
+            |   +-- order.model.ts
+            |   +-- pet.model.ts
+            |   +-- tag.model.ts
+            |   +-- user.model.ts
+            +-- services
+            |   +-- index.ts
+            |   +-- pet.service.ts
+            |   +-- store.service.ts
+            |   +-- user.service.ts
+            +-- api.module.ts
+            +-- config.service.ts
+            +-- index.ts
+```
+
+## Bug report
+
+If you have any problems in use, please, create new issue with example.
