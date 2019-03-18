@@ -36,7 +36,8 @@ describe('models', () => {
           description: 'Order Status',
           template: 'enum',
           name: 'OrderStatus',
-          file: 'order-status.enum'
+          file: 'order-status.enum',
+          isArray: false
         }
       ]
     },
@@ -225,7 +226,8 @@ describe('models', () => {
           description: 'pet status in the store',
           template: 'enum',
           name: 'PetStatus',
-          file: 'pet-status.enum'
+          file: 'pet-status.enum',
+          isArray: false
         }
       ]
     },

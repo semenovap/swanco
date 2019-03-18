@@ -12,6 +12,7 @@ describe('enums', () => {
     file: `foo-bar.enum`,
     template: 'enum',
     description: undefined,
+    isArray: false,
     values: [
       {
         key: 'One',

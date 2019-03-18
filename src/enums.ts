@@ -13,6 +13,7 @@ import {
 export interface Enum extends File {
   values: EnumValues[];
   description: string;
+  isArray: boolean;
 }
 
 interface EnumValues {
@@ -76,6 +77,7 @@ export function addEnum(prefix: string, name: string, schema: BaseSchema): Enum 
     values,
     description,
     template: 'enum',
+    isArray: schema.type === 'array',
     name: pascalCase(prefix) + pascalCase(name),
     file: kebabCase(prefix + pascalCase(name)) + '.enum'
   });

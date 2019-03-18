@@ -124,6 +124,7 @@ function getModel(name: string, definition: Schema): Model {
       references.push(refType.name);
     } else if (enumType) {
       type = enumType.name;
+      isArray = enumType.isArray;
       references.push(enumType);
     }
 

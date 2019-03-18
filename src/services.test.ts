@@ -143,6 +143,7 @@ describe('services', () => {
                 name: 'PetFindPetsByStatus',
                 description: undefined,
                 file: 'pet-find-pets-by-status.enum',
+                isArray: false
               },
               name: 'status',
               description: 'Status values that need to be considered for filter',
@@ -433,7 +434,8 @@ describe('services', () => {
             template: 'enum',
             name: 'PetFindPetsByStatus',
             file: 'pet-find-pets-by-status.enum',
-            description: undefined
+            description: undefined,
+            isArray: false
           }
         ]
       },
