@@ -23,13 +23,14 @@ export interface Config extends File {
  * @public
  *
  * @param {Spec} spec - Swagger specification
+ * @param {String} scheme - Swagger specification source
  *
  * @return {Config}
  */
-export function fetchConfig(spec: Spec): Config {
+export function fetchConfig(spec: Spec, scheme: string = 'https'): Config {
   const {schemes, host, basePath, securityDefinitions} = spec;
 
-  return getConfig(schemes, host, basePath, securityDefinitions);
+  return getConfig(schemes || [scheme], host, basePath, securityDefinitions);
 }
 
 /**
@@ -45,7 +46,7 @@ export function fetchConfig(spec: Spec): Config {
  * @return {Config}
  */
 function getConfig(
-  schemes: string[] = ['https'],
+  schemes: string[],
   host: string = '',
   basePath: string = '/',
   security: HashMap<Security> = {}

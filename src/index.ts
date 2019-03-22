@@ -20,6 +20,7 @@ import {
   File,
   generate,
   getData,
+  getProtocol,
   rmdir,
   showError,
   wrap
@@ -72,7 +73,7 @@ getData(options.input as string)
     const models = wrap<Model>(fetchModels(spec), 'models');
 
     if (!options.skipServices) {
-      const config = fetchConfig(spec);
+      const config = fetchConfig(spec, getProtocol(options.input as string));
       const services = fetchServices(spec, config);
       const enums = wrap<Enum>(fetchEnums(), 'enums');
 

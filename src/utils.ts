@@ -164,6 +164,25 @@ export async function getData(path: string): Promise<Spec> {
 }
 
 /**
+ * Get protocol of url
+ *
+ * @param {String} url - Swagger specification source url
+ *
+ * @return {String}
+ */
+export function getProtocol(url: string) {
+  let protocol;
+
+  try {
+    protocol = new URL(url).protocol;
+    protocol = protocol.substr(0, protocol.length - 1);
+  } catch (e) {
+  }
+
+  return protocol;
+}
+
+/**
  * Get data from URL
  *
  * @private
@@ -173,11 +192,8 @@ export async function getData(path: string): Promise<Spec> {
  * @return {Promise<string>}
  */
 function getUrl(url: string): Promise<string> {
-  let protocol = new URL(url).protocol;
-  protocol = protocol.substr(0, protocol.length - 1);
-
   return new Promise((res, rej) => {
-    const http = require(protocol);
+    const http = require(getProtocol(url));
     const request = http.get(url);
 
     request.on('error', err => rej(err));
