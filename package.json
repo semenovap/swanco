@@ -14,10 +14,7 @@
     "lint": "tslint -p tsconfig.test.json",
     "doc": "jsdoc dist -d doc",
     "prepare": "npm run build",
-    "prepublishOnly": "npm test && npm run lint",
-    "preversion": "npm run lint",
-    "version": "git add -A src",
-    "postversion": "git push && git push --tags"
+    "release": "npm test && npm run lint && standard-version && git push && git push --tags && npm publish"
   },
   "keywords": [
     "swagger",
