@@ -17,6 +17,8 @@ import {
   registerHelper
 } from 'handlebars';
 import {IncomingMessage} from 'http';
+import camelCase = require('lodash.camelcase');
+import upperFirst = require('lodash.upperfirst');
 import {
   isAbsolute,
   join,
@@ -24,8 +26,6 @@ import {
 } from 'path';
 import {Spec} from 'swagger-schema-official';
 import {URL} from 'url';
-import camelCase = require('lodash.camelcase');
-import upperFirst = require('lodash.upperfirst');
 
 export interface Directory<T extends File> {
   directory: string;
@@ -169,16 +169,15 @@ export async function getData(path: string): Promise<Spec> {
  *
  * @param {String} url - Swagger specification source url
  *
- * @return {String}
+ * @return {(String | undefined)}
  */
-export function getProtocol(url: string) {
+export function getProtocol(url: string): string | undefined {
   let protocol;
 
   try {
     protocol = new URL(url).protocol;
     protocol = protocol.substr(0, protocol.length - 1);
-  } catch (e) {
-  }
+  } catch (e) {}
 
   return protocol;
 }

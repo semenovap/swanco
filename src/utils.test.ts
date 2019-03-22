@@ -5,6 +5,7 @@ import {
   File,
   generate,
   getData,
+  getProtocol,
   pascalCase,
   rmdir
 } from './utils';
@@ -50,6 +51,14 @@ describe('utils', () => {
   it('clean output directory', () => {
     rmdir(output);
     expect(existsSync(output)).toBeFalsy();
+  });
+
+  it('return protocol by url', () => {
+    expect(getProtocol('https://foo.bar')).toEqual('https');
+  });
+
+  it('return undefined by wrong url', () => {
+    expect(getProtocol('foo.bar')).toBeUndefined();
   });
 
 });

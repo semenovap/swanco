@@ -10,7 +10,8 @@
       "arrow-parens": false,
       "interface-name": [true, "never-prefix"],
       "object-literal-sort-keys": false,
-      "no-console": [true, "log"]
+      "no-console": [true, "log"],
+      "no-empty": [true, "allow-empty-catch"]
     },
     "rulesDirectory": []
 }
