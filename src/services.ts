@@ -153,15 +153,19 @@ function getServices(
 
       (operation.tags || []).forEach(tagName => {
         if (!servicesMap.has(tagName)) {
-          servicesMap.set(tagName, Object.assign(tags.find(tag => tag.name === tagName) || {}, {
+
+          const serviceDescription = Object.assign({
+            description: `${tagName} service`
+          }, tags.find(tag => tag.name === tagName));
+
+          servicesMap.set(tagName, Object.assign(serviceDescription, {
             config,
             name: `${pascalCase(tagName)}Service`,
             file: `${kebabCase(tagName)}.service`,
             operations: [],
             references: {},
             importHttpParams: false,
-            template: 'service',
-            description: `${tagName} service`
+            template: 'service'
           }));
         }
       });
