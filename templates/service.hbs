@@ -47,10 +47,10 @@ export class {{name}} {
    * @return {Observable<HttpResponse<{{type}}{{#if isArray}}[]{{/if}}>>}{{#description}} - {{.}}{{/description}}{{#reference}} {@link {{name~}} }{{/reference}}
    {{/response}}
    */
-  public {{name}}({{#parameters}}{{name}}{{#if isArray}}[]{{/if}}{{^required}}?{{/required}}: {{type}}, {{/parameters}}observe?: 'body'): {{#response}}Observable<{{type}}{{#if isArray}}[]{{/if}}>{{/response}};
-  public {{name}}({{#parameters}}{{name}}{{#if isArray}}[]{{/if}}{{^required}}?{{/required}}: {{type}}, {{/parameters}}observe?: 'events'): {{#response}}Observable<HttpEvent<{{type}}{{#if isArray}}[]{{/if}}>>{{/response}};
-  public {{name}}({{#parameters}}{{name}}{{#if isArray}}[]{{/if}}{{^required}}?{{/required}}: {{type}}, {{/parameters}}observe?: 'response'): {{#response}}Observable<HttpResponse<{{type}}{{#if isArray}}[]{{/if}}>>{{/response}};
-  public {{name}}({{#parameters}}{{name}}{{#if isArray}}[]{{/if}}{{^required}}?{{/required}}: {{type}}, {{/parameters}}observe: any = 'body'): {{#response}}Observable<any>{{/response}} {
+  public {{name}}({{#parameters}}{{name}}{{^required}}?{{/required}}: {{type}}{{#if isArray}}[]{{/if}}, {{/parameters}}observe?: 'body'): {{#response}}Observable<{{type}}{{#if isArray}}[]{{/if}}>{{/response}};
+  public {{name}}({{#parameters}}{{name}}{{^required}}?{{/required}}: {{type}}{{#if isArray}}[]{{/if}}, {{/parameters}}observe?: 'events'): {{#response}}Observable<HttpEvent<{{type}}{{#if isArray}}[]{{/if}}>>{{/response}};
+  public {{name}}({{#parameters}}{{name}}{{^required}}?{{/required}}: {{type}}{{#if isArray}}[]{{/if}}, {{/parameters}}observe?: 'response'): {{#response}}Observable<HttpResponse<{{type}}{{#if isArray}}[]{{/if}}>>{{/response}};
+  public {{name}}({{#parameters}}{{name}}{{^required}}?{{/required}}: {{type}}{{#if isArray}}[]{{/if}}, {{/parameters}}observe: any = 'body'): {{#response}}Observable<any>{{/response}} {
     const url = `${this.configService.baseUrl}{{{url}}}`;
     const httpOptions = {
       observe,
