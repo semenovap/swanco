@@ -1,4 +1,6 @@
 {{#content}}
-{{~#file}}export * from './{{.}}';{{/file}}
-{{~#directory}}export * from './{{.}}';{{/directory}}
+  {{#file}}export * from './{{.}}';
+  {{/file}}
+  {{#if content}}{{#directory}}export * from './{{.}}';{{/directory}}
+  {{/if}}
 {{/content}}
