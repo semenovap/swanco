@@ -17,8 +17,6 @@ import {
   registerHelper
 } from 'handlebars';
 import {IncomingMessage} from 'http';
-import camelCase = require('lodash.camelcase');
-import upperFirst = require('lodash.upperfirst');
 import {
   isAbsolute,
   join,
@@ -26,6 +24,8 @@ import {
 } from 'path';
 import {Spec} from 'swagger-schema-official';
 import {URL} from 'url';
+import camelCase = require('lodash.camelcase');
+import upperFirst = require('lodash.upperfirst');
 
 export interface Directory<T extends File> {
   directory: string;

@@ -5,7 +5,6 @@
 import groupBy = require('lodash.groupby');
 import orderBy = require('lodash.orderby');
 import uniqBy = require('lodash.uniqby');
-
 import {
   BaseSchema,
   Schema
