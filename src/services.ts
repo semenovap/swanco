@@ -138,16 +138,6 @@ function getServices(
     description: 'Api service'
   });
 
-  tags.forEach(tag => servicesMap.set(tag.name, Object.assign(tag, {
-    config,
-    name: `${pascalCase(tag.name)}Service`,
-    file: `${kebabCase(tag.name)}.service`,
-    operations: [],
-    references: {},
-    importHttpParams: false,
-    template: 'service'
-  })));
-
   for (const pathName in paths) {
     if (!paths[pathName]) {
       continue;
@@ -160,14 +150,29 @@ function getServices(
       }
 
       const operation: SwaggerOperation = path[methodName];
-      const serviceName = (operation.tags || []).find(tag => !!servicesMap.get(tag)) || 'api';
-      servicesMap.get(serviceName).operations.push(getOperation(
+
+      (operation.tags || []).forEach(tagName => {
+        if (!servicesMap.has(tagName)) {
+          servicesMap.set(tagName, Object.assign(tags.find(tag => tag.name === tagName) || {}, {
+            config,
+            name: `${pascalCase(tagName)}Service`,
+            file: `${kebabCase(tagName)}.service`,
+            operations: [],
+            references: {},
+            importHttpParams: false,
+            template: 'service',
+            description: `${tagName} service`
+          }));
+        }
+      });
+
+      (operation.tags || ['api']).forEach(serviceName => servicesMap.get(serviceName).operations.push(getOperation(
         serviceName,
         methodName,
         pathName,
         operation,
         security
-      ));
+      )));
     }
   }
 
