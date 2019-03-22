@@ -35,7 +35,7 @@ export class {{name}} {
    * @deprecated
    *{{/if}}
    {{#parameters}}
-   * @param { {{~type~}} } {{^required}}[{{/required}}{{name}}{{^required}}]{{/required}}{{#description}} - {{.}}{{/description}}{{#reference}} {@link {{name~}} }{{/reference}}
+   * @param { {{~pascalCase type~}} } {{^required}}[{{/required}}{{name}}{{^required}}]{{/required}}{{#description}} - {{.}}{{/description}}{{#reference}} {@link {{name~}} }{{/reference}}
    {{/parameters}}
    * @param {'body'} [observe] - Observable part of response
    * @param {'event'} [observe] - Observable part of response

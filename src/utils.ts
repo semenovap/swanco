@@ -42,8 +42,9 @@ export interface HashMap<T> {
   [name: string]: T;
 }
 
-// Register render's helper
+// Register render helpers
 registerHelper('join', (array, sep, options) => array.map(item => options.fn(item)).join(sep));
+registerHelper('pascalCase', value => pascalCase(value));
 
 /**
  * Create file (model, service, enum, etc.) by template
