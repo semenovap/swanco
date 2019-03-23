@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+# [1.1.0](https://github.com/semenovap/swanco/compare/v1.0.4...v1.1.0) (2019-03-23)
+
+
+### Bug Fixes
+
+* **doc:** Service method name as default description for method ([6921330](https://github.com/semenovap/swanco/commit/6921330))
+
+
+### Features
+
+* New argument - basic authentication for remote swagger API ([a102a38](https://github.com/semenovap/swanco/commit/a102a38))
+
+
+
 ## [1.0.4](https://github.com/semenovap/swanco/compare/v1.0.3...v1.0.4) (2019-03-22)
 
 
