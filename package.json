@@ -13,8 +13,8 @@
     "test": "tsc -p tsconfig.test.json && jest --rootDir=test",
     "lint": "tslint -p tsconfig.test.json",
     "doc": "jsdoc dist -d doc",
-    "prepare": "npm run build",
-    "release": "npm test && npm run lint && standard-version && git push && git push --tags && npm publish"
+    "prepare": "npm run build && npm run test && npm run lint",
+    "release": "npm run prepare && standard-version"
   },
   "keywords": [
     "swagger",
