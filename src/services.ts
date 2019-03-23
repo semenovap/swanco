@@ -239,7 +239,7 @@ function getOperation(
     response: getResponse(operation.responses[200]),
     security: getSecurity(operation.security, security),
     summary: operation.summary,
-    description: operation.description,
+    description: operation.description || name,
     deprecated: operation.deprecated
   };
 }

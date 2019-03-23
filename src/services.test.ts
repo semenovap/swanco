@@ -67,7 +67,7 @@ describe('services', () => {
             ]
           },
           summary: 'Add a new pet to the store',
-          description: '',
+          description: 'addPet',
           deprecated: undefined
         },
         {
@@ -116,7 +116,7 @@ describe('services', () => {
             ]
           },
           summary: 'Deletes a pet',
-          description: '',
+          description: 'deletePet',
           deprecated: undefined
         },
         {
@@ -288,7 +288,7 @@ describe('services', () => {
             ]
           },
           summary: 'Update an existing pet',
-          description: '',
+          description: 'updatePet',
           deprecated: undefined
         },
         {
@@ -349,7 +349,7 @@ describe('services', () => {
             ]
           },
           summary: 'Updates a pet in the store with form data',
-          description: '',
+          description: 'updatePetWithForm',
           deprecated: undefined
         },
         {
@@ -410,7 +410,7 @@ describe('services', () => {
             ]
           },
           summary: 'uploads an image',
-          description: '',
+          description: 'uploadFile',
           deprecated: undefined
         }
       ],
@@ -586,7 +586,7 @@ describe('services', () => {
             tokens: []
           },
           summary: 'Place an order for a pet',
-          description: '',
+          description: 'placeOrder',
           deprecated: undefined
         }
       ],
@@ -678,7 +678,7 @@ describe('services', () => {
             tokens: []
           },
           summary: 'Creates list of users with given input array',
-          description: '',
+          description: 'createUsersWithArrayInput',
           deprecated: undefined
         },
         {
@@ -713,7 +713,7 @@ describe('services', () => {
             tokens: []
           },
           summary: 'Creates list of users with given input array',
-          description: '',
+          description: 'createUsersWithListInput',
           deprecated: undefined
         },
         {
@@ -783,7 +783,7 @@ describe('services', () => {
             tokens: []
           },
           summary: 'Get user by user name',
-          description: '',
+          description: 'getUserByName',
           deprecated: undefined
         },
         {
@@ -830,7 +830,7 @@ describe('services', () => {
             tokens: []
           },
           summary: 'Logs user into the system',
-          description: '',
+          description: 'loginUser',
           deprecated: undefined
         },
         {
@@ -852,7 +852,7 @@ describe('services', () => {
             tokens: []
           },
           summary: 'Logs out current logged in user session',
-          description: '',
+          description: 'logoutUser',
           deprecated: undefined
         },
         {
