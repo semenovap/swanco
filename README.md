@@ -31,6 +31,8 @@ npm install --save-dev swanco
 
 `--output`, `-o`  Path to write generated content, default: `src/app/api`
 
+`--auth`          Basic authentication credentials, like `user:password`
+
 `--skip-services` Do not create services content`
 
 `--skip-module`   Do not create module file

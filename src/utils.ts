@@ -143,16 +143,17 @@ export function showError(message: string): void {
  * @public
  *
  * @param {String} path - URL or local path to the file with specification
+ * @param {String} [auth] - Basic authentication credentials
  *
  * @return {Promise<Spec>}
  */
-export async function getData(path: string): Promise<Spec> {
+export async function getData(path: string, auth?: string): Promise<Spec> {
   let data;
 
   if (existsSync(path)) {
     data = readFileSync(path, {encoding: 'utf-8'});
   } else {
-    data = await getUrl(path);
+    data = await getUrl(path, auth);
   }
 
   try {
@@ -188,13 +189,14 @@ export function getProtocol(url: string): string | undefined {
  * @private
  *
  * @param {String} url - Path to remote Swagger Api data
+ * @param {String} auth - Basic authentication credentials
  *
  * @return {Promise<string>}
  */
-function getUrl(url: string): Promise<string> {
+function getUrl(url: string, auth: string): Promise<string> {
   return new Promise((res, rej) => {
     const http = require(getProtocol(url));
-    const request = http.get(url);
+    const request = http.get(url, {auth});
 
     request.on('error', err => rej(err));
     request.on('response', (result: IncomingMessage) => {

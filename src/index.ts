@@ -38,6 +38,9 @@ const options = scriptName('swanco')
       default: 'src/app/api',
       describe: 'Path to write generated content'
     },
+    'auth': {
+      describe: 'Basic authentication credentials, like "user:password"',
+    },
     'skip-services': {
       boolean: false,
       describe: 'Do not create services content'
@@ -51,7 +54,7 @@ const options = scriptName('swanco')
   .help()
   .argv;
 
-getData(options.input as string)
+getData(options.input as string, options.auth as string)
   .catch(err => showError(err.message))
   .then(spec => {
     if (!spec) {
