@@ -198,7 +198,7 @@ function getServices(
     }
   });
 
-  return [...servicesMap.values()];
+  return orderBy([...servicesMap.values()], 'name');
 }
 
 /**
