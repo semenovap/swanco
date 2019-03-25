@@ -238,8 +238,8 @@ function getOperation(
     hasFormData: parameters.some(parameter => parameter.inFormData),
     response: getResponse(operation.responses[200]),
     security: getSecurity(operation.security, security),
-    summary: operation.summary,
-    description: operation.description || name,
+    summary: operation.summary || name,
+    description: operation.description,
     deprecated: operation.deprecated
   };
 }
