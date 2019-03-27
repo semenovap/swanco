@@ -271,8 +271,15 @@ function getParameter(service: string, operation: string, parameter: SwaggerPara
       isArray = refType.isArray;
       reference = findModel(type);
     }
-  } else if ('items' in parameter && !Array.isArray(parameter.items)) {
-    const enumType = addEnum(service, operation, parameter.items);
+  } else {
+    let enumType: Enum;
+
+    if ('enum' in parameter) {
+      enumType = addEnum(service, operation, parameter);
+    } else if ('items' in parameter && !Array.isArray(parameter.items)) {
+      enumType = addEnum(service, operation, parameter.items);
+    }
+
     if (enumType) {
       type = enumType.name;
       reference = enumType;
