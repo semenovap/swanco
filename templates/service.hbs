@@ -92,7 +92,7 @@ export class {{name}} {
       {{#inQuery}}
         {{#if isArray}}
     if (Array.isArray({{name}}) && {{name}}.length) {
-      {{name}}.forEach(value => httpOptions.params = httpOptions.params.set('{{originalName}}[]', String(value)));
+      {{name}}.forEach(value => httpOptions.params = httpOptions.params.append('{{originalName}}', String(value)));
     }
         {{^}}
     if ({{name}} != null) {
