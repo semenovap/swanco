@@ -112,11 +112,12 @@ function getModel(name: string, definition: Schema): Model {
     }
 
     const property = definition.properties[propName];
+    const basicType = getBasicType(property);
     const refType = getReferenceType(property);
     const enumType = addEnum(name, propName, property);
 
-    let type = getBasicType(property).name;
-    let isArray = false;
+    let type = basicType.name;
+    let isArray = basicType.isArray;
 
     if (refType.name) {
       type = refType.name;

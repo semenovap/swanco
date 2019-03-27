@@ -254,8 +254,8 @@ describe('models', () => {
         required: true
       },
       {
-        type: 'string[]',
-        isArray: false,
+        type: 'string',
+        isArray: true,
         name: 'photoUrls',
         description: undefined,
         required: true

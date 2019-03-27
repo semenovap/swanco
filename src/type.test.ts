@@ -21,7 +21,7 @@ describe('type', () => {
     };
 
     const expectedBasicType = {
-      name: 'string[]',
+      name: 'string',
       isArray: true
     };
 

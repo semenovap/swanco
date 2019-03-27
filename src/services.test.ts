@@ -181,7 +181,7 @@ describe('services', () => {
           name: 'findPetsByTags',
           parameters: [
             {
-              type: 'string[]',
+              type: 'string',
               name: 'tags',
               description: 'Tags to filter by',
               required: true,

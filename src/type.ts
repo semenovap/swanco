@@ -44,7 +44,7 @@ export function getBasicType(schema: BaseSchema): Type {
     const items = schema.items;
 
     if (!Array.isArray(items) && items.type) {
-      name = `${items.type}[]`;
+      name = items.type;
       isArray = true;
     }
   }
