@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.1.1](https://github.com/semenovap/swanco/compare/v1.1.0...v1.1.1) (2019-03-27)
+
+
+### Bug Fixes
+
+* **doc:** Service method name as default summary about method ([61361db](https://github.com/semenovap/swanco/commit/61361db))
+* Array within a query string ([6686059](https://github.com/semenovap/swanco/commit/6686059))
+* Model's property as array ([711aa87](https://github.com/semenovap/swanco/commit/711aa87))
+* Service method argument as Enum ([16b320f](https://github.com/semenovap/swanco/commit/16b320f))
+* Services sort by name ([2f6535a](https://github.com/semenovap/swanco/commit/2f6535a))
+
+
+
 # [1.1.0](https://github.com/semenovap/swanco/compare/v1.0.4...v1.1.0) (2019-03-23)
 
 
