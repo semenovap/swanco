@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+# [1.2.0](https://github.com/semenovap/swanco/compare/v1.1.1...v1.2.0) (2019-04-05)
+
+
+### Bug Fixes
+
+* Array within a formData ([9fb5560](https://github.com/semenovap/swanco/commit/9fb5560))
+
+
+### Features
+
+* Generics for data type object ([80837d9](https://github.com/semenovap/swanco/commit/80837d9))
+
+
+
 ## [1.1.1](https://github.com/semenovap/swanco/compare/v1.1.0...v1.1.1) (2019-03-27)
 
 
