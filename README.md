@@ -1,4 +1,10 @@
 # swanco
+
+![CircleCI branch](https://img.shields.io/circleci/project/github/semenovap/swanco/master.svg)
+![npm](https://img.shields.io/npm/v/swanco.svg)
+![node](https://img.shields.io/node/v/swanco.svg)
+![GitHub](https://img.shields.io/github/license/semenovap/swanco.svg)
+
 This project is a small tool, which generates Angular module from a [Swagger 2.0 specification](https://swagger.io/specification).
 
 ## Key features

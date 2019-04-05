@@ -12,9 +12,9 @@
     "start": "tsc -w",
     "test": "tsc -p tsconfig.test.json && jest --rootDir=test",
     "lint": "tslint -p tsconfig.test.json",
-    "doc": "jsdoc dist -d doc",
-    "prepare": "npm run build && npm run test && npm run lint",
-    "release": "npm run prepare && standard-version"
+    "doc": "typedoc --out doc",
+    "release": "npm run prepublishOnly && standard-version",
+    "prepublishOnly": "npm run build && npm run test && npm run lint"
   },
   "keywords": [
     "swagger",
@@ -58,9 +58,9 @@
     "@types/swagger-schema-official": "^2.0.15",
     "@types/yargs": "^12.0.9",
     "jest": "^24.1.0",
-    "jsdoc": "~3.5.5",
     "standard-version": "^5.0.1",
     "tslint": "^5.13.0",
+    "typedoc": "^0.14.2",
     "typescript": "^3.2.2"
   }
 }
