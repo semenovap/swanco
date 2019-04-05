@@ -85,7 +85,7 @@ export class {{name}} {
     }
         {{^}}
     if ({{name}} != null) {
-      httpOptions.headers = httpOptions.headers.set('{{originalName}}', {{name}}.toString());
+      httpOptions.headers = httpOptions.headers.set('{{originalName}}', String({{name}}));
     }
         {{/if}}
       {{/inHeader~}}
@@ -96,12 +96,20 @@ export class {{name}} {
     }
         {{^}}
     if ({{name}} != null) {
-      httpOptions.params = httpOptions.params.set('{{originalName}}', {{name}}.toString());
+      httpOptions.params = httpOptions.params.set('{{originalName}}', String({{name}}));
     }
         {{/if}}
       {{/inQuery}}
       {{#inFormData}}
-    formData.set('{{originalName}}', {{name}});
+        {{#if isArray}}
+    if (Array.isArray({{name}}) && {{name}}.length) {
+      {{name}}.forEach(value => formData.append('{{originalName}}', value instanceof Blob ? value : String(value)));
+    }
+        {{^}}
+    if ({{name}} != null) {
+      formData.set('{{originalName}}', {{name}} instanceof Blob ? {{name}} : String({{name}}));
+    }
+        {{/if}}
       {{/inFormData}}
     {{/parameters}}
 
