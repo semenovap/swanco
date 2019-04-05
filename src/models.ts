@@ -25,8 +25,9 @@ import {
 } from './utils';
 
 export interface Model extends File {
+  generics: string[];
   properties: Property[];
-  references: Array<Enum | Model | string> | GroupedReferences<Enum | Model>;
+  references?: GroupedReferences<Enum | Model>;
 }
 
 interface Property {
@@ -35,6 +36,7 @@ interface Property {
   required: boolean;
   type: string;
   isArray: boolean;
+  reference?: Enum | Model | string;
 }
 
 /**
@@ -66,11 +68,31 @@ export function fetchModels(spec: Spec): Model[] {
       models.set(model.name, model);
     }
 
-    models.forEach(
-      model => model.references = groupReferences(
-        Array.isArray(model.references) && model.references.map(ref => typeof ref === 'string' ? findModel(ref) : ref)
-      )
-    );
+    models.forEach(model => {
+      const references = [];
+      model.properties.forEach(property => {
+        const {reference} = property;
+
+        if (reference) {
+          if (typeof reference === 'string') {
+            const refModel = findModel(reference);
+            if (refModel) {
+              references.push(refModel);
+              property.reference = refModel;
+              if (refModel.generics.length) {
+                model.generics.push.apply(model.generics, refModel.generics);
+              }
+            } else {
+              throw new Error(`Reference model "${reference}" was not found in the specification!`);
+            }
+          } else {
+            references.push(reference);
+          }
+        }
+      });
+
+      model.references = groupReferences(references);
+    });
   }
 
   return [...models.values()];
@@ -104,7 +126,7 @@ function getModel(name: string, definition: Schema): Model {
   const file = `${kebabCase(name)}.model`;
   const required = definition.required || [];
   const properties: Property[] = [];
-  const references = [];
+  const generics = [];
 
   for (const propName in definition.properties) {
     if (!definition.properties[propName]) {
@@ -118,20 +140,24 @@ function getModel(name: string, definition: Schema): Model {
 
     let type = basicType.name;
     let isArray = basicType.isArray;
+    let reference;
 
     if (refType.name) {
-      type = refType.name;
+      type = reference = refType.name;
       isArray = refType.isArray;
-      references.push(refType.name);
     } else if (enumType) {
       type = enumType.name;
       isArray = enumType.isArray;
-      references.push(enumType);
+      reference = enumType;
+    } else if (type === 'object') {
+      type = name + pascalCase(propName);
+      generics.push(type);
     }
 
     properties.push({
       type,
       isArray,
+      reference,
       name: propName,
       description: property.description,
       required: required.indexOf(propName) > -1
@@ -141,7 +167,7 @@ function getModel(name: string, definition: Schema): Model {
   return {
     name,
     file,
-    references,
+    generics,
     properties: orderBy(uniqBy(properties, 'name'), 'name'),
     template: 'model'
   };

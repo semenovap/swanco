@@ -35,6 +35,7 @@ describe('services', () => {
       operations: [
         {
           name: 'addPet',
+          generics: [],
           parameters: [
             {
               type: 'Pet',
@@ -72,6 +73,7 @@ describe('services', () => {
         },
         {
           name: 'deletePet',
+          generics: [],
           parameters: [
             {
               type: 'number',
@@ -121,6 +123,7 @@ describe('services', () => {
         },
         {
           name: 'findPetsByStatus',
+          generics: [],
           parameters: [
             {
               type: 'PetFindPetsByStatus',
@@ -179,6 +182,7 @@ describe('services', () => {
         },
         {
           name: 'findPetsByTags',
+          generics: [],
           parameters: [
             {
               type: 'string',
@@ -216,6 +220,7 @@ describe('services', () => {
         },
         {
           name: 'getPetById',
+          generics: [],
           parameters: [
             {
               type: 'number',
@@ -256,6 +261,7 @@ describe('services', () => {
         },
         {
           name: 'updatePet',
+          generics: [],
           parameters: [
             {
               type: 'Pet',
@@ -293,6 +299,7 @@ describe('services', () => {
         },
         {
           name: 'updatePetWithForm',
+          generics: [],
           parameters: [
             {
               type: 'number',
@@ -354,6 +361,7 @@ describe('services', () => {
         },
         {
           name: 'uploadFile',
+          generics: [],
           parameters: [
             {
               type: 'number',
@@ -457,6 +465,7 @@ describe('services', () => {
       operations: [
         {
           name: 'deleteOrder',
+          generics: [],
           parameters: [
             {
               type: 'number',
@@ -493,6 +502,7 @@ describe('services', () => {
         },
         {
           name: 'getInventory',
+          generics: [],
           parameters: [],
           method: 'get',
           url: '/store/inventory',
@@ -520,6 +530,7 @@ describe('services', () => {
         },
         {
           name: 'getOrderById',
+          generics: [],
           parameters: [
             {
               type: 'number',
@@ -556,6 +567,7 @@ describe('services', () => {
         },
         {
           name: 'placeOrder',
+          generics: [],
           parameters: [
             {
               type: 'Order',
@@ -613,6 +625,7 @@ describe('services', () => {
       operations: [
         {
           name: 'createUser',
+          generics: [],
           parameters: [
             {
               type: 'User',
@@ -648,6 +661,7 @@ describe('services', () => {
         },
         {
           name: 'createUsersWithArrayInput',
+          generics: [],
           parameters: [
             {
               type: 'User',
@@ -683,6 +697,7 @@ describe('services', () => {
         },
         {
           name: 'createUsersWithListInput',
+          generics: [],
           parameters: [
             {
               type: 'User',
@@ -718,6 +733,7 @@ describe('services', () => {
         },
         {
           name: 'deleteUser',
+          generics: [],
           parameters: [
             {
               type: 'string',
@@ -753,6 +769,7 @@ describe('services', () => {
         },
         {
           name: 'getUserByName',
+          generics: [],
           parameters: [
             {
               type: 'string',
@@ -788,6 +805,7 @@ describe('services', () => {
         },
         {
           name: 'loginUser',
+          generics: [],
           parameters: [
             {
               type: 'string',
@@ -835,6 +853,7 @@ describe('services', () => {
         },
         {
           name: 'logoutUser',
+          generics: [],
           parameters: [],
           method: 'get',
           url: '/user/logout',
@@ -857,6 +876,7 @@ describe('services', () => {
         },
         {
           name: 'updateUser',
+          generics: [],
           parameters: [
             {
               type: 'string',

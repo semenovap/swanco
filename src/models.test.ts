@@ -16,6 +16,7 @@ describe('models', () => {
   const order: Model = {
     name: 'Order',
     file: 'order.model',
+    generics: [],
     references: {
       enum: [
         {
@@ -47,6 +48,7 @@ describe('models', () => {
         isArray: false,
         name: 'complete',
         description: undefined,
+        reference: undefined,
         required: false
       },
       {
@@ -54,6 +56,7 @@ describe('models', () => {
         isArray: false,
         name: 'id',
         description: undefined,
+        reference: undefined,
         required: false
       },
       {
@@ -61,6 +64,7 @@ describe('models', () => {
         isArray: false,
         name: 'petId',
         description: undefined,
+        reference: undefined,
         required: false
       },
       {
@@ -68,6 +72,7 @@ describe('models', () => {
         isArray: false,
         name: 'quantity',
         description: undefined,
+        reference: undefined,
         required: false
       },
       {
@@ -75,6 +80,7 @@ describe('models', () => {
         isArray: false,
         name: 'shipDate',
         description: undefined,
+        reference: undefined,
         required: false
       },
       {
@@ -82,6 +88,27 @@ describe('models', () => {
         isArray: false,
         name: 'status',
         description: 'Order Status',
+        reference: {
+          values: [
+            {
+              key: 'Approved',
+              value: 'approved'
+            },
+            {
+              key: 'Delivered',
+              value: 'delivered'
+            },
+            {
+              key: 'Placed',
+              value: 'placed'
+            }
+          ],
+          description: 'Order Status',
+          template: 'enum',
+          name: 'OrderStatus',
+          file: 'order-status.enum',
+          isArray: false
+        },
         required: false
       }
     ],
@@ -91,6 +118,7 @@ describe('models', () => {
   const user: Model = {
     name: 'User',
     file: 'user.model',
+    generics: [],
     references: {},
     properties: [
       {
@@ -98,6 +126,7 @@ describe('models', () => {
         isArray: false,
         name: 'email',
         description: undefined,
+        reference: undefined,
         required: false
       },
       {
@@ -105,6 +134,7 @@ describe('models', () => {
         isArray: false,
         name: 'firstName',
         description: undefined,
+        reference: undefined,
         required: false
       },
       {
@@ -112,6 +142,7 @@ describe('models', () => {
         isArray: false,
         name: 'id',
         description: undefined,
+        reference: undefined,
         required: false
       },
       {
@@ -119,6 +150,7 @@ describe('models', () => {
         isArray: false,
         name: 'lastName',
         description: undefined,
+        reference: undefined,
         required: false
       },
       {
@@ -126,6 +158,7 @@ describe('models', () => {
         isArray: false,
         name: 'password',
         description: undefined,
+        reference: undefined,
         required: false
       },
       {
@@ -133,6 +166,7 @@ describe('models', () => {
         isArray: false,
         name: 'phone',
         description: undefined,
+        reference: undefined,
         required: false
       },
       {
@@ -140,6 +174,7 @@ describe('models', () => {
         isArray: false,
         name: 'userStatus',
         description: 'User Status',
+        reference: undefined,
         required: false
       },
       {
@@ -147,6 +182,7 @@ describe('models', () => {
         isArray: false,
         name: 'username',
         description: undefined,
+        reference: undefined,
         required: false
       }
     ],
@@ -156,6 +192,7 @@ describe('models', () => {
   const category: Model = {
     name: 'Category',
     file: 'category.model',
+    generics: [],
     references: {},
     properties: [
       {
@@ -163,6 +200,7 @@ describe('models', () => {
         isArray: false,
         name: 'id',
         description: undefined,
+        reference: undefined,
         required: false
       },
       {
@@ -170,6 +208,7 @@ describe('models', () => {
         isArray: false,
         name: 'name',
         description: undefined,
+        reference: undefined,
         required: false
       }
     ],
@@ -179,6 +218,7 @@ describe('models', () => {
   const tag: Model = {
     name: 'Tag',
     file: 'tag.model',
+    generics: [],
     references: {},
     properties: [
       {
@@ -186,6 +226,7 @@ describe('models', () => {
         isArray: false,
         name: 'id',
         description: undefined,
+        reference: undefined,
         required: false
       },
       {
@@ -193,6 +234,7 @@ describe('models', () => {
         isArray: false,
         name: 'name',
         description: undefined,
+        reference: undefined,
         required: false
       }
     ],
@@ -202,6 +244,7 @@ describe('models', () => {
   const pet: Model = {
     name: 'Pet',
     file: 'pet.model',
+    generics: [],
     references: {
       model: [
         category,
@@ -237,6 +280,7 @@ describe('models', () => {
         isArray: false,
         name: 'category',
         description: undefined,
+        reference: category,
         required: false
       },
       {
@@ -244,6 +288,7 @@ describe('models', () => {
         isArray: false,
         name: 'id',
         description: undefined,
+        reference: undefined,
         required: false
       },
       {
@@ -251,6 +296,7 @@ describe('models', () => {
         isArray: false,
         name: 'name',
         description: undefined,
+        reference: undefined,
         required: true
       },
       {
@@ -258,6 +304,7 @@ describe('models', () => {
         isArray: true,
         name: 'photoUrls',
         description: undefined,
+        reference: undefined,
         required: true
       },
       {
@@ -265,6 +312,27 @@ describe('models', () => {
         isArray: false,
         name: 'status',
         description: 'pet status in the store',
+        reference: {
+          values: [
+            {
+              key: 'Available',
+              value: 'available'
+            },
+            {
+              key: 'Pending',
+              value: 'pending'
+            },
+            {
+              key: 'Sold',
+              value: 'sold'
+            }
+          ],
+          description: 'pet status in the store',
+          template: 'enum',
+          name: 'PetStatus',
+          file: 'pet-status.enum',
+          isArray: false
+        },
         required: false
       },
       {
@@ -272,6 +340,7 @@ describe('models', () => {
         isArray: true,
         name: 'tags',
         description: undefined,
+        reference: tag,
         required: false
       }
     ],
@@ -281,6 +350,7 @@ describe('models', () => {
   const apiResponse: Model = {
     name: 'ApiResponse',
     file: 'api-response.model',
+    generics: [],
     references: {},
     properties: [
       {
@@ -288,6 +358,7 @@ describe('models', () => {
         isArray: false,
         name: 'code',
         description: undefined,
+        reference: undefined,
         required: false
       },
       {
@@ -295,6 +366,7 @@ describe('models', () => {
         isArray: false,
         name: 'message',
         description: undefined,
+        reference: undefined,
         required: false
       },
       {
@@ -302,6 +374,7 @@ describe('models', () => {
         isArray: false,
         name: 'type',
         description: undefined,
+        reference: undefined,
         required: false
       }
     ],

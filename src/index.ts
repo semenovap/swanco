@@ -73,21 +73,25 @@ getData(options.input as string, options.auth as string)
       content: []
     };
 
-    const models = wrap<Model>(fetchModels(spec), 'models');
+    try {
+      const models = wrap<Model>(fetchModels(spec), 'models');
 
-    if (!options.skipServices) {
-      const config = fetchConfig(spec, getProtocol(options.input as string));
-      const services = fetchServices(spec, config);
-      const enums = wrap<Enum>(fetchEnums(), 'enums');
+      if (!options.skipServices) {
+        const config = fetchConfig(spec, getProtocol(options.input as string));
+        const services = fetchServices(spec, config);
+        const enums = wrap<Enum>(fetchEnums(), 'enums');
 
-      if (!options.skipModule) {
-        root.content.push(fetchModule(services));
+        if (!options.skipModule) {
+          root.content.push(fetchModule(services));
+        }
+
+        root.content.push(config, wrap<Service>(services, 'services'), models, enums);
+      } else {
+        root.content.push(models, wrap<Enum>(fetchEnums(), 'enums'));
       }
 
-      root.content.push(config, wrap<Service>(services, 'services'), models, enums);
-    } else {
-      root.content.push(models, wrap<Enum>(fetchEnums(), 'enums'));
+      generate(options.output, root);
+    } catch (e) {
+      showError(e.message);
     }
-
-    generate(options.output, root);
   });

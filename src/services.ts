@@ -47,6 +47,7 @@ interface Operation {
   name: string;
   summary: string;
   description: string;
+  generics: string[];
   parameters: Parameter[];
   response: Response;
   security: Security;
@@ -227,16 +228,27 @@ function getOperation(
     'required',
     'desc'
   );
+  const response = getResponse(operation.responses[200]);
+  const generics = [
+    ...parameters.map(param => param.reference).concat(response.reference)
+      .reduce((all, reference) => {
+        if (reference && 'generics' in reference) {
+          all.push.apply(all, reference.generics);
+        }
+        return all;
+      }, [])
+  ];
 
   return {
     name,
-    parameters,
     method,
+    generics,
+    response,
+    parameters,
     url: path.replace(/{/g, '${'),
     contentType: operation.consumes ? operation.consumes[0] : 'application/json',
     hasQueryParams: parameters.some(parameter => parameter.inQuery),
     hasFormData: parameters.some(parameter => parameter.inFormData),
-    response: getResponse(operation.responses[200]),
     security: getSecurity(operation.security, security),
     summary: operation.summary || name,
     description: operation.description,
