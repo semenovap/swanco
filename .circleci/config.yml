@@ -3,7 +3,7 @@ jobs:
   build:
     filters:
       tags:
-        only: /^v.*/
+        only: /^v*/
     working_directory: ~/swanco
     docker:
       - image: circleci/node:latest
