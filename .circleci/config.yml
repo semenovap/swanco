@@ -1,6 +1,9 @@
 version: 2
 jobs:
   build:
+    filters:
+      tags:
+        only: /^v.*/
     working_directory: ~/swanco
     docker:
       - image: circleci/node:latest
