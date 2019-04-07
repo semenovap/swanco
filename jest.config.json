@@ -2,6 +2,12 @@
   "rootDir": "test",
   "reporters": [
     "default",
-    "jest-junit"
+    [
+      "jest-junit",
+      {
+        "outputDirectory": "test",
+        "outputName": "result.xml"
+      }
+    ]
   ]
 }

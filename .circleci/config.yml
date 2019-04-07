@@ -24,8 +24,6 @@ jobs:
       - run:
           name: Execute tests
           command: npm test
-          environment:
-            JEST_JUNIT_OUTPUT: 'junit.xml'
 #      - run:
 #          name: Build API documentation
 #          command: npm run doc
@@ -33,4 +31,5 @@ jobs:
 #          path: doc
 #          prefix: doc
       - store_test_results:
-          path: jest/results.xml
+          path: test/result.xml
+
