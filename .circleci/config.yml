@@ -33,4 +33,4 @@ jobs:
 #          path: doc
 #          prefix: doc
       - store_test_results:
-          path: junit.xml
+          path: jest/results.xml
