@@ -31,5 +31,5 @@ jobs:
 #          path: doc
 #          prefix: doc
       - store_test_results:
-          path: test/result.xml
-
+          path: junit.xml
+          root: test-results/jest
