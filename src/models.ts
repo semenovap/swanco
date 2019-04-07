@@ -73,21 +73,36 @@ export function fetchModels(spec: Spec): Model[] {
       model.properties.forEach(property => {
         const {reference} = property;
 
-        if (reference) {
-          if (typeof reference === 'string') {
-            const refModel = findModel(reference);
-            if (refModel) {
-              references.push(refModel);
-              property.reference = refModel;
-              if (refModel.generics.length) {
-                model.generics.push.apply(model.generics, refModel.generics);
-              }
-            } else {
-              throw new Error(`Reference model "${reference}" was not found in the specification!`);
-            }
+        if (!reference) {
+          return;
+        }
+
+        if (typeof reference === 'string') {
+          const refModel = findModel(reference);
+          if (refModel) {
+            references.push(refModel);
+            property.reference = refModel;
+            model.generics.push(...refModel.generics);
           } else {
-            references.push(reference);
+            throw new Error(`Reference model "${reference}" was not found in the specification!`);
           }
+        } else {
+          references.push(reference);
+        }
+      });
+
+      model.extended.forEach(reference => {
+        if (typeof reference !== 'string') {
+          return;
+        }
+
+        const refModel = findModel(reference);
+
+        if (refModel) {
+          references.push(refModel);
+          extended.push(refModel);
+        } else {
+          throw new Error(`Reference model "${reference}" was not found in the specification!`);
         }
       });
 
