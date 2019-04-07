@@ -15,6 +15,7 @@ describe('models', () => {
 
   const order: Model = {
     name: 'Order',
+    title: 'Order',
     file: 'order.model',
     generics: [],
     extended: [],
@@ -118,6 +119,7 @@ describe('models', () => {
 
   const user: Model = {
     name: 'User',
+    title: 'User',
     file: 'user.model',
     generics: [],
     extended: [],
@@ -193,6 +195,7 @@ describe('models', () => {
 
   const category: Model = {
     name: 'Category',
+    title: 'Category',
     file: 'category.model',
     generics: [],
     extended: [],
@@ -220,6 +223,7 @@ describe('models', () => {
 
   const tag: Model = {
     name: 'Tag',
+    title: 'Tag',
     file: 'tag.model',
     generics: [],
     extended: [],
@@ -247,6 +251,7 @@ describe('models', () => {
 
   const pet: Model = {
     name: 'Pet',
+    title: 'Pet',
     file: 'pet.model',
     generics: [],
     extended: [],
@@ -354,6 +359,7 @@ describe('models', () => {
 
   const apiResponse: Model = {
     name: 'ApiResponse',
+    title: 'ApiResponse',
     file: 'api-response.model',
     generics: [],
     extended: [],

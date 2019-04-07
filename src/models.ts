@@ -29,6 +29,8 @@ export interface Model extends File {
   extended?: Array<Model | string>;
   properties: Property[];
   references?: GroupedReferences<Enum | Model>;
+  title: string;
+  description?: string;
 }
 
 interface Property {
