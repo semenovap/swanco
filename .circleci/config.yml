@@ -3,7 +3,7 @@ jobs:
   build:
     filters:
       tags:
-        only: /^v*/
+        only: /^v.*/
     working_directory: ~/swanco
     docker:
       - image: circleci/node:latest
@@ -24,3 +24,11 @@ jobs:
       - run:
           name: Execute tests
           command: npm test
+      - run:
+          name: Build API documentation
+          command: npm run doc
+      - store_artifacts:
+          path: doc
+          prefix: doc
+      - store_test_results:
+          path: junit.xml
