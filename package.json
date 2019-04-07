@@ -10,7 +10,7 @@
   "scripts": {
     "build": "tsc",
     "start": "tsc -w",
-    "test": "tsc -p tsconfig.test.json && jest --config jest.config.json",
+    "test": "tsc -p tsconfig.test.json && jest --config jest.config.json --runInBand",
     "lint": "tslint -p tsconfig.test.json",
     "doc": "typedoc --out doc",
     "release": "npm run prepublishOnly && standard-version",

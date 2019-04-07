@@ -6,6 +6,7 @@
 /out-tsc
 /test
 /doc
+/junit.xml
 
 # dependencies
 /node_modules
