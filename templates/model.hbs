@@ -9,7 +9,11 @@
   {{/references.model}}
 
 {{/if}}
-export interface {{name}}{{#if generics}}<{{#join generics ', '}}{{.}} = object{{/join}}>{{/if}} {
+/**{{#if title}}
+ * {{title}}{{/if}}{{#if description}}
+ * {{description}}{{/if}}
+ */
+export interface {{name}}{{#if generics}}<{{#join generics ', '}}{{.}} = object{{/join}}>{{/if}}{{#if extended}} extends {{#join extended ', '}}{{name}}{{#if generics}}<{{#join generics ', '}}{{.}}{{/join}}>{{/if}}{{/join}}{{/if}} {
 {{#properties}}
   {{name}}{{^required}}?{{/required}}: {{type}}{{#if reference.generics}}<{{#join reference.generics ', '}}{{.}}{{/join}}>{{/if}}{{#if isArray}}[]{{/if}};{{#description}} // {{.}}{{/description}}
 {{/properties}}

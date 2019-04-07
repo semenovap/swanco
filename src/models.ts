@@ -26,6 +26,7 @@ import {
 
 export interface Model extends File {
   generics: string[];
+  extended?: Array<Model | string>;
   properties: Property[];
   references?: GroupedReferences<Enum | Model>;
 }
@@ -70,6 +71,8 @@ export function fetchModels(spec: Spec): Model[] {
 
     models.forEach(model => {
       const references = [];
+      const extended = [];
+
       model.properties.forEach(property => {
         const {reference} = property;
 
@@ -107,6 +110,13 @@ export function fetchModels(spec: Spec): Model[] {
       });
 
       model.references = groupReferences(references);
+      model.extended = extended;
+    });
+
+    models.forEach(model => {
+      const refModels = (model.references.model || []) as Model[];
+      refModels.forEach(refModel => model.generics.push(...refModel.generics));
+      model.generics = uniqBy(model.generics, undefined);
     });
   }
 
@@ -139,9 +149,22 @@ export function findModel(name: string): Model | undefined {
 function getModel(name: string, definition: Schema): Model {
   name = pascalCase(name);
   const file = `${kebabCase(name)}.model`;
-  const required = definition.required || [];
   const properties: Property[] = [];
   const generics = [];
+  const extended = [];
+
+  if (!definition.properties && Array.isArray(definition.allOf)) {
+    definition.allOf.forEach(schema => {
+      const ref = getReferenceType(schema);
+      if (ref.name) {
+        extended.push(ref.name);
+      } else if (schema.properties) {
+        definition = schema;
+      }
+    });
+  }
+
+  const required = definition.required || [];
 
   for (const propName in definition.properties) {
     if (!definition.properties[propName]) {
@@ -183,6 +206,9 @@ function getModel(name: string, definition: Schema): Model {
     name,
     file,
     generics,
+    extended,
+    title: definition.title || name,
+    description: definition.description,
     properties: orderBy(uniqBy(properties, 'name'), 'name'),
     template: 'model'
   };

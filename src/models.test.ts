@@ -17,6 +17,7 @@ describe('models', () => {
     name: 'Order',
     file: 'order.model',
     generics: [],
+    extended: [],
     references: {
       enum: [
         {
@@ -119,6 +120,7 @@ describe('models', () => {
     name: 'User',
     file: 'user.model',
     generics: [],
+    extended: [],
     references: {},
     properties: [
       {
@@ -193,6 +195,7 @@ describe('models', () => {
     name: 'Category',
     file: 'category.model',
     generics: [],
+    extended: [],
     references: {},
     properties: [
       {
@@ -219,6 +222,7 @@ describe('models', () => {
     name: 'Tag',
     file: 'tag.model',
     generics: [],
+    extended: [],
     references: {},
     properties: [
       {
@@ -245,6 +249,7 @@ describe('models', () => {
     name: 'Pet',
     file: 'pet.model',
     generics: [],
+    extended: [],
     references: {
       model: [
         category,
@@ -351,6 +356,7 @@ describe('models', () => {
     name: 'ApiResponse',
     file: 'api-response.model',
     generics: [],
+    extended: [],
     references: {},
     properties: [
       {
