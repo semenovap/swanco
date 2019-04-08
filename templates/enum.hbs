@@ -1,10 +1,11 @@
+/* tslint:disable */
+
 {{#if description}}
 /**
  * {{description}}
  */
 {{/if}}
 export enum {{name}} {
-{{#values}}
-  {{key}} = '{{value}}',
-{{/values}}
+{{#join values ',
+'}}  {{key}} = '{{value}}'{{/join}}
 }
