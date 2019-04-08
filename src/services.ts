@@ -5,6 +5,7 @@
 import camelCase = require('lodash.camelcase');
 import kebabCase = require('lodash.kebabcase');
 import orderBy = require('lodash.orderby');
+import uniqBy = require('lodash.uniqby');
 import {
   Operation as SwaggerOperation,
   Parameter as SwaggerParameter,
@@ -229,7 +230,7 @@ function getOperation(
     'desc'
   );
   const response = getResponse(operation.responses[200]);
-  const generics = [
+  const generics = uniqBy([
     ...parameters.map(param => param.reference).concat(response.reference)
       .reduce((all, reference) => {
         if (reference && 'generics' in reference) {
@@ -237,7 +238,7 @@ function getOperation(
         }
         return all;
       }, [])
-  ];
+  ], undefined);
 
   return {
     name,
