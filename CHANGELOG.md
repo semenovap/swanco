@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.3.1](https://github.com/semenovap/swanco/compare/v1.3.0...v1.3.1) (2019-04-08)
+
+
+### Bug Fixes
+
+* Generics' duplicates in services ([5d9fdd7](https://github.com/semenovap/swanco/commit/5d9fdd7))
+* Hierarchical dependencies for generics with unlimited deep ([8470906](https://github.com/semenovap/swanco/commit/8470906))
+* Remove comma after last value in enum ([da274d1](https://github.com/semenovap/swanco/commit/da274d1))
+
+
+
 # [1.3.0](https://github.com/semenovap/swanco/compare/v1.2.0...v1.3.0) (2019-04-07)
 
 
