@@ -87,7 +87,6 @@ export function fetchModels(spec: Spec): Model[] {
           if (refModel) {
             references.push(refModel);
             property.reference = refModel;
-            model.generics.push(...refModel.generics);
           } else {
             throw new Error(`Reference model "${reference}" was not found in the specification!`);
           }
@@ -116,8 +115,7 @@ export function fetchModels(spec: Spec): Model[] {
     });
 
     models.forEach(model => {
-      const refModels = (model.references.model || []) as Model[];
-      refModels.forEach(refModel => model.generics.push(...refModel.generics));
+      model.generics.push(...getAllGenerics(model));
       model.generics = uniqBy(model.generics, undefined);
     });
   }
@@ -214,4 +212,24 @@ function getModel(name: string, definition: Schema): Model {
     properties: orderBy(uniqBy(properties, 'name'), 'name'),
     template: 'model'
   };
+}
+
+/**
+ * Get all model's generics recursively
+ *
+ * @private
+ *
+ * @param {Model} model
+ * @param {String[]} skip - Model names, which were processed
+ *
+ * @return {String[]}
+ */
+function getAllGenerics(model: Model, skip: string[] = []): string[] {
+  if (skip.indexOf(model.name) > -1) {
+    return [];
+  }
+
+  skip.push(model.name);
+  const refModels = (model.references.model || []) as Model[];
+  return model.generics.concat(...refModels.map(refModel => getAllGenerics(refModel, skip)));
 }
