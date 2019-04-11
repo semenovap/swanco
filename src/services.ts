@@ -257,6 +257,17 @@ function getOperation(
   };
 }
 
+/**
+ * Get operation's parameters
+ *
+ * @private
+ *
+ * @param {String} service - Service name
+ * @param {String} operation - Operation name
+ * @param {SwaggerParameter | SwaggerReference} parameter - Parameter config
+ *
+ * @return {Parameter}
+ */
 function getParameter(service: string, operation: string, parameter: SwaggerParameter | SwaggerReference): Parameter {
 
   if ('$ref' in parameter) {
