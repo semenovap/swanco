@@ -10,7 +10,7 @@
   "scripts": {
     "build": "tsc",
     "start": "tsc -w",
-    "test": "tsc -p tsconfig.test.json && jest --config jest.config.json --runInBand",
+    "test": "jest --config jest.config.json",
     "lint": "tslint -p tsconfig.test.json",
     "doc": "typedoc --out doc",
     "release": "npm run prepublishOnly && standard-version",
@@ -46,7 +46,7 @@
     "yargs": "^13.2.1"
   },
   "devDependencies": {
-    "@types/jest": "^24.0.9",
+    "@types/jest": "^24.0.11",
     "@types/lodash.camelcase": "^4.3.5",
     "@types/lodash.groupby": "^4.6.5",
     "@types/lodash.isequal": "^4.5.4",
@@ -60,6 +60,7 @@
     "jest": "^24.1.0",
     "jest-junit": "^6.3.0",
     "standard-version": "^5.0.1",
+    "ts-jest": "^24.0.2",
     "tslint": "^5.13.0",
     "typedoc": "^0.14.2",
     "typescript": "^3.2.2"

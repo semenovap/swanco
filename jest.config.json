@@ -1,11 +1,14 @@
 {
-  "rootDir": "test",
+  "rootDir": "src",
+  "transform": {
+    "^.+\\.ts?$": "ts-jest"
+  },
   "reporters": [
     "default",
     [
       "jest-junit",
       {
-        "outputDirectory": "test/results"
+        "outputDirectory": "test"
       }
     ]
   ]

@@ -31,4 +31,4 @@ jobs:
 #          path: doc
 #          prefix: doc
       - store_test_results:
-          path: test/results
+          path: test
