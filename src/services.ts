@@ -54,7 +54,9 @@ interface Operation {
   security: Security;
   method: string;
   url: string;
+  accept: string;
   contentType: string;
+  responseType: string;
   hasQueryParams: boolean;
   hasFormData: boolean;
   deprecated: boolean;
@@ -89,6 +91,11 @@ interface Security {
 interface ApiKey {
   name: string;
   inHeader?: boolean;
+}
+
+enum DataTypes {
+  Json = 'application/json',
+  Xml = 'application/xml',
 }
 
 /**
@@ -239,6 +246,7 @@ function getOperation(
         return all;
       }, [])
   ], undefined);
+  const accept = getMimeType(operation.produces);
 
   return {
     name,
@@ -246,8 +254,10 @@ function getOperation(
     generics,
     response,
     parameters,
+    accept,
     url: path.replace(/{/g, '${'),
-    contentType: operation.consumes ? operation.consumes[0] : 'application/json',
+    contentType: getMimeType(operation.consumes),
+    responseType: accept === DataTypes.Xml ? 'text' : undefined,
     hasQueryParams: parameters.some(parameter => parameter.inQuery),
     hasFormData: parameters.some(parameter => parameter.inFormData),
     security: getSecurity(operation.security, security),
@@ -389,4 +399,26 @@ function getSecurity(operationSecurity: SwaggerSecurity[] = [], securities: Hash
   }));
 
   return {apiKeys, tokens};
+}
+
+/**
+ * Get MIME type by available types
+ *
+ * @private
+ *
+ * @param {String[]} types - Available types
+ *
+ * @return {DataTypes | undefined}
+ */
+function getMimeType(types: string[] = []): DataTypes | undefined {
+  const jsonMime = new RegExp('^(application\/json|[^;/ \t]+\/[^;/ \t]+[+]json)[ \t]*(;.*)?$', 'i');
+  const xmlMime = new RegExp('^((application|text)\/xml|[^;/ \t]+\/[^;/ \t]+[+]xml)[ \t]*(;.*)?$', 'i');
+
+  if (types.some(type => jsonMime.test(type))) {
+    return DataTypes.Json;
+  } else if (types.some(type => xmlMime.test(type))) {
+    return DataTypes.Xml;
+  }
+
+  return;
 }

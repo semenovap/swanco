@@ -51,14 +51,17 @@ export class {{name}} {
   public {{name}}{{#if generics}}<{{#join generics ', '}}{{.}}{{/join}}>{{/if}}({{#parameters}}{{name}}{{^required}}?{{/required}}: {{type}}{{#if reference.generics}}<{{#join reference.generics ', '}}{{.}}{{/join}}>{{/if}}{{#if isArray}}[]{{/if}}, {{/parameters}}observe?: 'events'): {{#response}}Observable<HttpEvent<{{type}}{{#if reference.generics}}<{{#join reference.generics ', '}}{{.}}{{/join}}>{{/if}}{{#if isArray}}[]{{/if}}>>{{/response}};
   public {{name}}{{#if generics}}<{{#join generics ', '}}{{.}}{{/join}}>{{/if}}({{#parameters}}{{name}}{{^required}}?{{/required}}: {{type}}{{#if reference.generics}}<{{#join reference.generics ', '}}{{.}}{{/join}}>{{/if}}{{#if isArray}}[]{{/if}}, {{/parameters}}observe?: 'response'): {{#response}}Observable<HttpResponse<{{type}}{{#if reference.generics}}<{{#join reference.generics ', '}}{{.}}{{/join}}>{{/if}}{{#if isArray}}[]{{/if}}>>{{/response}};
   public {{name}}{{#if generics}}<{{#join generics ', '}}{{.}}{{/join}}>{{/if}}({{#parameters}}{{name}}{{^required}}?{{/required}}: {{type}}{{#if reference.generics}}<{{#join reference.generics ', '}}{{.}}{{/join}}>{{/if}}{{#if isArray}}[]{{/if}}, {{/parameters}}observe: any = 'body'): {{#response}}Observable<any>{{/response}} {
-    const url = `${this.configService.baseUrl}{{{url}}}`;
+    const url = `${this.configService.baseUrl}{{url}}`;
     const httpOptions = {
-      observe,
+      observe,{{#if responseType}}
+      responseType: '{{responseType}}',{{/if}}
       {{~#if hasQueryParams}}
 
       params: new HttpParams(),{{/if}}
       headers: new HttpHeaders({
-        'Content-Type': '{{{contentType}}}'
+      {{~#unless hasFormData}}{{#if contentType}}
+        'Content-Type': '{{contentType}}',{{/if}}{{/unless}}{{#if accept}}
+        'Accept': '{{accept}}'{{/if}}
       })
     };
     {{#security~}}

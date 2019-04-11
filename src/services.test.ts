@@ -47,11 +47,14 @@ describe('services', () => {
               inQuery: false,
               inFormData: false,
               isArray: false,
+              reference: undefined,
               originalName: 'body'
             }
           ],
           method: 'post',
           url: '/pet',
+          accept: 'application/json',
+          responseType: undefined,
           contentType: 'application/json',
           hasQueryParams: false,
           hasFormData: false,
@@ -85,6 +88,7 @@ describe('services', () => {
               inQuery: false,
               inFormData: false,
               isArray: false,
+              reference: undefined,
               originalName: 'petId'
             },
             {
@@ -97,12 +101,15 @@ describe('services', () => {
               inQuery: false,
               inFormData: false,
               isArray: false,
+              reference: undefined,
               originalName: 'api_key'
             }
           ],
           method: 'delete',
           url: '/pet/${petId}',
-          contentType: 'application/json',
+          accept: 'application/json',
+          responseType: undefined,
+          contentType: undefined,
           hasQueryParams: false,
           hasFormData: false,
           response: {
@@ -161,7 +168,9 @@ describe('services', () => {
           ],
           method: 'get',
           url: '/pet/findByStatus',
-          contentType: 'application/json',
+          accept: 'application/json',
+          responseType: undefined,
+          contentType: undefined,
           hasQueryParams: true,
           hasFormData: false,
           response: {
@@ -194,12 +203,15 @@ describe('services', () => {
               inQuery: true,
               inFormData: false,
               isArray: true,
+              reference: undefined,
               originalName: 'tags'
             }
           ],
           method: 'get',
           url: '/pet/findByTags',
-          contentType: 'application/json',
+          accept: 'application/json',
+          responseType: undefined,
+          contentType: undefined,
           hasQueryParams: true,
           hasFormData: false,
           response: {
@@ -232,12 +244,15 @@ describe('services', () => {
               inQuery: false,
               inFormData: false,
               isArray: false,
+              reference: undefined,
               originalName: 'petId'
             }
           ],
           method: 'get',
           url: '/pet/${petId}',
-          contentType: 'application/json',
+          accept: 'application/json',
+          responseType: undefined,
+          contentType: undefined,
           hasQueryParams: false,
           hasFormData: false,
           response: {
@@ -273,11 +288,14 @@ describe('services', () => {
               inQuery: false,
               inFormData: false,
               isArray: false,
+              reference: undefined,
               originalName: 'body'
             }
           ],
           method: 'put',
           url: '/pet',
+          accept: 'application/json',
+          responseType: undefined,
           contentType: 'application/json',
           hasQueryParams: false,
           hasFormData: false,
@@ -311,6 +329,7 @@ describe('services', () => {
               inQuery: false,
               inFormData: false,
               isArray: false,
+              reference: undefined,
               originalName: 'petId'
             },
             {
@@ -323,6 +342,7 @@ describe('services', () => {
               inQuery: false,
               inFormData: true,
               isArray: false,
+              reference: undefined,
               originalName: 'name'
             },
             {
@@ -335,12 +355,15 @@ describe('services', () => {
               inQuery: false,
               inFormData: true,
               isArray: false,
+              reference: undefined,
               originalName: 'status'
             }
           ],
           method: 'post',
           url: '/pet/${petId}',
-          contentType: 'application/x-www-form-urlencoded',
+          accept: 'application/json',
+          responseType: undefined,
+          contentType: undefined,
           hasQueryParams: false,
           hasFormData: true,
           response: {
@@ -373,6 +396,7 @@ describe('services', () => {
               inQuery: false,
               inFormData: false,
               isArray: false,
+              reference: undefined,
               originalName: 'petId'
             },
             {
@@ -385,6 +409,7 @@ describe('services', () => {
               inQuery: false,
               inFormData: true,
               isArray: false,
+              reference: undefined,
               originalName: 'additionalMetadata'
             },
             {
@@ -397,12 +422,15 @@ describe('services', () => {
               inQuery: false,
               inFormData: true,
               isArray: false,
+              reference: undefined,
               originalName: 'file'
             }
           ],
           method: 'post',
           url: '/pet/${petId}/uploadImage',
-          contentType: 'multipart/form-data',
+          accept: 'application/json',
+          responseType: undefined,
+          contentType: undefined,
           hasQueryParams: false,
           hasFormData: true,
           response: {
@@ -477,12 +505,15 @@ describe('services', () => {
               inQuery: false,
               inFormData: false,
               isArray: false,
+              reference: undefined,
               originalName: 'orderId'
             }
           ],
           method: 'delete',
           url: '/store/order/${orderId}',
-          contentType: 'application/json',
+          accept: 'application/json',
+          responseType: undefined,
+          contentType: undefined,
           hasQueryParams: false,
           hasFormData: false,
           response: {
@@ -506,7 +537,9 @@ describe('services', () => {
           parameters: [],
           method: 'get',
           url: '/store/inventory',
-          contentType: 'application/json',
+          accept: 'application/json',
+          responseType: undefined,
+          contentType: undefined,
           hasQueryParams: false,
           hasFormData: false,
           response: {
@@ -542,12 +575,15 @@ describe('services', () => {
               inQuery: false,
               inFormData: false,
               isArray: false,
+              reference: undefined,
               originalName: 'orderId'
             }
           ],
           method: 'get',
           url: '/store/order/${orderId}',
-          contentType: 'application/json',
+          accept: 'application/json',
+          responseType: undefined,
+          contentType: undefined,
           hasQueryParams: false,
           hasFormData: false,
           response: {
@@ -579,12 +615,15 @@ describe('services', () => {
               inQuery: false,
               inFormData: false,
               isArray: false,
+              reference: undefined,
               originalName: 'body'
             }
           ],
           method: 'post',
           url: '/store/order',
-          contentType: 'application/json',
+          accept: 'application/json',
+          responseType: undefined,
+          contentType: undefined,
           hasQueryParams: false,
           hasFormData: false,
           response: {
@@ -637,12 +676,15 @@ describe('services', () => {
               inQuery: false,
               inFormData: false,
               isArray: false,
+              reference: undefined,
               originalName: 'body'
             }
           ],
           method: 'post',
           url: '/user',
-          contentType: 'application/json',
+          accept: 'application/json',
+          responseType: undefined,
+          contentType: undefined,
           hasQueryParams: false,
           hasFormData: false,
           response: {
@@ -673,12 +715,15 @@ describe('services', () => {
               inQuery: false,
               inFormData: false,
               isArray: true,
+              reference: undefined,
               originalName: 'body'
             }
           ],
           method: 'post',
           url: '/user/createWithArray',
-          contentType: 'application/json',
+          accept: 'application/json',
+          responseType: undefined,
+          contentType: undefined,
           hasQueryParams: false,
           hasFormData: false,
           response: {
@@ -709,12 +754,15 @@ describe('services', () => {
               inQuery: false,
               inFormData: false,
               isArray: true,
+              reference: undefined,
               originalName: 'body'
             }
           ],
           method: 'post',
           url: '/user/createWithList',
-          contentType: 'application/json',
+          accept: 'application/json',
+          responseType: undefined,
+          contentType: undefined,
           hasQueryParams: false,
           hasFormData: false,
           response: {
@@ -745,12 +793,15 @@ describe('services', () => {
               inQuery: false,
               inFormData: false,
               isArray: false,
+              reference: undefined,
               originalName: 'username'
             }
           ],
           method: 'delete',
           url: '/user/${username}',
-          contentType: 'application/json',
+          accept: 'application/json',
+          responseType: undefined,
+          contentType: undefined,
           hasQueryParams: false,
           hasFormData: false,
           response: {
@@ -781,12 +832,15 @@ describe('services', () => {
               inQuery: false,
               inFormData: false,
               isArray: false,
+              reference: undefined,
               originalName: 'username'
             }
           ],
           method: 'get',
           url: '/user/${username}',
-          contentType: 'application/json',
+          accept: 'application/json',
+          responseType: undefined,
+          contentType: undefined,
           hasQueryParams: false,
           hasFormData: false,
           response: {
@@ -817,6 +871,7 @@ describe('services', () => {
               inQuery: true,
               inFormData: false,
               isArray: false,
+              reference: undefined,
               originalName: 'username'
             },
             {
@@ -829,12 +884,15 @@ describe('services', () => {
               inQuery: true,
               inFormData: false,
               isArray: false,
+              reference: undefined,
               originalName: 'password'
             }
           ],
           method: 'get',
           url: '/user/login',
-          contentType: 'application/json',
+          accept: 'application/json',
+          responseType: undefined,
+          contentType: undefined,
           hasQueryParams: true,
           hasFormData: false,
           response: {
@@ -857,7 +915,9 @@ describe('services', () => {
           parameters: [],
           method: 'get',
           url: '/user/logout',
-          contentType: 'application/json',
+          accept: 'application/json',
+          responseType: undefined,
+          contentType: undefined,
           hasQueryParams: false,
           hasFormData: false,
           response: {
@@ -888,6 +948,7 @@ describe('services', () => {
               inQuery: false,
               inFormData: false,
               isArray: false,
+              reference: undefined,
               originalName: 'username'
             },
             {
@@ -900,17 +961,21 @@ describe('services', () => {
               inQuery: false,
               inFormData: false,
               isArray: false,
+              reference: undefined,
               originalName: 'body'
             }
           ],
           method: 'put',
           url: '/user/${username}',
-          contentType: 'application/json',
+          accept: 'application/json',
+          responseType: undefined,
+          contentType: undefined,
           hasQueryParams: false,
           hasFormData: false,
           response: {
             type: 'void',
             description: undefined,
+            reference: undefined,
             isArray: false
           },
           security: {
