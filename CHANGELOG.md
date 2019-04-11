@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.3.2](https://github.com/semenovap/swanco/compare/v1.3.1...v1.3.2) (2019-04-11)
+
+
+### Bug Fixes
+
+* **doc:** Description for private function ([783bf88](https://github.com/semenovap/swanco/commit/783bf88))
+* Wrong request headers for FormData ([8ae1e55](https://github.com/semenovap/swanco/commit/8ae1e55))
+
+
+
 ## [1.3.1](https://github.com/semenovap/swanco/compare/v1.3.0...v1.3.1) (2019-04-08)
 
 
