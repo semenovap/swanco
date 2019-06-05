@@ -1,6 +1,6 @@
 {
   "name": "swanco",
-  "version": "1.3.2",
+  "version": "1.3.3",
   "description": "Swagger code generation for Angular",
   "author": "Alexander Semenov",
   "license": "MIT",
