@@ -67,7 +67,7 @@ export class {{name}} {
     {{#security~}}
       {{#apiKeys}}
         {{#inHeader}}
-    httpOptions.headers = httpOptions.headers.set('{{name}}', `Bearer ${this.configService.apiKeys.get('{{name}}')}`);
+    httpOptions.headers = httpOptions.headers.set('{{name}}', this.configService.apiKeys.get('{{name}}'));
         {{/inHeader}}
       {{/apiKeys}}
       {{#tokens}}
