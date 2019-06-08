@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.0.0](https://github.com/semenovap/swanco/compare/v1.3.3...v2.0.0) (2019-06-08)
+
+
+### Bug Fixes
+
+* remove prefix "Bearer" from generated services ([d353177](https://github.com/semenovap/swanco/commit/d353177))
+
+
+### BREAKING CHANGES
+
+* You should provide required prefix (like Bearer)
+together with your access key into ConfigService.
+
+
+
 ### [1.3.3](https://github.com/semenovap/swanco/compare/v1.3.2...v1.3.3) (2019-06-05)
 
 
