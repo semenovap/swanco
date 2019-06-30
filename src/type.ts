@@ -33,20 +33,24 @@ interface Type {
  * @return {Type}
  */
 export function getBasicType(schema: BaseSchema): Type {
-  let name = schema.type || 'any';
+  let name;
   let isArray = false;
+
+  if (schema.type === 'array') {
+    const items = schema.items;
+
+    if (!Array.isArray(items) && items.type) {
+      schema = items;
+      isArray = true;
+    }
+  }
 
   if (schema.type === 'integer') {
     name = 'number';
   } else if (schema.type === 'file') {
     name = 'Blob';
-  } else if (schema.type === 'array') {
-    const items = schema.items;
-
-    if (!Array.isArray(items) && items.type) {
-      name = items.type;
-      isArray = true;
-    }
+  } else {
+    name = schema.type || 'any';
   }
 
   return {
