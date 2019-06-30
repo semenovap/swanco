@@ -2,6 +2,25 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.0.1](https://github.com/semenovap/swanco/compare/v2.0.0...v2.0.1) (2019-06-30)
+
+
+### Bug Fixes
+
+* wrong basic type for arrays ([e44f6a7](https://github.com/semenovap/swanco/commit/e44f6a7))
+
+
+### Build System
+
+* update dependencies ([6625dae](https://github.com/semenovap/swanco/commit/6625dae))
+
+
+### Tests
+
+* add undefined properties ([c3c44f9](https://github.com/semenovap/swanco/commit/c3c44f9))
+
+
+
 ## [2.0.0](https://github.com/semenovap/swanco/compare/v1.3.3...v2.0.0) (2019-06-08)
 
 
