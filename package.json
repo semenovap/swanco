@@ -43,7 +43,7 @@
     "lodash.orderby": "^4.6.0",
     "lodash.uniqby": "^4.7.0",
     "lodash.upperfirst": "^4.3.1",
-    "yargs": "^13.2.4"
+    "yargs": "^13.3.0"
   },
   "devDependencies": {
     "@types/jest": "^24.0.15",
@@ -54,15 +54,15 @@
     "@types/lodash.orderby": "^4.6.6",
     "@types/lodash.uniqby": "^4.7.6",
     "@types/lodash.upperfirst": "^4.3.6",
-    "@types/node": "^12.0.10",
-    "@types/swagger-schema-official": "^2.0.17",
+    "@types/node": "^12.6.8",
+    "@types/swagger-schema-official": "^2.0.18",
     "@types/yargs": "^13.0.0",
     "jest": "^24.8.0",
-    "jest-junit": "^6.4.0",
+    "jest-junit": "^7.0.0",
     "standard-version": "^6.0.1",
     "ts-jest": "^24.0.2",
     "tslint": "^5.18.0",
-    "typedoc": "^0.14.2",
-    "typescript": "^3.5.2"
+    "typedoc": "^0.15.0",
+    "typescript": "^3.5.3"
   }
 }
