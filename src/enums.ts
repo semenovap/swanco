@@ -63,7 +63,7 @@ export function addEnum(prefix: string, name: string, schema: BaseSchema): Enum 
 
   const description = schema.description;
   const values = arr.sort().map(value => ({
-    key: pascalCase(value.toString()),
+    key: (Number.isInteger(+value[0]) ? '_' : '') + pascalCase(value.toString()),
     value: value.toString()
   }));
 
