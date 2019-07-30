@@ -138,6 +138,27 @@ export function showError(message: string): void {
 }
 
 /**
+ * Show result of files generation
+ *
+ * @public
+ *
+ * @param {Number} models - Models' count
+ * @param {Number} enums - Enums' count
+ * @param {Number} services - Services' count
+ */
+export function showReport(models: number, enums: number, services: number): void {
+  const labels = ['Models', 'Enums', 'Services'];
+  const data = [models, enums, services]
+    .map((value, index) => ({
+      name: labels[index],
+      count: value
+    }))
+    .filter(value => value.count);
+
+  console.table(data);
+}
+
+/**
  * Get Swagger specification
  *
  * @public

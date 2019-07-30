@@ -43,6 +43,8 @@ npm install --save-dev swanco
 
 `--skip-module`   Do not create module file
 
+`--hide-report`   Do not show results of files generation
+
 `--version`       Show version number
 
 `--help`          Show help

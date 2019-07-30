@@ -23,6 +23,7 @@ import {
   getProtocol,
   rmdir,
   showError,
+  showReport,
   wrap
 } from './utils';
 
@@ -48,6 +49,10 @@ const options = scriptName('swanco')
     'skip-module': {
       boolean: false,
       describe: 'Do not create module file'
+    },
+    'hide-report': {
+      boolean: false,
+      describe: 'Hide results of files generation'
     }
   })
   .showHelpOnFail(true)
@@ -86,8 +91,15 @@ getData(options.input as string, options.auth as string)
         }
 
         root.content.push(config, wrap<Service>(services, 'services'), models, enums);
+        if (!options.hideReport) {
+          showReport(models.content.length, enums.content.length, services.length);
+        }
       } else {
-        root.content.push(models, wrap<Enum>(fetchEnums(), 'enums'));
+        const enums = wrap<Enum>(fetchEnums(), 'enums');
+        root.content.push(models, enums);
+        if (!options.hideReport) {
+          showReport(models.content.length, enums.content.length, 0);
+        }
       }
 
       generate(options.output, root);
