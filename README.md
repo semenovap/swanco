@@ -102,6 +102,7 @@ petstore
             +-- api.module.ts
             +-- config.service.ts
             +-- index.ts
+            +-- variables.ts
 ```
 
 ## Bug report
