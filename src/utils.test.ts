@@ -35,10 +35,6 @@ describe('utils', () => {
     expect(await getData(resolve(__dirname, '../fixture.test.json'))).toHaveProperty('swagger');
   });
 
-  it('get Swagger spec data from URL https://petstore.swagger.io/v2/swagger.json', async () => {
-    expect(await getData('https://petstore.swagger.io/v2/swagger.json')).toHaveProperty('swagger');
-  });
-
   it('generate file by template to output directory', () => {
     generate(output, dir);
     expect(existsSync(resolve(output, dir.directory, `${file.file}.ts`))).toBeTruthy();
