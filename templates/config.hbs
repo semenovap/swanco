@@ -5,7 +5,10 @@ import {
   Injectable,
   Optional
 } from '@angular/core';
-import { API_BASE_URL } from './variables';
+import {
+  API_BASE_URL,
+  API_WITH_CREDENTIALS
+} from './variables';
 
 /**
  * Services configuration
@@ -15,7 +18,9 @@ import { API_BASE_URL } from './variables';
 })
 export class {{name}} {
 
-  public readonly baseUrl: string = '{{{baseUrl}}}';
+  public baseUrl: string = '{{{baseUrl}}}';
+
+  public withCredentials: boolean = false;
   {{#apiKeys}}
 
   public readonly apiKeys: Map<string, string> = new Map();
@@ -25,9 +30,14 @@ export class {{name}} {
   public readonly accessTokens: Map<string, string> = new Map();
   {{/accessTokens}}
 
-  constructor(@Optional() @Inject(API_BASE_URL) baseUrl: string) {
+  constructor(
+    @Optional() @Inject(API_BASE_URL) baseUrl: string,
+    @Optional() @Inject(API_WITH_CREDENTIALS) withCredentials: boolean
+  ) {
     if (baseUrl != null) {
       this.baseUrl = baseUrl;
     }
+
+    this.withCredentials = !!withCredentials;
   }
 }
