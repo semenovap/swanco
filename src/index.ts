@@ -82,6 +82,11 @@ getData(options.input as string, options.auth as string)
       const models = wrap<Model>(fetchModels(spec), 'models');
 
       if (!options.skipServices) {
+        const variables: File = {
+          name: 'Variables',
+          file: 'variables',
+          template: 'variables'
+        };
         const config = fetchConfig(spec, getProtocol(options.input as string));
         const services = fetchServices(spec, config);
         const enums = wrap<Enum>(fetchEnums(), 'enums');
@@ -90,7 +95,7 @@ getData(options.input as string, options.auth as string)
           root.content.push(fetchModule(services));
         }
 
-        root.content.push(config, wrap<Service>(services, 'services'), models, enums);
+        root.content.push(config, variables, wrap<Service>(services, 'services'), models, enums);
         if (!options.hideReport) {
           showReport(models.content.length, enums.content.length, services.length);
         }

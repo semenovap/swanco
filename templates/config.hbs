@@ -1,6 +1,11 @@
 /* tslint:disable */
 
-import { Injectable } from '@angular/core';
+import {
+  Inject,
+  Injectable,
+  Optional
+} from '@angular/core';
+import { API_BASE_URL } from './variables';
 
 /**
  * Services configuration
@@ -10,14 +15,19 @@ import { Injectable } from '@angular/core';
 })
 export class {{name}} {
 
-  public baseUrl = '{{{baseUrl}}}';
+  public readonly baseUrl: string = '{{{baseUrl}}}';
   {{#apiKeys}}
 
-  public readonly apiKeys = new Map<string, string>();
+  public readonly apiKeys: Map<string, string> = new Map();
   {{/apiKeys}}
   {{#accessTokens}}
 
-  public readonly accessTokens = new Map<string, string>();
+  public readonly accessTokens: Map<string, string> = new Map();
   {{/accessTokens}}
 
+  constructor(@Optional() @Inject(API_BASE_URL) baseUrl: string) {
+    if (baseUrl != null) {
+      this.baseUrl = baseUrl;
+    }
+  }
 }
