@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.1.0](https://github.com/semenovap/swanco/compare/v2.0.1...v2.1.0) (2019-07-31)
+
+
+### Bug Fixes
+
+* **enum:** add underscore to enum key which starts from number ([79b09ac](https://github.com/semenovap/swanco/commit/79b09ac))
+* **type:** typisation error of binary files ([e92fa8b](https://github.com/semenovap/swanco/commit/e92fa8b))
+
+
+### Features
+
+* **bin:** add optional argument of files generation report ([e4f1f27](https://github.com/semenovap/swanco/commit/e4f1f27))
+* **config:** add injectable argument Base URL to config service ([0add3e4](https://github.com/semenovap/swanco/commit/0add3e4))
+* **config:** add injectable argument to use withCredentials option ([a73f382](https://github.com/semenovap/swanco/commit/a73f382))
+
 ### [2.0.1](https://github.com/semenovap/swanco/compare/v2.0.0...v2.0.1) (2019-06-30)
 
 
