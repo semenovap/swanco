@@ -71,14 +71,13 @@ getData(options.input as string, options.auth as string)
       return;
     }
 
-    rmdir(options.output);
-
-    const root: Directory<File> = {
-      directory: '.',
-      content: []
-    };
-
     try {
+      rmdir(options.output);
+
+      const root: Directory<File> = {
+        directory: '.',
+        content: []
+      };
       const models = wrap<Model>(fetchModels(spec), 'models');
 
       if (!options.skipServices) {
