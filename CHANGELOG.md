@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.1.1](https://github.com/semenovap/swanco/compare/v2.1.0...v2.1.1) (2019-08-01)
+
+
+### Bug Fixes
+
+* **bin:** hide stack trace errors ([93932a1](https://github.com/semenovap/swanco/commit/93932a1))
+* **doc:** add variables file into the example of the readme file ([8a3b4e6](https://github.com/semenovap/swanco/commit/8a3b4e6))
+* **service:** support Angular 8.2 and TypeScript 3.5 ([cb66aca](https://github.com/semenovap/swanco/commit/cb66aca))
+
 ## [2.1.0](https://github.com/semenovap/swanco/compare/v2.0.1...v2.1.0) (2019-07-31)
 
 
