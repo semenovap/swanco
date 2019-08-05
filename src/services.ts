@@ -59,6 +59,7 @@ interface Operation {
   responseType: string;
   hasQueryParams: boolean;
   hasFormData: boolean;
+  hasNoBody: boolean;
   deprecated: boolean;
 }
 
@@ -148,7 +149,7 @@ function getServices(
   });
 
   for (const pathName in paths) {
-    if (!paths[pathName]) {
+    if (!paths.hasOwnProperty(pathName) || !paths[pathName]) {
       continue;
     }
 
@@ -263,7 +264,10 @@ function getOperation(
     security: getSecurity(operation.security, security),
     summary: operation.summary || name,
     description: operation.description,
-    deprecated: operation.deprecated
+    deprecated: operation.deprecated,
+    hasNoBody: ['POST', 'PUT'].indexOf(method.toUpperCase()) > -1 && !parameters.some(
+      parameter => parameter.inFormData || parameter.inBody
+    )
   };
 }
 

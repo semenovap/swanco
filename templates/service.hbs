@@ -117,7 +117,7 @@ export class {{name}} {
       {{/inFormData}}
     {{/parameters}}
 
-    return this.http.{{method}}{{#response}}<{{type}}>{{/response}}(url{{#if hasFormData}}, formData{{/if}}{{#parameters}}{{#inBody}}, {{name}}{{/inBody}}{{/parameters}}, httpOptions);
+    return this.http.{{method}}{{#response}}<{{type}}>{{/response}}(url{{#if hasFormData}}, formData{{/if}}{{#parameters}}{{#inBody}}, {{name}}{{/inBody}}{{/parameters}}{{#if hasNoBody}}, null{{/if}}, httpOptions);
   }
 
   {{/operations}}

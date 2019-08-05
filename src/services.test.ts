@@ -58,6 +58,7 @@ describe('services', () => {
           contentType: 'application/json',
           hasQueryParams: false,
           hasFormData: false,
+          hasNoBody: false,
           response: {
             type: 'void',
             reference: undefined,
@@ -112,6 +113,7 @@ describe('services', () => {
           contentType: undefined,
           hasQueryParams: false,
           hasFormData: false,
+          hasNoBody: false,
           response: {
             type: 'void',
             reference: undefined,
@@ -173,6 +175,7 @@ describe('services', () => {
           contentType: undefined,
           hasQueryParams: true,
           hasFormData: false,
+          hasNoBody: false,
           response: {
             type: 'Pet',
             reference: undefined,
@@ -214,6 +217,7 @@ describe('services', () => {
           contentType: undefined,
           hasQueryParams: true,
           hasFormData: false,
+          hasNoBody: false,
           response: {
             type: 'Pet',
             reference: undefined,
@@ -255,6 +259,7 @@ describe('services', () => {
           contentType: undefined,
           hasQueryParams: false,
           hasFormData: false,
+          hasNoBody: false,
           response: {
             type: 'Pet',
             reference: undefined,
@@ -299,6 +304,7 @@ describe('services', () => {
           contentType: 'application/json',
           hasQueryParams: false,
           hasFormData: false,
+          hasNoBody: false,
           response: {
             type: 'void',
             reference: undefined,
@@ -366,6 +372,7 @@ describe('services', () => {
           contentType: undefined,
           hasQueryParams: false,
           hasFormData: true,
+          hasNoBody: false,
           response: {
             type: 'void',
             reference: undefined,
@@ -433,6 +440,7 @@ describe('services', () => {
           contentType: undefined,
           hasQueryParams: false,
           hasFormData: true,
+          hasNoBody: false,
           response: {
             type: 'ApiResponse',
             reference: undefined,
@@ -516,6 +524,7 @@ describe('services', () => {
           contentType: undefined,
           hasQueryParams: false,
           hasFormData: false,
+          hasNoBody: false,
           response: {
             type: 'void',
             reference: undefined,
@@ -542,6 +551,7 @@ describe('services', () => {
           contentType: undefined,
           hasQueryParams: false,
           hasFormData: false,
+          hasNoBody: false,
           response: {
             type: 'object',
             reference: undefined,
@@ -586,6 +596,7 @@ describe('services', () => {
           contentType: undefined,
           hasQueryParams: false,
           hasFormData: false,
+          hasNoBody: false,
           response: {
             type: 'Order',
             reference: undefined,
@@ -626,6 +637,7 @@ describe('services', () => {
           contentType: undefined,
           hasQueryParams: false,
           hasFormData: false,
+          hasNoBody: false,
           response: {
             type: 'Order',
             reference: undefined,
@@ -687,6 +699,7 @@ describe('services', () => {
           contentType: undefined,
           hasQueryParams: false,
           hasFormData: false,
+          hasNoBody: false,
           response: {
             type: 'void',
             reference: undefined,
@@ -726,6 +739,7 @@ describe('services', () => {
           contentType: undefined,
           hasQueryParams: false,
           hasFormData: false,
+          hasNoBody: false,
           response: {
             type: 'void',
             reference: undefined,
@@ -765,6 +779,7 @@ describe('services', () => {
           contentType: undefined,
           hasQueryParams: false,
           hasFormData: false,
+          hasNoBody: false,
           response: {
             type: 'void',
             reference: undefined,
@@ -804,6 +819,7 @@ describe('services', () => {
           contentType: undefined,
           hasQueryParams: false,
           hasFormData: false,
+          hasNoBody: false,
           response: {
             type: 'void',
             reference: undefined,
@@ -843,6 +859,7 @@ describe('services', () => {
           contentType: undefined,
           hasQueryParams: false,
           hasFormData: false,
+          hasNoBody: false,
           response: {
             type: 'User',
             reference: undefined,
@@ -895,6 +912,7 @@ describe('services', () => {
           contentType: undefined,
           hasQueryParams: true,
           hasFormData: false,
+          hasNoBody: false,
           response: {
             type: 'string',
             reference: undefined,
@@ -920,6 +938,7 @@ describe('services', () => {
           contentType: undefined,
           hasQueryParams: false,
           hasFormData: false,
+          hasNoBody: false,
           response: {
             type: 'void',
             reference: undefined,
@@ -972,6 +991,7 @@ describe('services', () => {
           contentType: undefined,
           hasQueryParams: false,
           hasFormData: false,
+          hasNoBody: false,
           response: {
             type: 'void',
             description: undefined,
