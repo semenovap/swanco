@@ -23,7 +23,9 @@ jobs:
             - ./node_modules
       - run:
           name: Execute tests
-          command: npm test
+          command: npm test -- --ci --runInBand
+          environment:
+            JEST_JUNIT_OUTPUT: test/junit.xml
 #      - run:
 #          name: Build API documentation
 #          command: npm run doc
