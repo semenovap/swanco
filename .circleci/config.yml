@@ -54,6 +54,7 @@ jobs:
           command: npm run doc
       - store_artifacts:
           path: doc
+          destination: doc
 
   lint:
     working_directory: ~/swanco
@@ -66,7 +67,7 @@ jobs:
           key: dependency-cache-{{ checksum "package.json" }}
       - run:
           name: Execute linter
-          command: npm run lint -- --format junit --out reports/lint.xml
+          command: npm run lint -- --format junit --out reports/lint/result.xml
 
   test:
     working_directory: ~/swanco
@@ -81,9 +82,10 @@ jobs:
           name: Execute tests
           command: npm run test -- --ci --runInBand --reporters jest-junit
           environment:
-            JEST_JUNIT_OUTPUT: reports/test.xml
+            JEST_JUNIT_OUTPUT: reports/test/result.xml
       - store_artifacts:
           path: coverage
+          destination: coverage
       - store_test_results:
           path: reports
 
