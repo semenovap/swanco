@@ -3,13 +3,6 @@
   "transform": {
     "^.+\\.ts?$": "ts-jest"
   },
-  "reporters": [
-    "default",
-    [
-      "jest-junit",
-      {
-        "outputDirectory": "test"
-      }
-    ]
-  ]
+  "collectCoverage": true,
+  "coverageDirectory": "../coverage"
 }

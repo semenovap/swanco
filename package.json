@@ -10,9 +10,9 @@
   "scripts": {
     "build": "tsc",
     "start": "tsc -w",
-    "test": "jest --config jest.config.json",
-    "lint": "tslint -p tsconfig.test.json",
     "doc": "typedoc --out doc",
+    "lint": "tslint -p tsconfig.test.json",
+    "test": "jest --config jest.config.json",
     "release": "npm run prepublishOnly && standard-version",
     "prepublishOnly": "npm run build && npm run test && npm run lint"
   },

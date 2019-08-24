@@ -1,9 +1,10 @@
+#    filters:
+#      tags:
+#        only: /^v.*/
+
 version: 2
 jobs:
-  build:
-    filters:
-      tags:
-        only: /^v.*/
+  install:
     working_directory: ~/swanco
     docker:
       - image: circleci/node:latest
@@ -20,17 +21,65 @@ jobs:
       - save_cache:
           key: dependency-cache-{{ checksum "package.json" }}
           paths:
-            - ./node_modules
+            - node_modules
+
+  build:
+    working_directory: ~/swanco
+    docker:
+      - image: circleci/node:latest
+    steps:
+      - run:
+          name: Compile distributive
+          command: npm run build
+
+  doc:
+    working_directory: ~/swanco
+    docker:
+      - image: circleci/node:latest
+    steps:
+      - run:
+          name: Build API documentation
+          command: npm run doc
+      - store_artifacts:
+          path: doc
+
+  lint:
+    working_directory: ~/swanco
+    docker:
+      - image: circleci/node:latest
+    steps:
+      - run:
+          name: Execute linter
+          command: npm run lint -- --format junit --out reports/lint.xml
+
+  test:
+    working_directory: ~/swanco
+    docker:
+      - image: circleci/node:latest
+    steps:
       - run:
           name: Execute tests
-          command: npm test -- --ci --runInBand
+          command: npm run test -- --ci --runInBand --reporters jest-junit
           environment:
-            JEST_JUNIT_OUTPUT: test/junit.xml
-#      - run:
-#          name: Build API documentation
-#          command: npm run doc
-#      - store_artifacts:
-#          path: doc
-#          prefix: doc
+            JEST_JUNIT_OUTPUT: reports/test.xml
+      - store_artifacts:
+          path: coverage
       - store_test_results:
-          path: test
+          path: reports
+
+workflows:
+  version: 2
+  build_and_test:
+    jobs:
+      - build
+          requires:
+            - install
+      - doc
+          requires:
+            - install
+      - lint
+          requires:
+            - install
+      - test
+          requires:
+            - install
