@@ -10,6 +10,10 @@ jobs:
       - image: circleci/node:latest
     steps:
       - checkout
+      - save_cache:
+          key: repo-{{ .Environment.CIRCLE_SHA1 }}
+          paths:
+            - ~/swanco
       - run:
           name: Update npm
           command: 'sudo npm install -g npm@latest'
@@ -28,6 +32,10 @@ jobs:
     docker:
       - image: circleci/node:latest
     steps:
+      - restore_cache:
+          key: repo-{{ .Environment.CIRCLE_SHA1 }}
+      - restore_cache:
+          key: dependency-cache-{{ checksum "package.json" }}
       - run:
           name: Compile distributive
           command: npm run build
@@ -37,6 +45,10 @@ jobs:
     docker:
       - image: circleci/node:latest
     steps:
+      - restore_cache:
+          key: repo-{{ .Environment.CIRCLE_SHA1 }}
+      - restore_cache:
+          key: dependency-cache-{{ checksum "package.json" }}
       - run:
           name: Build API documentation
           command: npm run doc
@@ -48,6 +60,10 @@ jobs:
     docker:
       - image: circleci/node:latest
     steps:
+      - restore_cache:
+          key: repo-{{ .Environment.CIRCLE_SHA1 }}
+      - restore_cache:
+          key: dependency-cache-{{ checksum "package.json" }}
       - run:
           name: Execute linter
           command: npm run lint -- --format junit --out reports/lint.xml
@@ -57,6 +73,10 @@ jobs:
     docker:
       - image: circleci/node:latest
     steps:
+      - restore_cache:
+          key: repo-{{ .Environment.CIRCLE_SHA1 }}
+      - restore_cache:
+          key: dependency-cache-{{ checksum "package.json" }}
       - run:
           name: Execute tests
           command: npm run test -- --ci --runInBand --reporters jest-junit
@@ -69,7 +89,7 @@ jobs:
 
 workflows:
   version: 2
-  build_and_test:
+  build:
     jobs:
       - install
       - build:
