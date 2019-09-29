@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.2.0](https://github.com/semenovap/swanco/compare/v2.1.1...v2.2.0) (2019-09-29)
+
+
+### Bug Fixes
+
+* **service:** add null value for empty body of POST and PUT requests ([e751ff8](https://github.com/semenovap/swanco/commit/e751ff8))
+
+
+### Features
+
+* **service:** add string enum as response of http request ([7b3393e](https://github.com/semenovap/swanco/commit/7b3393e))
+
 ### [2.1.1](https://github.com/semenovap/swanco/compare/v2.1.0...v2.1.1) (2019-08-01)
 
 
