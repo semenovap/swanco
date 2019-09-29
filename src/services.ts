@@ -237,7 +237,7 @@ function getOperation(
     'required',
     'desc'
   );
-  const response = getResponse(operation.responses[200]);
+  const response = getResponse(service, name, operation.responses[200]);
   const generics = uniqBy([
     ...parameters.map(param => param.reference).concat(response.reference)
       .reduce((all, reference) => {
@@ -344,11 +344,13 @@ function getParameter(service: string, operation: string, parameter: SwaggerPara
  *
  * @private
  *
+ * @param {String} service - Service name
+ * @param {String} operation - Operation name
  * @param {(SwaggerResponse | SwaggerReference)} response - Swagger response definition
  *
  * @return {Response}
  */
-function getResponse(response: SwaggerResponse | SwaggerReference): Response {
+function getResponse(service: string, operation: string, response: SwaggerResponse | SwaggerReference): Response {
   let type = 'void';
   let description;
   let reference;
@@ -362,14 +364,18 @@ function getResponse(response: SwaggerResponse | SwaggerReference): Response {
       description = response.description;
       refType = getReferenceType(response.schema);
       if (!refType.name) {
-        refType = getBasicType(response.schema);
+        if ('enum' in response.schema) {
+          refType = addEnum(service, operation, response.schema);
+        } else {
+          refType = getBasicType(response.schema);
+        }
       }
     }
 
     if (refType) {
       type = refType.name;
       isArray = refType.isArray;
-      reference = findModel(type);
+      reference = refType.values ? refType : findModel(type);
     }
   }
 
