@@ -47,7 +47,7 @@ jobs:
           environment:
             JEST_JUNIT_OUTPUT: ~/test-results/jest/jest.xml
       - store_test_results:
-          path: ~/test-results/tslint/
+          path: ~/test-results/jest/
       - store_artifacts:
           path: coverage
           destination: coverage
