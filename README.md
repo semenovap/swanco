@@ -39,7 +39,7 @@ npm install --save-dev swanco
 
 `--auth`          Basic authentication credentials, like `user:password`
 
-`--skip-services` Do not create services content`
+`--skip-services` Do not create services content
 
 `--skip-module`   Do not create module file
 
