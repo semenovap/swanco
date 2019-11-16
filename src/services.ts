@@ -110,9 +110,9 @@ enum DataTypes {
  * @return {Service}
  */
 export function fetchServices(spec: Spec, config: Config): Service[] {
-  const {paths, tags, securityDefinitions} = spec;
+  const {paths, tags, securityDefinitions, security} = spec;
 
-  return getServices(paths, tags, config, securityDefinitions);
+  return getServices(paths, tags, config, securityDefinitions, security);
 }
 
 /**
@@ -124,7 +124,8 @@ export function fetchServices(spec: Spec, config: Config): Service[] {
  * @param {HashMap<Path>} paths - Paths Api
  * @param {Tag[]} [tags] - Swagger tags for grouping
  * @param {Config} config - Requests' configuration
- * @param {HashMap<SwaggerSecurity>} security - Swagger security definition
+ * @param {HashMap<SwaggerSecurity>} securityDefinitions - Swagger security definition
+ * @param {Array<HashMap<string[]>>} globalSecurity - Global protection for all paths
  *
  * @return {Service[]}
  */
@@ -132,7 +133,8 @@ function getServices(
   paths: HashMap<Path>,
   tags: Tag[] = [],
   config: Config,
-  security: HashMap<SwaggerSecurity>
+  securityDefinitions: HashMap<SwaggerSecurity>,
+  globalSecurity: Array<HashMap<string[]>>
 ): Service[] {
 
   const servicesMap = new Map<string, Service>();
@@ -161,6 +163,8 @@ function getServices(
 
       const operation: SwaggerOperation = path[methodName];
 
+      operation.security = operation.security || globalSecurity as any;
+
       (operation.tags || []).forEach(tagName => {
         if (!servicesMap.has(tagName)) {
 
@@ -185,7 +189,7 @@ function getServices(
         methodName,
         pathName,
         operation,
-        security
+        securityDefinitions
       )));
     }
   }
@@ -220,7 +224,7 @@ function getServices(
  * @param {String} method - Service method (POST, PUT, GET, DELETE)
  * @param {String} path - Api path
  * @param {SwaggerOperation} operation - Swagger information about operation
- * @param {HashMap<SwaggerSecurity>} security - Swagger security definition
+ * @param {HashMap<SwaggerSecurity>} securityDefinitions - Swagger security definition
  *
  * @return {Operation}
  */
@@ -229,7 +233,7 @@ function getOperation(
   method: string,
   path: string,
   operation: SwaggerOperation,
-  security: HashMap<SwaggerSecurity>
+  securityDefinitions: HashMap<SwaggerSecurity>
 ): Operation {
   const name = camelCase(operation.operationId);
   const parameters: Parameter[] = orderBy(
@@ -261,7 +265,7 @@ function getOperation(
     responseType: accept === DataTypes.Xml ? 'text' : undefined,
     hasQueryParams: parameters.some(parameter => parameter.inQuery),
     hasFormData: parameters.some(parameter => parameter.inFormData),
-    security: getSecurity(operation.security, security),
+    security: getSecurity(operation.security, securityDefinitions),
     summary: operation.summary || name,
     description: operation.description,
     deprecated: operation.deprecated,
