@@ -47,7 +47,7 @@ export function getBasicType(schema: BaseSchema): Type {
 
   if (schema.type === 'integer') {
     name = 'number';
-  } else if (schema.type as string === 'file') {
+  } else if (schema.type === 'file') {
     name = 'Blob';
   } else {
     name = schema.type || 'any';
