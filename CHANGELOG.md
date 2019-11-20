@@ -2,6 +2,26 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.0.0](https://github.com/semenovap/swanco/compare/v2.2.0...v3.0.0) (2019-11-20)
+
+
+### ⚠ BREAKING CHANGES
+
+* **model:** Some generics will be broken, because they were based
+on object without additional properties. Properties, which provide
+additional information about type are converted to HashMap objects.
+
+### Bug Fixes
+
+* **doc:** remove symbol ([ed23003](https://github.com/semenovap/swanco/commit/ed23003))
+* **type:** rollback typisation error of binary files ([1465826](https://github.com/semenovap/swanco/commit/1465826))
+
+
+### Features
+
+* **model:** strict typing of maps fields ([170e4c8](https://github.com/semenovap/swanco/commit/170e4c8))
+* **service:** add security, which was defined globally ([cd2decb](https://github.com/semenovap/swanco/commit/cd2decb))
+
 ## [2.2.0](https://github.com/semenovap/swanco/compare/v2.1.1...v2.2.0) (2019-09-29)
 
 
