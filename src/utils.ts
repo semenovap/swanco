@@ -38,6 +38,10 @@ export interface File {
   template: string;
 }
 
+export interface Generics {
+  generics: string[];
+}
+
 export interface HashMap<T> {
   [name: string]: T;
 }

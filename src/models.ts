@@ -21,11 +21,11 @@ import {
 } from './type';
 import {
   File,
+  Generics,
   pascalCase
 } from './utils';
 
-export interface Model extends File {
-  generics: string[];
+export interface Model extends File, Generics {
   extended?: Array<Model | string>;
   properties: Property[];
   references?: GroupedReferences<Enum | Model>;
@@ -33,13 +33,20 @@ export interface Model extends File {
   description?: string;
 }
 
-interface Property {
+interface Type {
+  type: string;
+  isArray: boolean;
+  hashMap: Type;
+  reference?: Enum | Model | string;
+}
+
+interface Property extends Type {
   description: string;
   name: string;
   required: boolean;
-  type: string;
-  isArray: boolean;
-  reference?: Enum | Model | string;
+}
+
+interface AdditionalType extends Generics, Type {
 }
 
 /**
@@ -172,30 +179,14 @@ function getModel(name: string, definition: Schema): Model {
     }
 
     const property = definition.properties[propName];
-    const basicType = getBasicType(property);
-    const refType = getReferenceType(property);
-    const enumType = addEnum(name, propName, property);
+    const type = getType(name, propName, property);
 
-    let type = basicType.name;
-    let isArray = basicType.isArray;
-    let reference;
-
-    if (refType.name) {
-      type = reference = refType.name;
-      isArray = refType.isArray;
-    } else if (enumType) {
-      type = enumType.name;
-      isArray = enumType.isArray;
-      reference = enumType;
-    } else if (type === 'object') {
-      type = name + pascalCase(propName);
-      generics.push(type);
-    }
-
+    generics.push(...type.generics);
     properties.push({
-      type,
-      isArray,
-      reference,
+      type: type.type,
+      isArray: type.isArray,
+      reference: type.reference,
+      hashMap: type.hashMap,
       name: propName,
       description: property.description,
       required: required.indexOf(propName) > -1
@@ -211,6 +202,46 @@ function getModel(name: string, definition: Schema): Model {
     description: definition.description,
     properties: orderBy(uniqBy(properties, 'name'), 'name'),
     template: 'model'
+  };
+}
+
+function getType(prefix: string, name: string, schema: Schema): AdditionalType {
+  const generics = [];
+  const basicType = getBasicType(schema);
+  const refType = getReferenceType(schema);
+  const enumType = addEnum(prefix, name, schema);
+
+  let type = basicType.name;
+  let isArray = basicType.isArray;
+  let hashMap: AdditionalType;
+  let reference;
+
+  if (refType.name) {
+    type = reference = refType.name;
+    isArray = refType.isArray;
+  } else if (enumType) {
+    type = enumType.name;
+    isArray = enumType.isArray;
+    reference = enumType;
+  } else if (type === 'object') {
+    const additionalProperties = schema.additionalProperties;
+
+    if (!additionalProperties) {
+      type = prefix + pascalCase(name);
+      generics.push(type);
+    } else if (additionalProperties && additionalProperties !== true) {
+      hashMap = getType(prefix, name, additionalProperties);
+      generics.push(...hashMap.generics);
+      reference = hashMap.reference;
+    }
+  }
+
+  return {
+    type,
+    isArray,
+    hashMap,
+    generics,
+    reference
   };
 }
 

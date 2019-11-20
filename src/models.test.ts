@@ -52,7 +52,8 @@ describe('models', () => {
         name: 'complete',
         description: undefined,
         reference: undefined,
-        required: false
+        required: false,
+        hashMap: undefined
       },
       {
         type: 'number',
@@ -60,7 +61,8 @@ describe('models', () => {
         name: 'id',
         description: undefined,
         reference: undefined,
-        required: false
+        required: false,
+        hashMap: undefined
       },
       {
         type: 'number',
@@ -68,7 +70,8 @@ describe('models', () => {
         name: 'petId',
         description: undefined,
         reference: undefined,
-        required: false
+        required: false,
+        hashMap: undefined
       },
       {
         type: 'number',
@@ -76,7 +79,8 @@ describe('models', () => {
         name: 'quantity',
         description: undefined,
         reference: undefined,
-        required: false
+        required: false,
+        hashMap: undefined
       },
       {
         type: 'string',
@@ -84,7 +88,8 @@ describe('models', () => {
         name: 'shipDate',
         description: undefined,
         reference: undefined,
-        required: false
+        required: false,
+        hashMap: undefined
       },
       {
         type: 'OrderStatus',
@@ -112,7 +117,8 @@ describe('models', () => {
           file: 'order-status.enum',
           isArray: false
         },
-        required: false
+        required: false,
+        hashMap: undefined
       }
     ],
     template: 'model'
@@ -133,7 +139,8 @@ describe('models', () => {
         name: 'email',
         description: undefined,
         reference: undefined,
-        required: false
+        required: false,
+        hashMap: undefined
       },
       {
         type: 'string',
@@ -141,7 +148,8 @@ describe('models', () => {
         name: 'firstName',
         description: undefined,
         reference: undefined,
-        required: false
+        required: false,
+        hashMap: undefined
       },
       {
         type: 'number',
@@ -149,7 +157,8 @@ describe('models', () => {
         name: 'id',
         description: undefined,
         reference: undefined,
-        required: false
+        required: false,
+        hashMap: undefined
       },
       {
         type: 'string',
@@ -157,7 +166,8 @@ describe('models', () => {
         name: 'lastName',
         description: undefined,
         reference: undefined,
-        required: false
+        required: false,
+        hashMap: undefined
       },
       {
         type: 'string',
@@ -165,7 +175,8 @@ describe('models', () => {
         name: 'password',
         description: undefined,
         reference: undefined,
-        required: false
+        required: false,
+        hashMap: undefined
       },
       {
         type: 'string',
@@ -173,7 +184,8 @@ describe('models', () => {
         name: 'phone',
         description: undefined,
         reference: undefined,
-        required: false
+        required: false,
+        hashMap: undefined
       },
       {
         type: 'number',
@@ -181,7 +193,8 @@ describe('models', () => {
         name: 'userStatus',
         description: 'User Status',
         reference: undefined,
-        required: false
+        required: false,
+        hashMap: undefined
       },
       {
         type: 'string',
@@ -189,7 +202,8 @@ describe('models', () => {
         name: 'username',
         description: undefined,
         reference: undefined,
-        required: false
+        required: false,
+        hashMap: undefined
       }
     ],
     template: 'model'
@@ -210,7 +224,8 @@ describe('models', () => {
         name: 'id',
         description: undefined,
         reference: undefined,
-        required: false
+        required: false,
+        hashMap: undefined
       },
       {
         type: 'string',
@@ -218,7 +233,8 @@ describe('models', () => {
         name: 'name',
         description: undefined,
         reference: undefined,
-        required: false
+        required: false,
+        hashMap: undefined
       }
     ],
     template: 'model'
@@ -239,7 +255,8 @@ describe('models', () => {
         name: 'id',
         description: undefined,
         reference: undefined,
-        required: false
+        required: false,
+        hashMap: undefined
       },
       {
         type: 'string',
@@ -247,7 +264,8 @@ describe('models', () => {
         name: 'name',
         description: undefined,
         reference: undefined,
-        required: false
+        required: false,
+        hashMap: undefined
       }
     ],
     template: 'model'
@@ -296,7 +314,8 @@ describe('models', () => {
         name: 'category',
         description: undefined,
         reference: category,
-        required: false
+        required: false,
+        hashMap: undefined
       },
       {
         type: 'number',
@@ -304,7 +323,8 @@ describe('models', () => {
         name: 'id',
         description: undefined,
         reference: undefined,
-        required: false
+        required: false,
+        hashMap: undefined
       },
       {
         type: 'string',
@@ -312,7 +332,8 @@ describe('models', () => {
         name: 'name',
         description: undefined,
         reference: undefined,
-        required: true
+        required: true,
+        hashMap: undefined
       },
       {
         type: 'string',
@@ -320,7 +341,8 @@ describe('models', () => {
         name: 'photoUrls',
         description: undefined,
         reference: undefined,
-        required: true
+        required: true,
+        hashMap: undefined
       },
       {
         type: 'PetStatus',
@@ -348,7 +370,8 @@ describe('models', () => {
           file: 'pet-status.enum',
           isArray: false
         },
-        required: false
+        required: false,
+        hashMap: undefined
       },
       {
         type: 'Tag',
@@ -356,7 +379,8 @@ describe('models', () => {
         name: 'tags',
         description: undefined,
         reference: tag,
-        required: false
+        required: false,
+        hashMap: undefined
       }
     ],
     template: 'model'
@@ -377,7 +401,8 @@ describe('models', () => {
         name: 'code',
         description: undefined,
         reference: undefined,
-        required: false
+        required: false,
+        hashMap: undefined
       },
       {
         type: 'string',
@@ -385,7 +410,8 @@ describe('models', () => {
         name: 'message',
         description: undefined,
         reference: undefined,
-        required: false
+        required: false,
+        hashMap: undefined
       },
       {
         type: 'string',
@@ -393,7 +419,8 @@ describe('models', () => {
         name: 'type',
         description: undefined,
         reference: undefined,
-        required: false
+        required: false,
+        hashMap: undefined
       }
     ],
     template: 'model'

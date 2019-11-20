@@ -33,6 +33,7 @@ import {
 } from './type';
 import {
   File,
+  Generics,
   HashMap,
   pascalCase,
 } from './utils';
@@ -44,11 +45,10 @@ export interface Service extends Tag, File {
   config: Config;
 }
 
-interface Operation {
+interface Operation extends Generics {
   name: string;
   summary: string;
   description: string;
-  generics: string[];
   parameters: Parameter[];
   response: Response;
   security: Security;
