@@ -245,7 +245,7 @@ function getOperation(
     'required',
     'desc'
   );
-  const response = getResponse(service, name, operation.responses[200]);
+  const response = getResponse(service, name, operation.responses[200] || operation.responses.default);
   const generics = uniqBy([
     ...parameters.map(param => param.reference).concat(response.reference)
       .reduce((all, reference) => {
