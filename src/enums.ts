@@ -70,7 +70,7 @@ export function addEnum(prefix: string, name: string, schema: BaseSchema): Enum 
   let item = findEnum(values);
 
   if (item) {
-    return item;
+    return Object.assign({}, item, { isArray: schema.type === 'array' });
   }
 
   enums.push(item = {
