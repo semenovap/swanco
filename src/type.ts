@@ -75,7 +75,7 @@ export function getReferenceType(schema: Schema): Type {
   if (schema.type === 'array') {
     const items = schema.items;
 
-    if (!Array.isArray(items) && items.$ref) {
+    if (items && !Array.isArray(items) && items.$ref) {
       name = items.$ref;
       isArray = true;
     }
