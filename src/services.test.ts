@@ -1,6 +1,8 @@
+import orderBy = require('lodash.orderby');
 import {resolve} from 'path';
 import {Spec} from 'swagger-schema-official';
 import {Config} from './config';
+import {Enum} from './enums';
 import {
   fetchServices,
   Service
@@ -9,21 +11,55 @@ import {getData} from './utils';
 
 describe('services', () => {
 
+  let source: Spec;
+
   let spec: Spec;
+  let config: Config;
+  let enumFindPetsByStatus: Enum;
+  let petService: Service;
+  let storeService: Service;
+  let userService: Service;
+  let defaultService: Service;
+  let services: Service[];
+  let singleService: Service[];
 
-  beforeAll(async () => spec = await getData(resolve(__dirname, '../fixture.test.json')));
+  beforeAll(async () => source = await getData(resolve(__dirname, '../fixture.test.json')));
 
-  const config: Config = {
-    baseUrl: '/',
-    apiKeys: false,
-    accessTokens: false,
-    name: 'ConfigService',
-    file: 'config.service',
-    template: 'config'
-  };
+  beforeEach(() => {
+    spec = JSON.parse(JSON.stringify(source));
 
-  const services: Service[] = [
-    {
+    config = {
+      baseUrl: '/',
+      apiKeys: false,
+      accessTokens: false,
+      name: 'ConfigService',
+      file: 'config.service',
+      template: 'config'
+    };
+
+    enumFindPetsByStatus = {
+      values: [
+        {
+          key: 'Available',
+          value: 'available'
+        },
+        {
+          key: 'Pending',
+          value: 'pending'
+        },
+        {
+          key: 'Sold',
+          value: 'sold'
+        }
+      ],
+      template: 'enum',
+      name: 'PetFindPetsByStatus',
+      file: 'pet-find-pets-by-status.enum',
+      description: undefined,
+      isArray: false
+    };
+
+    petService = {
       name: 'PetService',
       description: 'Everything about your Pets',
       externalDocs: {
@@ -136,27 +172,7 @@ describe('services', () => {
           parameters: [
             {
               type: 'PetFindPetsByStatus',
-              reference: {
-                values: [
-                  {
-                    key: 'Available',
-                    value: 'available'
-                  },
-                  {
-                    key: 'Pending',
-                    value: 'pending'
-                  },
-                  {
-                    key: 'Sold',
-                    value: 'sold'
-                  }
-                ],
-                template: 'enum',
-                name: 'PetFindPetsByStatus',
-                description: undefined,
-                file: 'pet-find-pets-by-status.enum',
-                isArray: false
-              },
+              reference: enumFindPetsByStatus,
               name: 'status',
               description: 'Status values that need to be considered for filter',
               required: true,
@@ -460,43 +476,17 @@ describe('services', () => {
       ],
       references: {
         enum: [
-          {
-            values: [
-              {
-                key: 'Available',
-                value: 'available'
-              },
-              {
-                key: 'Pending',
-                value: 'pending'
-              },
-              {
-                key: 'Sold',
-                value: 'sold'
-              }
-            ],
-            template: 'enum',
-            name: 'PetFindPetsByStatus',
-            file: 'pet-find-pets-by-status.enum',
-            description: undefined,
-            isArray: false
-          }
+          enumFindPetsByStatus
         ]
       },
       importHttpParams: true,
       template: 'service'
-    },
-    {
+    };
+
+    storeService = {
       name: 'StoreService',
       description: 'Access to Petstore orders',
-      config: {
-        baseUrl: '/',
-        apiKeys: false,
-        accessTokens: false,
-        name: 'ConfigService',
-        file: 'config.service',
-        template: 'config'
-      },
+      config,
       file: 'store.service',
       operations: [
         {
@@ -656,22 +646,16 @@ describe('services', () => {
       references: {},
       importHttpParams: false,
       template: 'service'
-    },
-    {
+    };
+
+    userService = {
       name: 'UserService',
       description: 'Operations about user',
       externalDocs: {
         description: 'Find out more about our store',
         url: 'http://swagger.io'
       },
-      config: {
-        baseUrl: '/',
-        apiKeys: false,
-        accessTokens: false,
-        name: 'ConfigService',
-        file: 'config.service',
-        template: 'config'
-      },
+      config,
       file: 'user.service',
       operations: [
         {
@@ -1010,11 +994,161 @@ describe('services', () => {
       references: {},
       importHttpParams: true,
       template: 'service'
-    }
-  ];
+    };
+
+    defaultService = {
+      config,
+      operations: [],
+      description: 'Api service',
+      file: 'api.service',
+      importHttpParams: true,
+      name: 'ApiService',
+      references: {},
+      template: 'service'
+    };
+
+    services = [petService, storeService, userService];
+
+    singleService = [
+      {
+        config,
+        ...defaultService,
+        operations: orderBy(services.reduce((all, current) => all.concat(current.operations), []), 'name'),
+        references: {
+          enum: [
+            enumFindPetsByStatus
+          ]
+        }
+      }
+    ];
+  });
 
   it('fetch all services', () => {
     expect(fetchServices(spec, config)).toEqual(services);
+  });
+
+  it('generate only one API service', () => {
+    delete spec.tags;
+    expect(fetchServices(spec, config)).toEqual(singleService);
+  });
+
+  it('generate services without security definitions', () => {
+    delete spec.securityDefinitions;
+    services.forEach(service => service.operations.forEach(operation => {
+      if (operation.security.apiKeys.length) {
+        operation.security.apiKeys.forEach(key => operation.security.tokens.push(key.name));
+        operation.security.apiKeys = [];
+      }
+    }));
+    expect(fetchServices(spec, config)).toEqual(services);
+  });
+
+  it('extract enums from parameters and responses', () => {
+    const pathName = Object.keys(spec.paths)[0];
+    const operators = spec.paths[pathName];
+    const methods = Object.keys(operators);
+    const firstIn = operators[methods[0]];
+    const secondIn = operators[methods[1]];
+    firstIn.parameters[0].type = 'string';
+    firstIn.parameters[0].enum = ['available', 'pending', 'sold'];
+    firstIn.responses = {
+      200: {
+        schema: {
+          type: 'string',
+          enum: ['available', 'pending', 'sold']
+        }
+      }
+    };
+    delete firstIn.parameters[0].schema;
+    secondIn.responses = {
+      default: {
+        schema: {
+          type: 'string',
+          items: {
+            enum: ['available', 'pending', 'sold']
+          }
+        }
+      }
+    };
+
+    const firstOut = petService.operations.find(operation => operation.name === firstIn.operationId);
+    const secondOut = petService.operations.find(operation => operation.name === secondIn.operationId);
+    firstOut.parameters[0].type = enumFindPetsByStatus.name;
+    firstOut.parameters[0].reference = enumFindPetsByStatus;
+    firstOut.response.type = enumFindPetsByStatus.name;
+    firstOut.response.reference = enumFindPetsByStatus;
+    secondOut.response.type = enumFindPetsByStatus.name;
+    secondOut.response.reference = enumFindPetsByStatus;
+
+    expect(fetchServices(spec, config)).toEqual(services);
+  });
+
+  it('extract references from parameters and responses', () => {
+    const operators = spec.paths[Object.keys(spec.paths)[0]];
+    const methods = Object.keys(operators);
+    const operator = operators[methods[0]];
+    operator.parameters.push(
+      {
+        $ref: '#/definitions/User'
+      },
+      {
+        name: 'foo',
+        schema: {}
+      }
+    );
+    operator.responses = {
+      200: {
+        $ref: '#/definitions/User'
+      }
+    };
+
+    const operation = petService.operations.find(o => o.name === operator.operationId);
+    operation.parameters.unshift({
+      description: undefined,
+      inBody: false,
+      inFormData: false,
+      inHeader: false,
+      inQuery: false,
+      isArray: false,
+      name: 'foo',
+      originalName: 'foo',
+      reference: undefined,
+      required: undefined,
+      type: 'any'
+    });
+    operation.parameters.push({
+      type: 'User',
+      name: 'User',
+      description: '',
+      reference: undefined,
+      required: true,
+      isArray: false,
+      inBody: true
+    });
+    operation.response.type = 'User';
+
+    expect(fetchServices(spec, config)).toEqual(services);
+  });
+
+  it('generate default API service', () => {
+    const pathName = Object.keys(spec.paths)[0];
+    const operators = spec.paths[pathName];
+    const operator = operators[Object.keys(operators)[0]];
+    delete operator.tags;
+    delete operator.parameters;
+    delete operator.summary;
+    operator.produces = ['application/xml'];
+
+    const operation = petService.operations.splice(0, 1)[0];
+    operation.parameters = [];
+    operation.hasNoBody = true;
+    operation.responseType = 'text';
+    operation.accept = 'application/xml';
+    operation.summary = operation.name;
+    defaultService.operations.push(operation);
+    defaultService.importHttpParams = false;
+
+    expect(fetchServices(spec, config)).toEqual([defaultService, ...services]);
   });
 
 });
