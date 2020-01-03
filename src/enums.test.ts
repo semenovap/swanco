@@ -15,8 +15,8 @@ describe('enums', () => {
     isArray: false,
     values: [
       {
-        key: 'One',
-        value: 'one'
+        key: '_1One',
+        value: '1one'
       },
       {
         key: 'Two',
@@ -30,11 +30,11 @@ describe('enums', () => {
   });
 
   it('add enum', () => {
-    expect(addEnum('foo', 'bar', {enum: ['one', 'two']})).toEqual(expectedEnum);
+    expect(addEnum('foo', 'bar', {enum: ['1one', 'two']})).toEqual(expectedEnum);
   });
 
   it('add enum with the same values', () => {
-    expect(addEnum('foo', 'baz', {items: {enum: ['one', 'two']}})).toEqual(expectedEnum);
+    expect(addEnum('foo', 'baz', {items: {enum: ['1one', 'two']}})).toEqual(expectedEnum);
   });
 
   it('try to find enum by empty values', () => {
