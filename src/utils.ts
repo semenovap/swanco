@@ -59,7 +59,7 @@ registerHelper('pascalCase', value => pascalCase(value));
  * @param {Directory} dir - Data for writing
  */
 export function generate(output: string, dir: Directory<File>): void {
-  if (!Array.isArray(dir.content) || !dir.content.length) {
+  if (!dir || !Array.isArray(dir.content) || !dir.content.length) {
     return;
   }
 
@@ -69,7 +69,7 @@ export function generate(output: string, dir: Directory<File>): void {
     if ('file' in item) {
       writeFileSync(join(path, `${item.file}.ts`), compile(getTemplate(item.template))(item));
     } else {
-      generate(output, item);
+      generate(path, item);
     }
   });
 
