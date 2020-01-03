@@ -157,40 +157,44 @@ function getServices(
 
     const path = paths[pathName];
     for (const methodName in path) {
-      if (!path.hasOwnProperty(methodName) || !path[methodName].tags) {
+      if (!path.hasOwnProperty(methodName)) {
         continue;
       }
 
       const operation: SwaggerOperation = path[methodName];
 
+      operation.tags = Array.isArray(operation.tags) && operation.tags.length ? operation.tags : ['api'];
       operation.security = operation.security || globalSecurity as any;
 
-      (operation.tags || []).forEach(tagName => {
-        if (!servicesMap.has(tagName)) {
+      operation.tags.forEach(tagName => {
+        const currentTag = tags.find(tag => tag.name === tagName) || {
+          name: 'api'
+        };
 
+        if (!servicesMap.has(currentTag.name)) {
           const serviceDescription = Object.assign({
-            description: `${tagName} service`
-          }, tags.find(tag => tag.name === tagName));
+            description: `${currentTag.name} service`
+          }, currentTag);
 
-          servicesMap.set(tagName, Object.assign(serviceDescription, {
+          servicesMap.set(currentTag.name, Object.assign(serviceDescription, {
             config,
-            name: `${pascalCase(tagName)}Service`,
-            file: `${kebabCase(tagName)}.service`,
+            name: `${pascalCase(currentTag.name)}Service`,
+            file: `${kebabCase(currentTag.name)}.service`,
             operations: [],
             references: {},
             importHttpParams: false,
             template: 'service'
           }));
         }
-      });
 
-      (operation.tags || ['api']).forEach(serviceName => servicesMap.get(serviceName).operations.push(getOperation(
-        serviceName,
-        methodName,
-        pathName,
-        operation,
-        securityDefinitions
-      )));
+        servicesMap.get(currentTag.name).operations.push(getOperation(
+          currentTag.name,
+          methodName,
+          pathName,
+          operation,
+          securityDefinitions
+        ));
+      });
     }
   }
 
