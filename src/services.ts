@@ -404,9 +404,9 @@ function getSecurity(operationSecurity: SwaggerSecurity[] = [], securities: Hash
   const apiKeys: ApiKey[] = [];
   const tokens = [];
 
-  operationSecurity.forEach(obj => Object.keys(obj).map(name => {
+  operationSecurity.forEach(obj => Object.keys(obj).forEach(name => {
     const security = securities[name];
-    if ('in' in security) {
+    if (security && 'in' in security) {
       apiKeys.push({
         name: security.name,
         inHeader: security.in === 'header'
