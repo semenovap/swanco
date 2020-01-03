@@ -35,7 +35,7 @@
     "url": "https://github.com/semenovap/swanco.git"
   },
   "dependencies": {
-    "handlebars": "^4.5.2",
+    "handlebars": "^4.5.3",
     "lodash.camelcase": "^4.3.0",
     "lodash.groupby": "^4.6.0",
     "lodash.isequal": "^4.5.0",
@@ -43,10 +43,10 @@
     "lodash.orderby": "^4.6.0",
     "lodash.uniqby": "^4.7.0",
     "lodash.upperfirst": "^4.3.1",
-    "yargs": "^14.2.0"
+    "yargs": "^15.1.0"
   },
   "devDependencies": {
-    "@types/jest": "^24.0.23",
+    "@types/jest": "^24.0.25",
     "@types/lodash.camelcase": "^4.3.6",
     "@types/lodash.groupby": "^4.6.6",
     "@types/lodash.isequal": "^4.5.5",
@@ -54,15 +54,15 @@
     "@types/lodash.orderby": "^4.6.6",
     "@types/lodash.uniqby": "^4.7.6",
     "@types/lodash.upperfirst": "^4.3.6",
-    "@types/node": "^12.12.8",
+    "@types/node": "^13.1.4",
     "@types/swagger-schema-official": "^2.0.20",
-    "@types/yargs": "^13.0.3",
+    "@types/yargs": "^13.0.4",
     "jest": "^24.9.0",
-    "jest-junit": "^9.0.0",
-    "standard-version": "^7.0.0",
-    "ts-jest": "^24.1.0",
+    "jest-junit": "^10.0.0",
+    "standard-version": "^7.0.1",
+    "ts-jest": "^24.2.0",
     "tslint": "^5.20.1",
-    "typedoc": "^0.15.2",
-    "typescript": "^3.7.2"
+    "typedoc": "^0.15.6",
+    "typescript": "^3.7.4"
   }
 }
