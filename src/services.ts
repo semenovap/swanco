@@ -81,7 +81,7 @@ interface Response {
   type: string;
   description: string;
   isArray: boolean;
-  reference?: Model;
+  reference?: Enum | Model;
 }
 
 interface Security {
@@ -373,6 +373,8 @@ function getResponse(service: string, operation: string, response: SwaggerRespon
       refType = getReferenceType(response.schema);
       if (!refType.name) {
         if ('enum' in response.schema) {
+          refType = addEnum(service, operation, response.schema);
+        } else if ('items' in response.schema && !Array.isArray(response.schema.items)) {
           refType = addEnum(service, operation, response.schema);
         } else {
           refType = getBasicType(response.schema);
