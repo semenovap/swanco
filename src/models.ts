@@ -66,6 +66,7 @@ const models: Map<string, Model> = new Map();
  */
 export function fetchModels(spec: Spec): Model[] {
   const {definitions} = spec;
+  models.clear();
 
   if (definitions) {
     for (const defName in definitions) {
