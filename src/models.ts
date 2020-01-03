@@ -36,7 +36,7 @@ export interface Model extends File, Generics {
 interface Type {
   type: string;
   isArray: boolean;
-  hashMap: Type;
+  hashMap: AdditionalType;
   reference?: Enum | Model | string;
 }
 
@@ -46,8 +46,7 @@ interface Property extends Type {
   required: boolean;
 }
 
-interface AdditionalType extends Generics, Type {
-}
+type AdditionalType = Generics & Type;
 
 /**
  * Models collection
