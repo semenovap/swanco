@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.0.1](https://github.com/semenovap/swanco/compare/v3.0.0...v3.0.1) (2020-01-03)
+
+
+### Bug Fixes
+
+* **enum:** override "is array" property for different cases ([ca48de6](https://github.com/semenovap/swanco/commit/ca48de669f2bd2ea8d3a9d27912b99e18f35330f))
+* **model:** clear exists models before fetch ([77176c9](https://github.com/semenovap/swanco/commit/77176c9cf1290051a8854d85986c678a88fd5e92))
+* **service:** add operation to default service if there are no tags ([e118ff9](https://github.com/semenovap/swanco/commit/e118ff98bb4c3049ec7c28893246496f81234771))
+* **service:** check exist security definition ([4e16383](https://github.com/semenovap/swanco/commit/4e16383606951261269a3be46381f17e70bc927f))
+* **service:** enum as response from server ([e0b22fe](https://github.com/semenovap/swanco/commit/e0b22fe7b9e40f543a9c2723d33e526b67860343))
+* **service:** use default response if there is no response with code 200 ([22541bc](https://github.com/semenovap/swanco/commit/22541bcc269d49de6c7923b82f89ec40c24c1122))
+* **type:** undefined object ([93ce65b](https://github.com/semenovap/swanco/commit/93ce65bb3e3b59ad3fb0d12929daf07c1e07eb40))
+* **util:** recursive file generation ([581b318](https://github.com/semenovap/swanco/commit/581b318d07c02f1610fa5c767e03b460f5c8f81b))
+
 ## [3.0.0](https://github.com/semenovap/swanco/compare/v2.2.0...v3.0.0) (2019-11-20)
 
 
