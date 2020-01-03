@@ -220,29 +220,34 @@ export function getProtocol(url: string): string | undefined {
  */
 function getUrl(url: string, auth: string): Promise<string> {
   return new Promise((res, rej) => {
-    const http = require(getProtocol(url));
+    const protocol = getProtocol(url);
+    if (!protocol) {
+      throw new Error(`Invalid URL: ${url}`);
+    }
+
+    const http = require(protocol);
     const request = http.get(url, {auth});
 
-    request.on('error', err => rej(err));
-    request.on('response', (result: IncomingMessage) => {
-      const {statusCode} = result;
-      const contentType = result.headers['content-type'];
+    request.on('error', error => rej(error));
+    request.on('response', (response: IncomingMessage) => {
+      const {statusCode} = response;
+      const contentType = response.headers['content-type'];
 
-      let err: Error;
+      let error: Error;
       if (statusCode !== 200) {
-        err = new Error(`Request Failed. Status Code: ${statusCode}`);
+        error = new Error(`Request Failed. Status Code: ${statusCode}`);
       } else if (!/^application\/json/.test(contentType)) {
-        err = new Error(`Invalid content-type. Expected application/json but received ${contentType}`);
+        error = new Error(`Invalid content-type. Expected application/json but received ${contentType}`);
       }
 
-      if (err) {
-        result.resume();
-        rej(err);
+      if (error) {
+        response.resume();
+        rej(error);
       } else {
         let rawData = '';
-        result.setEncoding('utf-8');
-        result.on('data', chunk => rawData += chunk);
-        result.on('end', () => res(rawData));
+        response.setEncoding('utf-8');
+        response.on('data', chunk => rawData += chunk);
+        response.on('end', () => res(rawData));
       }
     });
   });
