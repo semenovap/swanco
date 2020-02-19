@@ -86,12 +86,17 @@ interface Response {
 
 interface Security {
   apiKeys: ApiKey[];
-  tokens: string[];
+  tokens: Token[];
 }
 
 interface ApiKey {
   name: string;
   inHeader?: boolean;
+}
+
+interface Token {
+  name: string;
+  type: 'Basic' | 'Bearer';
 }
 
 enum DataTypes {
@@ -404,7 +409,7 @@ function getResponse(service: string, operation: string, response: SwaggerRespon
  */
 function getSecurity(operationSecurity: SwaggerSecurity[] = [], securities: HashMap<SwaggerSecurity> = {}): Security {
   const apiKeys: ApiKey[] = [];
-  const tokens = [];
+  const tokens: Token[] = [];
 
   operationSecurity.forEach(obj => Object.keys(obj).forEach(name => {
     const security = securities[name];
@@ -414,7 +419,10 @@ function getSecurity(operationSecurity: SwaggerSecurity[] = [], securities: Hash
         inHeader: security.in === 'header'
       });
     } else {
-      tokens.push(name);
+      tokens.push({
+        name,
+        type: security && security.type === 'basic' ? 'Basic' : 'Bearer'
+      });
     }
   }));
 

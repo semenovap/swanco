@@ -74,7 +74,7 @@ export class {{name}} {
       {{#tokens}}
     httpOptions.headers = httpOptions.headers.set(
       'Authorization',
-      `Bearer ${this.configService.accessTokens.get('{{.}}')}`
+      `{{type}} ${this.configService.accessTokens.get('{{name}}')}`
     );
       {{/tokens}}
     {{/security}}

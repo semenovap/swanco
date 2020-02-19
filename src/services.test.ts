@@ -104,7 +104,10 @@ describe('services', () => {
           security: {
             apiKeys: [],
             tokens: [
-              'petstore_auth'
+              {
+                name: 'petstore_auth',
+                type: 'Bearer'
+              }
             ]
           },
           summary: 'Add a new pet to the store',
@@ -159,7 +162,10 @@ describe('services', () => {
           security: {
             apiKeys: [],
             tokens: [
-              'petstore_auth'
+              {
+                name: 'petstore_auth',
+                type: 'Bearer'
+              }
             ]
           },
           summary: 'Deletes a pet',
@@ -201,7 +207,10 @@ describe('services', () => {
           security: {
             apiKeys: [],
             tokens: [
-              'petstore_auth'
+              {
+                name: 'petstore_auth',
+                type: 'Bearer'
+              }
             ]
           },
           summary: 'Finds Pets by status',
@@ -243,7 +252,10 @@ describe('services', () => {
           security: {
             apiKeys: [],
             tokens: [
-              'petstore_auth'
+              {
+                name: 'petstore_auth',
+                type: 'Bearer'
+              }
             ]
           },
           summary: 'Finds Pets by tags',
@@ -330,7 +342,10 @@ describe('services', () => {
           security: {
             apiKeys: [],
             tokens: [
-              'petstore_auth'
+              {
+                name: 'petstore_auth',
+                type: 'Bearer'
+              }
             ]
           },
           summary: 'Update an existing pet',
@@ -398,7 +413,10 @@ describe('services', () => {
           security: {
             apiKeys: [],
             tokens: [
-              'petstore_auth'
+              {
+                name: 'petstore_auth',
+                type: 'Bearer'
+              }
             ]
           },
           summary: 'Updates a pet in the store with form data',
@@ -466,7 +484,10 @@ describe('services', () => {
           security: {
             apiKeys: [],
             tokens: [
-              'petstore_auth'
+              {
+                name: 'petstore_auth',
+                type: 'Bearer'
+              }
             ]
           },
           summary: 'uploads an image',
@@ -1036,7 +1057,10 @@ describe('services', () => {
     delete spec.securityDefinitions;
     services.forEach(service => service.operations.forEach(operation => {
       if (operation.security.apiKeys.length) {
-        operation.security.apiKeys.forEach(key => operation.security.tokens.push(key.name));
+        operation.security.apiKeys.forEach(key => operation.security.tokens.push({
+          name: key.name,
+          type: 'Bearer'
+        }));
         operation.security.apiKeys = [];
       }
     }));
