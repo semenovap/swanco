@@ -64,6 +64,27 @@ Add script bellow to `package.json` and execute `npm run swanco`
 }
 ```
 
+### Run as a module
+Usage as a module, it is an asynchronous function, which returns a promise.
+```javascript
+// JavaScript
+const swanco = require('swanco');
+
+swanco({ input: '<path_to_swagger_json>' }).then(
+  () => { /* do something */ },
+  err => console.error(err.message)
+);
+```
+```typescript
+// TypeScript
+import * as swanco from 'swanco';
+
+swanco({ input: '<path_to_swagger_json>' }).then(
+  () => { /* do something */ },
+  err => console.error(err.message)
+);
+```
+
 ## Example
 
 The commands bellow will generate an API module for [Swagger's PetStore example](http://petstore.swagger.io), assuming [Angular CLI](https://cli.angular.io) is installed globally:

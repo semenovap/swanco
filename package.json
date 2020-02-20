@@ -25,7 +25,8 @@
     "dist",
     "templates"
   ],
-  "bin": "dist/index.js",
+  "bin": "dist/cli.js",
+  "main": "dist/index.js",
   "homepage": "https://github.com/semenovap/swanco#readme",
   "bugs": {
     "url": "https://github.com/semenovap/swanco/issues"
