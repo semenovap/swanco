@@ -29,7 +29,7 @@ import {URL} from 'url';
 
 export interface Directory<T extends File> {
   directory: string;
-  content: Array<Directory<T> | T>;
+  content: (Directory<T> | T)[];
 }
 
 export interface File {

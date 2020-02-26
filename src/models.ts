@@ -26,7 +26,7 @@ import {
 } from './utils';
 
 export interface Model extends File, Generics {
-  extended?: Array<Model | string>;
+  extended?: (Model | string)[];
   properties: Property[];
   references?: GroupedReferences<Enum | Model>;
   title: string;

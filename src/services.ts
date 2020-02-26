@@ -139,7 +139,7 @@ function getServices(
   tags: Tag[] = [],
   config: Config,
   securityDefinitions: HashMap<SwaggerSecurity>,
-  globalSecurity: Array<HashMap<string[]>>
+  globalSecurity: HashMap<string[]>[]
 ): Service[] {
 
   const servicesMap = new Map<string, Service>();

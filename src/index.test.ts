@@ -1,19 +1,19 @@
 import swanco = require('./index');
-import {existsSync} from "fs";
+import {existsSync} from 'fs';
 import {rmdir} from './utils';
 
 describe('index', () => {
 
   it('should throw exception about empty input', async () => {
-    await swanco({ input: '' }).catch(err => expect(err).toEqual('Missing required argument: input'));
+    await swanco({input: ''}).catch(err => expect(err).toEqual('Missing required argument: input'));
   });
 
   it('should throw exception about invalid input', async () => {
-    await expect(swanco({ input: 'foo' })).rejects.toThrowError();
+    await expect(swanco({input: 'foo'})).rejects.toThrowError();
   });
 
   it('should throw exception about invalid data', async () => {
-    await expect(swanco({ input: 'package.json' })).rejects.toThrowError();
+    await expect(swanco({input: 'package.json'})).rejects.toThrowError();
   });
 
   it('should hide report', async () => {
