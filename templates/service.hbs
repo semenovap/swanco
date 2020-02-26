@@ -1,7 +1,13 @@
 /* tslint:disable */
 
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpEvent, HttpHeaders, HttpResponse{{#if importHttpParams}}, HttpParams{{/if}} } from '@angular/common/http';
+import {
+  HttpClient,
+  HttpEvent,
+  HttpHeaders,
+  HttpResponse{{#if importHttpParams}},
+  HttpParams{{/if}}
+} from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 {{#config~}}
@@ -9,11 +15,17 @@ import { Observable } from 'rxjs';
 {{/config}}
 
 {{#if references.enum~}}
-  import { {{#join references.enum ', '}}{{name}}{{/join}} } from '../enums';
+  import {
+  {{#join references.enum ',
+  '}}{{name}}{{/join}}
+} from '../enums';
 
 {{/if}}
 {{#if references.model~}}
-  import { {{#join references.model ', '}}{{name}}{{/join}} } from '../models';
+  import {
+  {{#join references.model ',
+  '}}{{name}}{{/join}}
+} from '../models';
 
 {{/if}}
 /**

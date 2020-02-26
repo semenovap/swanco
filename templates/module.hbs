@@ -8,11 +8,17 @@ import {
 import { HttpClient } from '@angular/common/http';
 
 {{#if references~}}
-  import { {{#join references ', '}}{{name}}{{/join}} } from './services';
+  import {
+  {{#join references ',
+  '}}{{name}}{{/join}}
+} from './services';
 
 {{/if}}
 @NgModule({
-  providers: [{{#join references ', '}}{{name}}{{/join}}]
+  providers: [
+    {{#join references ',
+    '}}{{name}}{{/join}}
+  ]
 })
 export class {{name}} {
   constructor( @Optional() @SkipSelf() parentModule: {{name}}, @Optional() http: HttpClient) {
