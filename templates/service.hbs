@@ -52,6 +52,10 @@ export class {{name}} {
    * @param {'body'} [observe] - Observable part of response
    * @param {'event'} [observe] - Observable part of response
    * @param {'response'} [observe] - Observable part of response
+   * @param {'json'} [responseType] - The expected response type of the server
+   * @param {'text'} [responseType] - The expected response type of the server
+   * @param {'blob'} [responseType] - The expected response type of the server
+   * @param {'arraybuffer'} [responseType] - The expected response type of the server
    {{#response}}
    *
    * @return {Observable<{{type}}{{#if isArray}}[]{{/if}}>}{{#description}} - {{.}}{{/description}}{{#reference}} {@link {{name~}} }{{/reference}}
@@ -59,13 +63,23 @@ export class {{name}} {
    * @return {Observable<HttpResponse<{{type}}{{#if isArray}}[]{{/if}}>>}{{#description}} - {{.}}{{/description}}{{#reference}} {@link {{name~}} }{{/reference}}
    {{/response}}
    */
-  public {{name}}{{#if generics}}<{{#join generics ', '}}{{.}} = object{{/join}}>{{/if}}({{#parameters}}{{name}}{{^required}}?{{/required}}: {{type}}{{#if reference.generics}}<{{#join reference.generics ', '}}{{.}}{{/join}}>{{/if}}{{#if isArray}}[]{{/if}}, {{/parameters}}observe?: 'body'): {{#response}}Observable<{{type}}{{#if reference.generics}}<{{#join reference.generics ', '}}{{.}}{{/join}}>{{/if}}{{#if isArray}}[]{{/if}}>{{/response}};
-  public {{name}}{{#if generics}}<{{#join generics ', '}}{{.}} = object{{/join}}>{{/if}}({{#parameters}}{{name}}{{^required}}?{{/required}}: {{type}}{{#if reference.generics}}<{{#join reference.generics ', '}}{{.}}{{/join}}>{{/if}}{{#if isArray}}[]{{/if}}, {{/parameters}}observe?: 'events'): {{#response}}Observable<HttpEvent<{{type}}{{#if reference.generics}}<{{#join reference.generics ', '}}{{.}}{{/join}}>{{/if}}{{#if isArray}}[]{{/if}}>>{{/response}};
-  public {{name}}{{#if generics}}<{{#join generics ', '}}{{.}} = object{{/join}}>{{/if}}({{#parameters}}{{name}}{{^required}}?{{/required}}: {{type}}{{#if reference.generics}}<{{#join reference.generics ', '}}{{.}}{{/join}}>{{/if}}{{#if isArray}}[]{{/if}}, {{/parameters}}observe?: 'response'): {{#response}}Observable<HttpResponse<{{type}}{{#if reference.generics}}<{{#join reference.generics ', '}}{{.}}{{/join}}>{{/if}}{{#if isArray}}[]{{/if}}>>{{/response}};
-  public {{name}}{{#if generics}}<{{#join generics ', '}}{{.}} = object{{/join}}>{{/if}}({{#parameters}}{{name}}{{^required}}?{{/required}}: {{type}}{{#if reference.generics}}<{{#join reference.generics ', '}}{{.}}{{/join}}>{{/if}}{{#if isArray}}[]{{/if}}, {{/parameters}}observe: any = 'body'): {{#response}}Observable<any>{{/response}} {
+  public {{name}}{{#if generics}}<{{#join generics ', '}}{{.}} = object{{/join}}>{{/if}}({{#parameters}}{{name}}{{^required}}?{{/required}}: {{type}}{{#if reference.generics}}<{{#join reference.generics ', '}}{{.}}{{/join}}>{{/if}}{{#if isArray}}[]{{/if}}, {{/parameters}}observe?: 'body', responseType?: 'json'): {{#response}}Observable<{{type}}{{#if reference.generics}}<{{#join reference.generics ', '}}{{.}}{{/join}}>{{/if}}{{#if isArray}}[]{{/if}}>{{/response}};
+  public {{name}}({{#parameters}}{{name}}{{^required}}?{{/required}}: {{type}}{{#if reference.generics}}<{{#join reference.generics ', '}}{{.}}{{/join}}>{{/if}}{{#if isArray}}[]{{/if}}, {{/parameters}}observe?: 'body', responseType?: 'text'): {{#response}}Observable<string>{{/response}};
+  public {{name}}({{#parameters}}{{name}}{{^required}}?{{/required}}: {{type}}{{#if reference.generics}}<{{#join reference.generics ', '}}{{.}}{{/join}}>{{/if}}{{#if isArray}}[]{{/if}}, {{/parameters}}observe?: 'body', responseType?: 'blob'): {{#response}}Observable<Blob>{{/response}};
+  public {{name}}({{#parameters}}{{name}}{{^required}}?{{/required}}: {{type}}{{#if reference.generics}}<{{#join reference.generics ', '}}{{.}}{{/join}}>{{/if}}{{#if isArray}}[]{{/if}}, {{/parameters}}observe?: 'body', responseType?: 'arraybuffer'): {{#response}}Observable<ArrayBuffer>{{/response}};
+  public {{name}}{{#if generics}}<{{#join generics ', '}}{{.}} = object{{/join}}>{{/if}}({{#parameters}}{{name}}{{^required}}?{{/required}}: {{type}}{{#if reference.generics}}<{{#join reference.generics ', '}}{{.}}{{/join}}>{{/if}}{{#if isArray}}[]{{/if}}, {{/parameters}}observe?: 'events', responseType?: 'json'): {{#response}}Observable<HttpEvent<{{type}}{{#if reference.generics}}<{{#join reference.generics ', '}}{{.}}{{/join}}>{{/if}}{{#if isArray}}[]{{/if}}>>{{/response}};
+  public {{name}}({{#parameters}}{{name}}{{^required}}?{{/required}}: {{type}}{{#if reference.generics}}<{{#join reference.generics ', '}}{{.}}{{/join}}>{{/if}}{{#if isArray}}[]{{/if}}, {{/parameters}}observe?: 'events', responseType?: 'text'): {{#response}}Observable<HttpEvent<string>>{{/response}};
+  public {{name}}({{#parameters}}{{name}}{{^required}}?{{/required}}: {{type}}{{#if reference.generics}}<{{#join reference.generics ', '}}{{.}}{{/join}}>{{/if}}{{#if isArray}}[]{{/if}}, {{/parameters}}observe?: 'events', responseType?: 'blob'): {{#response}}Observable<HttpEvent<Blob>>{{/response}};
+  public {{name}}({{#parameters}}{{name}}{{^required}}?{{/required}}: {{type}}{{#if reference.generics}}<{{#join reference.generics ', '}}{{.}}{{/join}}>{{/if}}{{#if isArray}}[]{{/if}}, {{/parameters}}observe?: 'events', responseType?: 'arraybuffer'): {{#response}}Observable<HttpEvent<ArrayBuffer>>{{/response}};
+  public {{name}}{{#if generics}}<{{#join generics ', '}}{{.}} = object{{/join}}>{{/if}}({{#parameters}}{{name}}{{^required}}?{{/required}}: {{type}}{{#if reference.generics}}<{{#join reference.generics ', '}}{{.}}{{/join}}>{{/if}}{{#if isArray}}[]{{/if}}, {{/parameters}}observe?: 'response', responseType?: 'json'): {{#response}}Observable<HttpResponse<{{type}}{{#if reference.generics}}<{{#join reference.generics ', '}}{{.}}{{/join}}>{{/if}}{{#if isArray}}[]{{/if}}>>{{/response}};
+  public {{name}}({{#parameters}}{{name}}{{^required}}?{{/required}}: {{type}}{{#if reference.generics}}<{{#join reference.generics ', '}}{{.}}{{/join}}>{{/if}}{{#if isArray}}[]{{/if}}, {{/parameters}}observe?: 'response', responseType?: 'text'): {{#response}}Observable<HttpResponse<string>>{{/response}};
+  public {{name}}({{#parameters}}{{name}}{{^required}}?{{/required}}: {{type}}{{#if reference.generics}}<{{#join reference.generics ', '}}{{.}}{{/join}}>{{/if}}{{#if isArray}}[]{{/if}}, {{/parameters}}observe?: 'response', responseType?: 'blob'): {{#response}}Observable<HttpResponse<Blob>>{{/response}};
+  public {{name}}({{#parameters}}{{name}}{{^required}}?{{/required}}: {{type}}{{#if reference.generics}}<{{#join reference.generics ', '}}{{.}}{{/join}}>{{/if}}{{#if isArray}}[]{{/if}}, {{/parameters}}observe?: 'response', responseType?: 'arraybuffer'): {{#response}}Observable<HttpResponse<ArrayBuffer>>{{/response}};
+  public {{name}}{{#if generics}}<{{#join generics ', '}}{{.}} = object{{/join}}>{{/if}}({{#parameters}}{{name}}{{^required}}?{{/required}}: {{type}}{{#if reference.generics}}<{{#join reference.generics ', '}}{{.}}{{/join}}>{{/if}}{{#if isArray}}[]{{/if}}, {{/parameters}}observe: any = 'body', responseType: any = 'json'): {{#response}}Observable<any>{{/response}} {
     const url = `${this.configService.baseUrl}{{url}}`;
     const httpOptions = {
       observe,
+      responseType,
       withCredentials: this.configService.withCredentials,{{#if responseType}}
       responseType: '{{responseType}}',{{/if}}
       {{~#if hasQueryParams}}
