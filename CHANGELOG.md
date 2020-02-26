@@ -99,7 +99,7 @@ additional information about type are converted to HashMap objects.
 * remove prefix "Bearer" from generated services ([d353177](https://github.com/semenovap/swanco/commit/d353177))
 
 
-### BREAKING CHANGES
+### ⚠ BREAKING CHANGES
 
 * You should provide required prefix (like Bearer)
 together with your access key into ConfigService.
