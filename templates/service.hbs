@@ -32,9 +32,7 @@ import { Observable } from 'rxjs';
  * {{description}}{{#externalDocs}}
  * {{description}} {{{url}}}{{/externalDocs}}
  */
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class {{name}} {
 
   constructor(private http: HttpClient, private configService: {{config.name}}) { }
