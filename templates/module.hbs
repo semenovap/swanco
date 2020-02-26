@@ -7,6 +7,10 @@ import {
 } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
+{{#config~}}
+  import { {{name}} } from './{{file}}';
+{{/config}}
+
 {{#if references~}}
   import {
   {{#join references ',
@@ -16,6 +20,7 @@ import { HttpClient } from '@angular/common/http';
 {{/if}}
 @NgModule({
   providers: [
+    {{#config~}}{{name}},{{/config}}
     {{#join references ',
     '}}{{name}}{{/join}}
   ]

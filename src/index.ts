@@ -69,7 +69,7 @@ export = (options: Options) => {
       const enums = wrap<Enum>(fetchEnums(), 'enums');
 
       if (!options.skipModule) {
-        root.content.push(fetchModule(services));
+        root.content.push(fetchModule(config, services));
       }
 
       root.content.push(config, variables, wrap<Service>(services, 'services'), models, enums);
