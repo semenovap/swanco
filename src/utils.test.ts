@@ -49,7 +49,7 @@ describe('utils', () => {
   });
 
   it('should do request to get a file via https', async () => {
-    jest.mock('./utils');
+    jest.mock('https');
     await expect(getData('https://foo')).rejects.toThrowError();
     jest.clearAllMocks();
   });
