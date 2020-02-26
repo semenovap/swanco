@@ -2,6 +2,25 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [4.0.0](https://github.com/semenovap/swanco/compare/v3.0.1...v4.0.0) (2020-02-26)
+
+
+### ⚠ BREAKING CHANGES
+
+* **service:** You should import generated API module to the App module
+
+### Features
+
+* **bin:** call directly or as a module ([89c4697](https://github.com/semenovap/swanco/commit/89c4697a81fadceb35e44d51f2fe9e3487149b3c))
+* **config:** exclude API config service from the application-level injection ([78c0836](https://github.com/semenovap/swanco/commit/78c0836ccef1042ecf1704f7e78b61f54248f287))
+* **service:** exclude API services from the application-level injection ([96d0130](https://github.com/semenovap/swanco/commit/96d0130c9a238ecbb082227220a2c20a983ae6cb))
+
+
+### Bug Fixes
+
+* **service:** set type of authorization token ([cc0e973](https://github.com/semenovap/swanco/commit/cc0e973e5fb032e4979f131e8390b994b038879d))
+* **service:** support all response types: json, text, blob and arraybuffer ([20fb861](https://github.com/semenovap/swanco/commit/20fb861b16dbce8dd13651c6c875f0eebced7693))
+
 ### [3.0.1](https://github.com/semenovap/swanco/compare/v3.0.0...v3.0.1) (2020-01-03)
 
 
