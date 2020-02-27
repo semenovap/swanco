@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [4.0.1](https://github.com/semenovap/swanco/compare/v4.0.0...v4.0.1) (2020-02-27)
+
+
+### Bug Fixes
+
+* **service:** add generics to services methods with response type text, blob and arraybuffer ([0192f08](https://github.com/semenovap/swanco/commit/0192f08fa4922f7e1aebd816200549f8365762d3))
+* **service:** void response type was generated instead basic type ([7eaffd1](https://github.com/semenovap/swanco/commit/7eaffd14af3c913b7d5591c413032821eadc60b3))
+
 ## [4.0.0](https://github.com/semenovap/swanco/compare/v3.0.1...v4.0.0) (2020-02-26)
 
 
