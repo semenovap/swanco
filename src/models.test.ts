@@ -92,6 +92,7 @@ describe('models', () => {
           description: undefined,
           reference: undefined,
           required: false,
+          example: undefined,
           hashMap: undefined
         },
         {
@@ -101,6 +102,7 @@ describe('models', () => {
           description: undefined,
           reference: undefined,
           required: false,
+          example: undefined,
           hashMap: undefined
         },
         {
@@ -110,6 +112,7 @@ describe('models', () => {
           description: undefined,
           reference: undefined,
           required: false,
+          example: undefined,
           hashMap: undefined
         },
         {
@@ -119,6 +122,7 @@ describe('models', () => {
           description: undefined,
           reference: undefined,
           required: false,
+          example: undefined,
           hashMap: undefined
         },
         {
@@ -128,6 +132,7 @@ describe('models', () => {
           description: undefined,
           reference: undefined,
           required: false,
+          example: undefined,
           hashMap: undefined
         },
         {
@@ -137,6 +142,7 @@ describe('models', () => {
           description: 'Order Status',
           reference: enumOrderStatus,
           required: false,
+          example: undefined,
           hashMap: undefined
         }
       ],
@@ -159,6 +165,7 @@ describe('models', () => {
           description: undefined,
           reference: undefined,
           required: false,
+          example: undefined,
           hashMap: undefined
         },
         {
@@ -168,6 +175,7 @@ describe('models', () => {
           description: undefined,
           reference: undefined,
           required: false,
+          example: undefined,
           hashMap: undefined
         },
         {
@@ -177,6 +185,7 @@ describe('models', () => {
           description: undefined,
           reference: undefined,
           required: false,
+          example: undefined,
           hashMap: undefined
         },
         {
@@ -186,6 +195,7 @@ describe('models', () => {
           description: undefined,
           reference: undefined,
           required: false,
+          example: undefined,
           hashMap: undefined
         },
         {
@@ -195,6 +205,7 @@ describe('models', () => {
           description: undefined,
           reference: undefined,
           required: false,
+          example: undefined,
           hashMap: undefined
         },
         {
@@ -204,6 +215,7 @@ describe('models', () => {
           description: undefined,
           reference: undefined,
           required: false,
+          example: undefined,
           hashMap: undefined
         },
         {
@@ -213,6 +225,7 @@ describe('models', () => {
           description: 'User Status',
           reference: undefined,
           required: false,
+          example: undefined,
           hashMap: undefined
         },
         {
@@ -222,6 +235,7 @@ describe('models', () => {
           description: undefined,
           reference: undefined,
           required: false,
+          example: undefined,
           hashMap: undefined
         }
       ],
@@ -244,6 +258,7 @@ describe('models', () => {
           description: undefined,
           reference: undefined,
           required: false,
+          example: undefined,
           hashMap: undefined
         },
         {
@@ -253,6 +268,7 @@ describe('models', () => {
           description: undefined,
           reference: undefined,
           required: false,
+          example: undefined,
           hashMap: undefined
         }
       ],
@@ -275,6 +291,7 @@ describe('models', () => {
           description: undefined,
           reference: undefined,
           required: false,
+          example: undefined,
           hashMap: undefined
         },
         {
@@ -284,6 +301,7 @@ describe('models', () => {
           description: undefined,
           reference: undefined,
           required: false,
+          example: undefined,
           hashMap: undefined
         }
       ],
@@ -314,6 +332,7 @@ describe('models', () => {
           description: undefined,
           reference: category,
           required: false,
+          example: undefined,
           hashMap: undefined
         },
         {
@@ -323,6 +342,7 @@ describe('models', () => {
           description: undefined,
           reference: undefined,
           required: false,
+          example: undefined,
           hashMap: undefined
         },
         {
@@ -332,6 +352,7 @@ describe('models', () => {
           description: undefined,
           reference: undefined,
           required: true,
+          example: '"doggie"',
           hashMap: undefined
         },
         {
@@ -341,6 +362,7 @@ describe('models', () => {
           description: undefined,
           reference: undefined,
           required: true,
+          example: undefined,
           hashMap: undefined
         },
         {
@@ -350,6 +372,7 @@ describe('models', () => {
           description: 'pet status in the store',
           reference: enumPetStatus,
           required: false,
+          example: undefined,
           hashMap: undefined
         },
         {
@@ -359,6 +382,7 @@ describe('models', () => {
           description: undefined,
           reference: tag,
           required: false,
+          example: undefined,
           hashMap: undefined
         }
       ],
@@ -381,6 +405,7 @@ describe('models', () => {
           description: undefined,
           reference: undefined,
           required: false,
+          example: undefined,
           hashMap: undefined
         },
         {
@@ -390,6 +415,7 @@ describe('models', () => {
           description: undefined,
           reference: undefined,
           required: false,
+          example: undefined,
           hashMap: undefined
         },
         {
@@ -399,6 +425,7 @@ describe('models', () => {
           description: undefined,
           reference: undefined,
           required: false,
+          example: undefined,
           hashMap: undefined
         }
       ],
@@ -460,6 +487,7 @@ describe('models', () => {
           name: 'rootCause',
           reference: undefined,
           required: false,
+          example: undefined,
           type: 'string',
         },
       ],
@@ -516,6 +544,7 @@ describe('models', () => {
           name: 'bar',
           reference: undefined,
           required: false,
+          example: undefined,
           type: 'object'
         },
         {
@@ -525,6 +554,7 @@ describe('models', () => {
           name: 'baz',
           reference: undefined,
           required: false,
+          example: undefined,
           type: 'object'
         },
         {
@@ -534,6 +564,7 @@ describe('models', () => {
           name: 'foo',
           reference: undefined,
           required: false,
+          example: undefined,
           type: 'FooFoo'
         }
       ],

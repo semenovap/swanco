@@ -44,6 +44,7 @@ interface Property extends Type {
   description: string;
   name: string;
   required: boolean;
+  example: string;
 }
 
 type AdditionalType = Generics & Type;
@@ -189,6 +190,7 @@ function getModel(name: string, definition: Schema): Model {
       hashMap: type.hashMap,
       name: propName,
       description: property.description,
+      example: JSON.stringify(property.example),
       required: required.indexOf(propName) > -1
     });
   }
