@@ -377,11 +377,11 @@ function getResponse(service: string, operation: string, response: SwaggerRespon
       description = response.description;
       refType = getReferenceType(response.schema);
       if (!refType.name) {
-        if ('enum' in response.schema) {
+        if ('enum' in response.schema || ('items' in response.schema && !Array.isArray(response.schema.items))) {
           refType = addEnum(service, operation, response.schema);
-        } else if ('items' in response.schema && !Array.isArray(response.schema.items)) {
-          refType = addEnum(service, operation, response.schema);
-        } else {
+        }
+
+        if (!refType || !refType.name) {
           refType = getBasicType(response.schema);
         }
       }
