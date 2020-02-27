@@ -29,8 +29,8 @@ import { Observable } from 'rxjs';
 
 {{/if}}
 /**
- * {{description}}{{#externalDocs}}
- * {{description}} {{{url}}}{{/externalDocs}}
+ * {{{description}}}{{#externalDocs}}
+ * {{{description}}} {{{url}}}{{/externalDocs}}
  */
 @Injectable()
 export class {{name}} {
@@ -39,13 +39,13 @@ export class {{name}} {
 
   {{#operations}}
   /**{{#if summary}}
-   * {{summary}}{{/if}}{{#if description}}
-   * {{description}}{{/if}}
+   * {{{summary}}}{{/if}}{{#if description}}
+   * {{{description}}}{{/if}}
    *{{#if deprecated}}
    * @deprecated
    *{{/if}}
    {{#parameters}}
-   * @param { {{~pascalCase type~}} } {{^required}}[{{/required}}{{name}}{{^required}}]{{/required}}{{#description}} - {{.}}{{/description}}{{#reference}} {@link {{name~}} }{{/reference}}
+   * @param { {{~pascalCase type~}} } {{^required}}[{{/required}}{{name}}{{^required}}]{{/required}}{{#description}} - {{{.}}}{{/description}}{{#reference}} {@link {{name~}} }{{/reference}}
    {{/parameters}}
    * @param {'body'} [observe] - Observable part of response
    * @param {'event'} [observe] - Observable part of response
@@ -56,9 +56,9 @@ export class {{name}} {
    * @param {'arraybuffer'} [responseType] - The expected response type of the server
    {{#response}}
    *
-   * @return {Observable<{{type}}{{#if isArray}}[]{{/if}}>}{{#description}} - {{.}}{{/description}}{{#reference}} {@link {{name~}} }{{/reference}}
-   * @return {Observable<HttpEvent<{{type}}{{#if isArray}}[]{{/if}}>>}{{#description}} - {{.}}{{/description}}{{#reference}} {@link {{name~}} }{{/reference}}
-   * @return {Observable<HttpResponse<{{type}}{{#if isArray}}[]{{/if}}>>}{{#description}} - {{.}}{{/description}}{{#reference}} {@link {{name~}} }{{/reference}}
+   * @return {Observable<{{type}}{{#if isArray}}[]{{/if}}>}{{#description}} - {{{.}}}{{/description}}{{#reference}} {@link {{name~}} }{{/reference}}
+   * @return {Observable<HttpEvent<{{type}}{{#if isArray}}[]{{/if}}>>}{{#description}} - {{{.}}}{{/description}}{{#reference}} {@link {{name~}} }{{/reference}}
+   * @return {Observable<HttpResponse<{{type}}{{#if isArray}}[]{{/if}}>>}{{#description}} - {{{.}}}{{/description}}{{#reference}} {@link {{name~}} }{{/reference}}
    {{/response}}
    */
   public {{name}}{{#if generics}}<{{#join generics ', '}}{{.}} = object{{/join}}>{{/if}}({{#parameters}}{{name}}{{^required}}?{{/required}}: {{type}}{{#if reference.generics}}<{{#join reference.generics ', '}}{{.}}{{/join}}>{{/if}}{{#if isArray}}[]{{/if}}, {{/parameters}}observe?: 'body', responseType?: 'json'): {{#response}}Observable<{{type}}{{#if reference.generics}}<{{#join reference.generics ', '}}{{.}}{{/join}}>{{/if}}{{#if isArray}}[]{{/if}}>{{/response}};

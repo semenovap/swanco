@@ -10,12 +10,12 @@
 
 {{/if}}
 /**{{#if title}}
- * {{title}}{{/if}}{{#if description}}
- * {{description}}{{/if}}
+ * {{{title}}}{{/if}}{{#if description}}
+ * {{{description}}}{{/if}}
  */
 export interface {{name}}{{#if generics}}<{{#join generics ', '}}{{.}} = object{{/join}}>{{/if}}{{#if extended}} extends {{#join extended ', '}}{{name}}{{#if generics}}<{{#join generics ', '}}{{.}}{{/join}}>{{/if}}{{/join}}{{/if}} {
 {{#properties}}
-  {{name}}{{^required}}?{{/required}}: {{#if hashMap}}{{> substructure hashMap=hashMap}}{{else}}{{type}}{{/if}}{{#if reference.generics}}<{{#join reference.generics ', '}}{{.}}{{/join}}>{{/if}}{{#if isArray}}[]{{/if}};{{#description}} // {{.}}{{/description}}
+  {{name}}{{^required}}?{{/required}}: {{#if hashMap}}{{> substructure hashMap=hashMap}}{{else}}{{type}}{{/if}}{{#if reference.generics}}<{{#join reference.generics ', '}}{{.}}{{/join}}>{{/if}}{{#if isArray}}[]{{/if}};{{#description}} // {{{.}}}{{/description}}
 {{/properties}}
 }
 
