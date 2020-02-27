@@ -15,17 +15,25 @@ import { Observable } from 'rxjs';
 {{/config}}
 
 {{#if references.enum~}}
-  import {
+  {{#if (isOne references.enum)~}}
+    import { {{#join references.enum ', '}}{{name}}{{/join}} } from '../enums';
+  {{else}}
+import {
   {{#join references.enum ',
   '}}{{name}}{{/join}}
 } from '../enums';
+  {{/if}}
 
 {{/if}}
 {{#if references.model~}}
-  import {
+  {{#if (isOne references.model)~}}
+    import { {{#join references.model ', '}}{{name}}{{/join}} } from '../models';
+  {{else}}
+import {
   {{#join references.model ',
   '}}{{name}}{{/join}}
 } from '../models';
+  {{/if}}
 
 {{/if}}
 /**

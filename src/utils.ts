@@ -48,6 +48,7 @@ export interface HashMap<T> {
 
 // Register render helpers
 registerHelper('join', (array, sep, options) => array.map(item => options.fn(item)).join(sep));
+registerHelper('isOne', value => Array.isArray(value) && value.length === 1);
 registerHelper('pascalCase', value => pascalCase(value));
 
 /**

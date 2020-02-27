@@ -12,10 +12,14 @@ import { HttpClient } from '@angular/common/http';
 {{/config}}
 
 {{#if references~}}
-  import {
+  {{#if (isOne references)~}}
+    import { {{#join references ', '}}{{name}}{{/join}} } from '../services';
+  {{else}}
+import {
   {{#join references ',
   '}}{{name}}{{/join}}
 } from './services';
+  {{/if}}
 
 {{/if}}
 @NgModule({
