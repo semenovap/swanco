@@ -46,7 +46,9 @@ export = (options: Options) => {
   }
 
   return getData(options.input, options.auth).then(spec => {
-    if (!spec.swagger || parseInt(spec.swagger, 0) !== 2) {
+    const {swagger} = spec;
+
+    if (parseInt(swagger, 0) !== 2) {
       throw new Error(`Invalid Swagger data or version of specification is not supported`);
     }
 
