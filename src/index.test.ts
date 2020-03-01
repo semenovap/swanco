@@ -17,6 +17,7 @@ describe('index', () => {
   });
 
   it('should hide report', async () => {
+    spyOn(console, 'info');
     spyOn(console, 'table');
     await swanco({
       input: 'fixture.test.json',
@@ -29,6 +30,7 @@ describe('index', () => {
   });
 
   it('should generate services and show report', async () => {
+    spyOn(console, 'info');
     spyOn(console, 'table');
     await swanco({
       input: 'fixture.test.json',
@@ -40,6 +42,7 @@ describe('index', () => {
   });
 
   it('should not generate services but show report', async () => {
+    spyOn(console, 'info');
     spyOn(console, 'table');
     await swanco({
       input: 'fixture.test.json',

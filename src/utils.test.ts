@@ -128,6 +128,7 @@ describe('utils', () => {
   });
 
   it('should show report', () => {
+    spyOn(console, 'info');
     spyOn(console, 'table');
     showReport(0, 0, 0);
     expect(console.table).toBeCalled();

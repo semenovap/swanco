@@ -160,6 +160,7 @@ export function showReport(models: number, enums: number, services: number): voi
     }))
     .filter(value => value.count);
 
+  console.info(`swanco v${process.env.npm_package_version}`);
   console.table(data);
 }
 
