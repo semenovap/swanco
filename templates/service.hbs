@@ -139,11 +139,11 @@ export class {{name}} {
       {{#inFormData}}
         {{#if isArray}}
     if (Array.isArray({{name}}) && {{name}}.length) {
-      {{name}}.forEach(value => formData.append('{{originalName}}', value instanceof Blob ? value : String(value)));
+      {{name}}.forEach(value => formData.append('{{originalName}}', {{#if (isBlob type)}}value{{else}}String(value){{/if}}));
     }
         {{^}}
     if ({{name}} != null) {
-      formData.set('{{originalName}}', {{name}} instanceof Blob ? {{name}} : String({{name}}));
+      formData.set('{{originalName}}', {{#if (isBlob type)}}{{name}}{{else}}String({{name}}){{/if}});
     }
         {{/if}}
       {{/inFormData}}
