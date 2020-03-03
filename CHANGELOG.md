@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [4.0.2](https://github.com/semenovap/swanco/compare/v4.0.1...v4.0.2) (2020-03-03)
+
+
+### Bug Fixes
+
+* **service:** check type of form data parameter ([e315f03](https://github.com/semenovap/swanco/commit/e315f03f26cf08acd74a9efd5a1c4e7db7ce1f5f))
+
 ### [4.0.1](https://github.com/semenovap/swanco/compare/v4.0.0...v4.0.1) (2020-02-27)
 
 
