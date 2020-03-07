@@ -254,7 +254,6 @@ function getOperation(
         return all;
       }, [])
   ], undefined);
-  const accept = getMimeType(operation.produces);
 
   return {
     name,
@@ -262,8 +261,8 @@ function getOperation(
     generics,
     response,
     parameters,
-    accept,
     url: path.replace(/{/g, '${'),
+    accept: getMimeType(operation.produces) || '*/*',
     contentType: getMimeType(operation.consumes),
     hasQueryParams: parameters.some(parameter => parameter.inQuery),
     hasFormData: parameters.some(parameter => parameter.inFormData),
@@ -429,17 +428,15 @@ function getSecurity(operationSecurity: SwaggerSecurity[] = [], securities: Hash
  *
  * @param {String[]} types - Available types
  *
- * @return {DataTypes | undefined}
+ * @return {String | undefined}
  */
-function getMimeType(types: string[] = []): DataTypes | undefined {
-  const jsonMime = new RegExp('^(application\/json|[^;/ \t]+\/[^;/ \t]+[+]json)[ \t]*(;.*)?$', 'i');
-  const xmlMime = new RegExp('^((application|text)\/xml|[^;/ \t]+\/[^;/ \t]+[+]xml)[ \t]*(;.*)?$', 'i');
+function getMimeType(types: string[] = []): string | undefined {
+  const jsonMimePattern = new RegExp('^(application\/json|[^;/ \t]+\/[^;/ \t]+[+]json)[ \t]*(;.*)?$', 'i');
+  const jsonMime = types.find(type => jsonMimePattern.test(type));
 
-  if (types.some(type => jsonMime.test(type))) {
-    return DataTypes.Json;
-  } else if (types.some(type => xmlMime.test(type))) {
-    return DataTypes.Xml;
+  if (jsonMime) {
+    return jsonMime;
   }
 
-  return;
+  return types[0];
 }

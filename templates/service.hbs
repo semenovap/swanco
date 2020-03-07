@@ -86,15 +86,13 @@ export class {{name}} {
     const httpOptions = {
       observe,
       responseType,
-      withCredentials: this.configService.withCredentials,{{#if responseType}}
-      responseType: '{{responseType}}',{{/if}}
+      withCredentials: this.configService.withCredentials,
       {{~#if hasQueryParams}}
-
       params: new HttpParams(),{{/if}}
       headers: new HttpHeaders({
-      {{~#unless hasFormData}}{{#if contentType}}
-        'Content-Type': '{{contentType}}',{{/if}}{{/unless}}{{#if accept}}
-        'Accept': '{{accept}}'{{/if}}
+        {{#if contentType}}'Content-Type': '{{contentType}}'{{#if accept}},
+        {{/if}}{{/if}}
+        {{~#if accept}}'Accept': '{{accept}}'{{/if}}
       })
     };
     {{#security~}}
