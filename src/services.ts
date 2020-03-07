@@ -56,7 +56,6 @@ interface Operation extends Generics {
   url: string;
   accept: string;
   contentType: string;
-  responseType: string;
   hasQueryParams: boolean;
   hasFormData: boolean;
   hasNoBody: boolean;
@@ -97,11 +96,6 @@ interface ApiKey {
 interface Token {
   name: string;
   type: 'Basic' | 'Bearer';
-}
-
-enum DataTypes {
-  Json = 'application/json',
-  Xml = 'application/xml',
 }
 
 /**
@@ -271,7 +265,6 @@ function getOperation(
     accept,
     url: path.replace(/{/g, '${'),
     contentType: getMimeType(operation.consumes),
-    responseType: accept === DataTypes.Xml ? 'text' : undefined,
     hasQueryParams: parameters.some(parameter => parameter.inQuery),
     hasFormData: parameters.some(parameter => parameter.inFormData),
     security: getSecurity(operation.security, securityDefinitions),
