@@ -153,6 +153,7 @@ export function showError(message: string): void {
  * @param {Number} services - Services' count
  */
 export function showReport(models: number, enums: number, services: number): void {
+  const {version} = JSON.parse(readFileSync(join(__dirname, '..', 'package.json'), {encoding: 'utf-8'}));
   const labels = ['Models', 'Enums', 'Services'];
   const data = [models, enums, services]
     .map((value, index) => ({
@@ -161,7 +162,7 @@ export function showReport(models: number, enums: number, services: number): voi
     }))
     .filter(value => value.count);
 
-  console.info(`swanco v${process.env.npm_package_version}`);
+  console.info(`swanco v${version}`);
   console.table(data);
 }
 
