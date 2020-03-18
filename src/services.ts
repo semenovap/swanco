@@ -394,12 +394,12 @@ function getResponse(service: string, operation: string, response: SwaggerRespon
  *
  * @private
  *
- * @param {SwaggerSecurity[]} [operationSecurity] - Swagger operations security
+ * @param {HashMap<string[]>[]} [operationSecurity] - Swagger operations security
  * @param {HashMap<SwaggerSecurity>} [securities] - Swagger security definition
  *
  * @return {Security}
  */
-function getSecurity(operationSecurity: SwaggerSecurity[] = [], securities: HashMap<SwaggerSecurity> = {}): Security {
+function getSecurity(operationSecurity: HashMap<string[]>[] = [], securities: HashMap<SwaggerSecurity> = {}): Security {
   const apiKeys: ApiKey[] = [];
   const tokens: Token[] = [];
 
