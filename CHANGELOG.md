@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [4.0.3](https://github.com/semenovap/swanco/compare/v4.0.2...v4.0.3) (2020-03-18)
+
+
+### Bug Fixes
+
+* **service:** add values for content-type and accept headers ([399b480](https://github.com/semenovap/swanco/commit/399b480729920138837c2fb870a973d38a858fe8))
+* **service:** remove deprecated property ([c1a5d77](https://github.com/semenovap/swanco/commit/c1a5d774d3160381bb6bf7ceace10aea2c15ffc8))
+* **service:** typisation error of operation security ([34291eb](https://github.com/semenovap/swanco/commit/34291ebb71694e5b5ec77ed8e03fe7cc3ee40616))
+
 ### [4.0.2](https://github.com/semenovap/swanco/compare/v4.0.1...v4.0.2) (2020-03-03)
 
 
