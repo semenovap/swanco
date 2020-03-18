@@ -14,8 +14,8 @@
     "lint": "tslint -p tsconfig.test.json",
     "test": "jest --config jest.config.json",
     "generate": "node ./dist/cli -o tmp -i",
-    "release": "npm run prepublishOnly && standard-version",
-    "prepublishOnly": "npm run build && npm run test && npm run lint"
+    "release": "npm run build && npm run test && npm run lint && standard-version",
+    "publish": "git push --follow-tags origin master && npm publish"
   },
   "keywords": [
     "swagger",
