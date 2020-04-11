@@ -18,7 +18,6 @@ export interface {{name}}{{#if generics}}<{{#join generics ', '}}{{.}} = object{
   {{name}}{{^required}}?{{/required}}: {{#if hashMap}}{{> substructure hashMap=hashMap}}{{else}}{{type}}{{/if}}{{#if reference.generics}}<{{#join reference.generics ', '}}{{.}}{{/join}}>{{/if}}{{#if isArray}}[]{{/if}};{{#description}} // {{{.}}}{{/description}}{{#if example}}{{#if description}}, for{{else}} //{{/if}} example: {{{example}}}{{/if}}
 {{/properties}}
 }
-
 {{#*inline 'substructure'}}
   {{#hashMap~}}
   {
