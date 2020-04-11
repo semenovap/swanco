@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [4.0.4](https://github.com/semenovap/swanco/compare/v4.0.3...v4.0.4) (2020-04-11)
+
+
+### Bug Fixes
+
+* **bin:** disable linter for index pages ([d023150](https://github.com/semenovap/swanco/commit/d023150ca044f575ddf8536754a3358a487d607f))
+* **model:** remove extra new line from template ([575d19f](https://github.com/semenovap/swanco/commit/575d19fffa64524f3730a386e04270d3189eb0f7))
+* **service:** remove extra white spaces from template ([e631cda](https://github.com/semenovap/swanco/commit/e631cda040d872a17c0fb484a05141f063f82ad4))
+
 ### [4.0.3](https://github.com/semenovap/swanco/compare/v4.0.2...v4.0.3) (2020-03-18)
 
 
