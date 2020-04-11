@@ -87,8 +87,7 @@ export class {{name}} {
       observe,
       responseType,
       withCredentials: this.configService.withCredentials,
-      {{~#if hasQueryParams}}
-      params: new HttpParams(),{{/if}}
+      {{#if hasQueryParams}}params: new HttpParams(),{{/if}}
       headers: new HttpHeaders({
         {{#if contentType}}'Content-Type': '{{contentType}}'{{#if accept}},
         {{/if}}{{/if}}
