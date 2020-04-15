@@ -86,8 +86,8 @@ export class {{name}} {
     const httpOptions = {
       observe,
       responseType,
-      withCredentials: this.configService.withCredentials,
-      {{#if hasQueryParams}}params: new HttpParams(),{{/if}}
+      withCredentials: this.configService.withCredentials,{{#if hasQueryParams}}
+      params: new HttpParams(),{{/if}}
       headers: new HttpHeaders({
         {{#if contentType}}'Content-Type': '{{contentType}}'{{#if accept}},
         {{/if}}{{/if}}
@@ -113,10 +113,12 @@ export class {{name}} {
     {{#parameters~}}
       {{#inHeader}}
         {{#if isArray}}
+
     if (Array.isArray({{name}}) && {{name}}.length) {
       httpOptions.headers = httpOptions.headers.set('{{originalName}}', {{name}}.map(String));
     }
         {{^}}
+
     if ({{name}} != null) {
       httpOptions.headers = httpOptions.headers.set('{{originalName}}', String({{name}}));
     }
@@ -124,10 +126,12 @@ export class {{name}} {
       {{/inHeader~}}
       {{#inQuery}}
         {{#if isArray}}
+
     if (Array.isArray({{name}}) && {{name}}.length) {
       {{name}}.forEach(value => httpOptions.params = httpOptions.params.append('{{originalName}}', String(value)));
     }
         {{^}}
+
     if ({{name}} != null) {
       httpOptions.params = httpOptions.params.set('{{originalName}}', String({{name}}));
     }
@@ -135,10 +139,12 @@ export class {{name}} {
       {{/inQuery}}
       {{#inFormData}}
         {{#if isArray}}
+
     if (Array.isArray({{name}}) && {{name}}.length) {
       {{name}}.forEach(value => formData.append('{{originalName}}', {{#if (isBlob type)}}value{{else}}String(value){{/if}}));
     }
         {{^}}
+
     if ({{name}} != null) {
       formData.set('{{originalName}}', {{#if (isBlob type)}}{{name}}{{else}}String({{name}}){{/if}});
     }
