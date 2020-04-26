@@ -23,7 +23,8 @@
     "generator"
   ],
   "files": [
-    "dist",
+    "dist/*.js",
+    "dist/index.d.ts",
     "templates"
   ],
   "bin": "dist/cli.js",
