@@ -5,7 +5,7 @@
 [![node](https://img.shields.io/node/v/swanco.svg?label=require%20node)](https://nodejs.org)
 [![License](https://img.shields.io/npm/l/swanco.svg)](/LICENSE)
 
-This project is a small tool, which generates Angular module from a [Swagger 2.0 specification](https://swagger.io/specification).
+This project is a small tool, which generates an Angular module from a [Swagger 2.0 specification](https://swagger.io/specification).
 
 ## Key features
 - Generate complete API module, which contains enums, models and services
