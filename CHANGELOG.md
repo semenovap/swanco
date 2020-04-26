@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [4.0.6](https://github.com/semenovap/swanco/compare/v4.0.5...v4.0.6) (2020-04-26)
+
+
+### Bug Fixes
+
+* **doc:** add missed article ([15295c0](https://github.com/semenovap/swanco/commit/15295c02116bb5804005f86aa14e5968238e54d5))
+* **service:** add extra new line between conditions in service template ([7522e35](https://github.com/semenovap/swanco/commit/7522e351c6dd0c0e680f974414a3e74df2a397d3))
+
 ### [4.0.5](https://github.com/semenovap/swanco/compare/v4.0.4...v4.0.5) (2020-04-11)
 
 ### [4.0.4](https://github.com/semenovap/swanco/compare/v4.0.3...v4.0.4) (2020-04-11)
