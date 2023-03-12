@@ -203,7 +203,7 @@ export function getProtocol(url: string): string | undefined {
 
   try {
     protocol = new URL(url).protocol;
-    protocol = protocol.substr(0, protocol.length - 1);
+    protocol = protocol.substring(0, protocol.length - 1);
   } catch (e) {}
 
   return protocol;
@@ -219,16 +219,16 @@ export function getProtocol(url: string): string | undefined {
  *
  * @return {Promise<string>}
  */
-function getUrl(url: string, auth: string): Promise<string> {
+async function getUrl(url: string, auth: string): Promise<string> {
+  const protocol = getProtocol(url);
+  if (!protocol) {
+    throw new Error(`Invalid URL: ${url}`);
+  }
+
+  const http = await import(protocol);
+  const request = http.get(url, {auth});
+
   return new Promise((res, rej) => {
-    const protocol = getProtocol(url);
-    if (!protocol) {
-      throw new Error(`Invalid URL: ${url}`);
-    }
-
-    const http = require(protocol);
-    const request = http.get(url, {auth});
-
     request.on('error', error => rej(error));
     request.on('response', (response: IncomingMessage) => {
       const {statusCode} = response;
@@ -243,7 +243,7 @@ function getUrl(url: string, auth: string): Promise<string> {
 
       if (error) {
         response.resume();
-        rej(error);
+        return Promise.reject(error);
       } else {
         let rawData = '';
         response.setEncoding('utf-8');

@@ -488,8 +488,8 @@ describe('models', () => {
           reference: undefined,
           required: false,
           example: undefined,
-          type: 'string',
-        },
+          type: 'string'
+        }
       ],
       references: {
         model: [
@@ -527,7 +527,7 @@ describe('models', () => {
       extended: [],
       file: 'foo.model',
       generics: [
-        'FooFoo',
+        'FooFoo'
       ],
       name: 'Foo',
       properties: [
@@ -570,7 +570,7 @@ describe('models', () => {
       ],
       references: {},
       template: 'model',
-      title: 'Foo',
+      title: 'Foo'
     };
     expect(fetchModels(spec)).toEqual([...models, foo]);
   });

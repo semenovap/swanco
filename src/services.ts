@@ -35,7 +35,7 @@ import {
   File,
   Generics,
   HashMap,
-  pascalCase,
+  pascalCase
 } from './utils';
 
 export interface Service extends Tag, File {
@@ -150,20 +150,20 @@ function getServices(
   });
 
   for (const pathName in paths) {
-    if (!paths.hasOwnProperty(pathName) || !paths[pathName]) {
+    if (!Object.prototype.hasOwnProperty.call(paths, pathName) || !paths[pathName]) {
       continue;
     }
 
     const path = paths[pathName];
     for (const methodName in path) {
-      if (!path.hasOwnProperty(methodName)) {
+      if (!Object.prototype.hasOwnProperty.call(path, methodName)) {
         continue;
       }
 
       const operation: SwaggerOperation = path[methodName];
 
       operation.tags = Array.isArray(operation.tags) && operation.tags.length ? operation.tags : ['api'];
-      operation.security = operation.security || globalSecurity as any;
+      operation.security = operation.security || globalSecurity;
 
       operation.tags.forEach(tagName => {
         const currentTag = tags.find(tag => tag.name === tagName) || {
@@ -249,7 +249,7 @@ function getOperation(
     ...parameters.map(param => param.reference).concat(response.reference)
       .reduce((all, reference) => {
         if (reference && 'generics' in reference) {
-          all.push.apply(all, reference.generics);
+          all.push(...reference.generics);
         }
         return all;
       }, [])
@@ -431,7 +431,7 @@ function getSecurity(operationSecurity: HashMap<string[]>[] = [], securities: Ha
  * @return {String | undefined}
  */
 function getMimeType(types: string[] = []): string | undefined {
-  const jsonMimePattern = new RegExp('^(application\/json|[^;/ \t]+\/[^;/ \t]+[+]json)[ \t]*(;.*)?$', 'i');
+  const jsonMimePattern = /^(application\/json|[^;/ \t]+\/[^;/ \t]+[+]json)[ \t]*(;.*)?$/i;
   const jsonMime = types.find(type => jsonMimePattern.test(type));
 
   if (jsonMime) {

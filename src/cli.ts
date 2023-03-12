@@ -17,7 +17,7 @@ const options = scriptName('swanco')
       describe: 'Path to write generated content'
     },
     'auth': {
-      describe: 'Basic authentication credentials, like "user:password"',
+      describe: 'Basic authentication credentials, like "user:password"'
     },
     'skip-services': {
       boolean: false,
