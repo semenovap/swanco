@@ -17,8 +17,8 @@ describe('index', () => {
   });
 
   it('should hide report', async () => {
-    spyOn(console, 'info');
-    spyOn(console, 'table');
+    jest.spyOn(console, 'info').mockImplementation();
+    jest.spyOn(console, 'table').mockImplementation();
     await swanco({
       input: 'fixture.test.json',
       output: 'tmp',
@@ -30,8 +30,8 @@ describe('index', () => {
   });
 
   it('should generate services and show report', async () => {
-    spyOn(console, 'info');
-    spyOn(console, 'table');
+    jest.spyOn(console, 'info').mockImplementation();
+    jest.spyOn(console, 'table').mockImplementation();
     await swanco({
       input: 'fixture.test.json',
       output: 'tmp'
@@ -42,8 +42,8 @@ describe('index', () => {
   });
 
   it('should not generate services but show report', async () => {
-    spyOn(console, 'info');
-    spyOn(console, 'table');
+    jest.spyOn(console, 'info').mockImplementation();
+    jest.spyOn(console, 'table').mockImplementation();
     await swanco({
       input: 'fixture.test.json',
       output: 'tmp',

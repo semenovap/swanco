@@ -122,14 +122,14 @@ describe('utils', () => {
   });
 
   it('should show error message', () => {
-    spyOn(console, 'error');
+    jest.spyOn(console, 'error').mockImplementation();
     showError('foo');
     expect(console.error).toBeCalled();
   });
 
   it('should show report', () => {
-    spyOn(console, 'info');
-    spyOn(console, 'table');
+    jest.spyOn(console, 'info').mockImplementation();
+    jest.spyOn(console, 'table').mockImplementation();
     showReport(0, 0, 0);
     expect(console.table).toBeCalled();
   });

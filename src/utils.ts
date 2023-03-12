@@ -12,10 +12,7 @@ import {
   unlinkSync,
   writeFileSync
 } from 'fs';
-import {
-  compile,
-  registerHelper
-} from 'handlebars';
+import * as Handlebars from 'handlebars';
 import {IncomingMessage} from 'http';
 import camelCase = require('lodash.camelcase');
 import upperFirst = require('lodash.upperfirst');
@@ -47,10 +44,10 @@ export interface HashMap<T> {
 }
 
 // Register render helpers
-registerHelper('join', (array, sep, options) => array.map(item => options.fn(item)).join(sep));
-registerHelper('isOne', value => Array.isArray(value) && value.length === 1);
-registerHelper('isBlob', value => value === 'Blob');
-registerHelper('pascalCase', value => pascalCase(value));
+Handlebars.registerHelper('join', (array, sep, options) => array.map(item => options.fn(item)).join(sep));
+Handlebars.registerHelper('isOne', value => Array.isArray(value) && value.length === 1);
+Handlebars.registerHelper('isBlob', value => value === 'Blob');
+Handlebars.registerHelper('pascalCase', value => pascalCase(value));
 
 /**
  * Create file (model, service, enum, etc.) by template
@@ -69,13 +66,13 @@ export function generate(output: string, dir: Directory<File>): void {
 
   dir.content.forEach(item => {
     if ('file' in item) {
-      writeFileSync(join(path, `${item.file}.ts`), compile(getTemplate(item.template))(item));
+      writeFileSync(join(path, `${item.file}.ts`), Handlebars.compile(getTemplate(item.template))(item));
     } else {
       generate(path, item);
     }
   });
 
-  writeFileSync(join(path, `index.ts`), compile(getTemplate('index'))(dir));
+  writeFileSync(join(path, `index.ts`), Handlebars.compile(getTemplate('index'))(dir));
 }
 
 /**
