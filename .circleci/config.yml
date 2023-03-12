@@ -7,7 +7,7 @@ jobs:
   build:
     working_directory: ~/swanco
     docker:
-      - image: circleci/node:latest
+      - image: cimg/node:lts
     steps:
       - checkout
 
