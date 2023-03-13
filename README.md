@@ -14,7 +14,7 @@ This project is a small tool, which generates an Angular module from a [Swagger 
 
 ## Requirements
 The generator requires NodeJS `10.12.0` or later and has a few dependencies:
-- [yargs](https://www.npmjs.com/package/yargs)
+- [commander](https://www.npmjs.com/package/commander)
 - [handlebars](https://www.npmjs.com/package/handlebars)
 - [lodash.camelcase](https://www.npmjs.com/package/lodash.camelcase)
 - [lodash.groupby](https://www.npmjs.com/package/lodash.groupby)
