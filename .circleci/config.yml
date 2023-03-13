@@ -37,17 +37,17 @@ jobs:
 
       - run:
           name: Execute linter
-          command: npm run lint -- --format junit --out ./test-results/tslint/tslint.xml
+          command: npm run lint -- --format junit --output-file ./reports/eslint.xml
       - store_test_results:
-          path: ./test-results/tslint/
+          path: ./reports/
 
       - run:
           name: Execute tests
           command: npm run test -- --ci --runInBand --reporters jest-junit
           environment:
-            JEST_JUNIT_OUTPUT_DIR: ./test-results/jest
+            JEST_JUNIT_OUTPUT_DIR: ./reports/
       - store_test_results:
-          path: ./test-results/jest/
+          path: ./reports/
       - store_artifacts:
           path: coverage
           destination: coverage

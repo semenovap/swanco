@@ -6,6 +6,7 @@
 /out-tsc
 /test
 /doc
+/reports
 /junit.xml
 
 # dependencies
